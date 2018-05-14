@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<?import org.controlsfx.control.Rating?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.ProgressIndicator?>
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.BookDetailsController" fx:id="bookDetailPane">
+      <StackPane  AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <BorderPane>
+            <center>
+                <HBox spacing="50.0" BorderPane.alignment="CENTER">
+                    <padding>
+                        <Insets left="100" top="50" right="100"/>
+                    </padding>
+
+                    <StackPane fx:id="imageStackPane" maxHeight="310">
+                        <ImageView fitHeight="303.0" fitWidth="200.0" pickOnBounds="true" fx:id="imageView"
+                                   StackPane.alignment="TOP_LEFT">
+                            <Image url="@/login.png"/>
+                        </ImageView>
+                        <ProgressIndicator fx:id="progressIndicator" />
+                    </StackPane>
+
+                    <VBox spacing="10.0">
+
+                        <Label text="Full title of the book fro million" fx:id="titleLabel">
+                            <font>
+                                <Font size="32.0" />
+                            </font>
+                        </Label>
+                        <Label text="Autor Name" textFill="#686868" fx:id="autorLabel">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <HBox spacing="10" alignment="BOTTOM_LEFT">
+                            <Rating fx:id="rating" />
+                            <Label fx:id="ratingLabel" alignment="BASELINE_LEFT" textFill="#686868"/>
+                        </HBox>
+                        <VBox spacing="10">
+                            <padding>
+                                <Insets top="15"/>
+                            </padding>
+                            <Label prefHeight="80" fx:id="descriptionLabel" wrapText="true"
+                                   text="asyasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasiduflasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasiduflasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasiduflasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasiduflasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasiduflasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasiduflasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasiduflasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasiduflasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasiduflasydfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasidufldfgdsliua hidlfalydsfludb ilfakdsajdfgsadkfsgyfgalsydfalsdglfauisdgaflsdfsd faisud fasidu fhalsidf hañsdiufhasñdifhasidufl"/>
+                            <Separator/>
+                            <HBox fx:id="progressBarHBox">
+                                <JFXProgressBar prefWidth="500" fx:id="progressBar"/>
+                            </HBox>
+                            <HBox spacing="20">
+                                <JFXButton prefHeight="32" text="Download and Visualize" styleClass="jfxColorBtn" fx:id="visualizeButton" onMouseClicked="#DownloadAndVisualize"> </JFXButton>
+                                <Button text="Add to favorites" styleClass="altBackground" fx:id="favoritesButton"  onMouseClicked="#AddToFavorites">
+                                    <graphic>
+                                        <FontAwesomeIconView wrappingWidth="25" glyphName="HEART_ALT" size="20" fill="red" fx:id="fontAwesomeFavIcon" />
+                                    </graphic>
+                                </Button>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                </HBox>
+            </center>
+            <top>
+                <JFXButton ripplerFill="WHITE" text="Return" BorderPane.alignment="TOP_LEFT"  onMouseClicked="#closeBook"  >
+                    <graphic>
+                        <MaterialDesignIconView glyphName="KEYBOARD_RETURN" size="22"/>
+                    </graphic>
+                </JFXButton>
+            </top>
+         </BorderPane>
+      </StackPane>
+</AnchorPane>

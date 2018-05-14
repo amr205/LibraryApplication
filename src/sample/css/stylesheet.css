@@ -1,0 +1,73 @@
+.jfx-hamburger StackPane {
+	-fx-background-color: white;
+}
+
+.noBackground{
+-fx-background-color: transparent ;
+}
+
+.noBackground:hover{
+    -fx-background-color: #bbbbff ;
+}
+
+#topBox{
+    -fx-background-color: #9999ff;
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0 , 0 , 0.2 );
+}
+
+#menuSection{
+    -fx-background-color: #fff;
+}
+
+.menuSubBox{
+    -fx-background-color: #eee;
+}
+
+#drawer{
+    -fx-background-color: #fff;
+}
+
+.accordion .titled-pane > *.content{
+    -fx-background-color: #eee;
+    -fx-box-border: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.accordion .titled-pane .title {
+    -fx-padding: 1.5em 1em 1.5em 1em;
+    -fx-background-color: transparent ;
+    -fx-box-border: transparent;
+    -fx-alignment: center;
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 14;
+}
+
+.accordion .titled-pane .header {
+    -fx-background-color: transparent ;    -fx-effect: null;
+}
+
+#categoryNameLabel{
+    -fx-padding: 1em 1em 1em 1em;
+}
+
+.pdfButton{
+-fx-background-color: #fff;
+}
+
+#bookDetailPane{
+    -fx-background-color: #eee;
+
+}
+
+.altBackground{
+-fx-background-color: #ccccff ;
+}
+
+.altBackground:hover{
+    -fx-background-color: #aa99ff ;
+}
+
+.jfxColorBtn{
+    -fx-background-color: #a9ff91 ;
+}
+

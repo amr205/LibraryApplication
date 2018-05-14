@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.controller.MyBooksController"
+            >
+    <VBox AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" spacing="15">
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <FontAwesomeIconView glyphName="DOWNLOAD" fill="lightgrey" glyphSize="32"/>
+            <Label text="Downloaded" textFill="dimgrey">
+                <font>
+                    <Font name="SansSerif Bold" size="22.0" />
+                </font>
+            </Label>
+        </HBox>
+
+        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" prefHeight="300">
+                <FlowPane  fx:id="downloadedPane"/>
+        </ScrollPane>
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <FontAwesomeIconView glyphName="HEART" fill="#ff9683" glyphSize="32"/>
+            <Label text="Favorites" textFill="dimgrey">
+                <font>
+                    <Font name="SansSerif Bold" size="22.0" />
+                </font>
+            </Label>
+        </HBox>
+
+        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" prefHeight="300">
+                <FlowPane  AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="25" fx:id="favoritePane"/>
+        </ScrollPane>
+
+    </VBox>
+
+</AnchorPane>

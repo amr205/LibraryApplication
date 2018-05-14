@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ProgressIndicator?>
+<VBox fx:id="mainPane" spacing="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="225.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.BookElementController">
+       <padding>
+           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+       </padding>
+
+       <StackPane fx:id="imageStackPane">
+           <ImageView fitHeight="230.0" fitWidth="160.0" pickOnBounds="true" styleClass="bookCover" fx:id="imageView">
+               <Image url="@/login.png"/>
+           </ImageView>
+           <ProgressIndicator fx:id="progressIndicator"  maxWidth="150" maxHeight="100"/>
+       </StackPane>
+       <Label prefHeight="16.0" prefWidth="236.0" text="Titulo del libro ..." fx:id="titleLabel">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Label text="Autor" textFill="#808080" fx:id="authorLabel" />
+   </VBox>
