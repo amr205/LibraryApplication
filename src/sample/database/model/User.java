@@ -1,22 +1,30 @@
 package sample.database.model;
 
+
+import java.sql.Date;
+
 public class User {
     //TODO Modify user with new data
-    String name, password, image,type;
+    String username, password, image,type, fullName, email;
+    Date birthDate;
 
-    public User(String name, String password, String image, String type) {
-        this.name = name;
+
+    public User(String username, String password, String image, String type, String fullName, String email, Date birthDate) {
+        this.username = username;
         this.password = password;
         this.image = image;
         this.type = type;
+        this.fullName = fullName;
+        this.email = email;
+        this.birthDate = birthDate;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -41,5 +49,29 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }

@@ -28,7 +28,8 @@ public class BookDAO {
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
-                        rs.getFloat("Calif"));
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
                 books.add(p);
             }
             rs.close();
@@ -55,7 +56,8 @@ public class BookDAO {
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
-                        rs.getFloat("Calif"));
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
                 books.add(p);
             }
             rs.close();
@@ -82,7 +84,8 @@ public class BookDAO {
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
-                        rs.getFloat("Calif"));
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
                 books.add(p);
             }
             rs.close();
@@ -101,7 +104,7 @@ public class BookDAO {
             String query = "select b.* from Favorites f" +
                     " inner join UserB u on f.FUName = u.UName and f.FUPassword = u.UPassword" +
                     " inner join Book b on b.Name = f.FName and b.Autor = f.FAutor" +
-                    " where u.UName = '"+user.getName()+"' and u.UPassword = '"+user.getPassword()+"'";
+                    " where u.UName = '"+user.getUsername()+"' and u.UPassword = '"+user.getPassword()+"'";
             Statement st = conn.createStatement();
 
             ResultSet rs = st.executeQuery(query);
@@ -113,7 +116,8 @@ public class BookDAO {
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
-                        rs.getFloat("Calif"));
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
                 books.add(p);
             }
             rs.close();
@@ -133,7 +137,7 @@ public class BookDAO {
             String query = "select b.* from Consulted c" +
                     " inner join UserB u on c.CUName = u.UName and c.CUPassword = u.UPassword" +
                     " inner join Book b on b.Name = c.CName and b.Autor = c.CAutor" +
-                    " where u.UName = '"+user.getName()+"' and u.UPassword = '"+user.getPassword()+"'";
+                    " where u.UName = '"+user.getUsername()+"' and u.UPassword = '"+user.getPassword()+"'";
             Statement st = conn.createStatement();
 
             ResultSet rs = st.executeQuery(query);
@@ -145,7 +149,8 @@ public class BookDAO {
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
-                        rs.getFloat("Calif"));
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
                 books.add(p);
             }
             rs.close();
@@ -164,7 +169,7 @@ public class BookDAO {
                     + " (FUName ,FUPassword ,FName ,FAutor)"
                     + "  values (?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
-            st.setString(1, user.getName());
+            st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
             st.setString(  3, book.getName());
             st.setString(4, book.getAutor());
@@ -186,7 +191,7 @@ public class BookDAO {
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(2, book.getAutor());
-            st.setString(  3, user.getName());
+            st.setString(  3, user.getUsername());
             st.setString(4, user.getPassword());
 
             st.execute();
@@ -206,7 +211,7 @@ public class BookDAO {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(2, book.getAutor());
-            st.setString(  3, user.getName());
+            st.setString(  3, user.getUsername());
             st.setString(4, user.getPassword());
             ResultSet rs = st.executeQuery();
             if(rs.next()){
@@ -229,7 +234,7 @@ public class BookDAO {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(2, book.getAutor());
-            st.setString(  3, user.getName());
+            st.setString(  3, user.getUsername());
             st.setString(4, user.getPassword());
             ResultSet rs = st.executeQuery();
             if(rs.next()){
@@ -252,7 +257,7 @@ public class BookDAO {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(2, book.getAutor());
-            st.setString(  3, user.getName());
+            st.setString(  3, user.getUsername());
             st.setString(4, user.getPassword());
             ResultSet rs = st.executeQuery();
             if(rs.next()){
@@ -274,7 +279,7 @@ public class BookDAO {
                     + " (GUName ,GUPassword ,GName ,GAutor, GCalif)"
                     + "  values (?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
-            st.setString(1, user.getName());
+            st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
             st.setString(  3, book.getName());
             st.setString(4, book.getAutor());
@@ -298,7 +303,7 @@ public class BookDAO {
             st.setInt(1, calif);
             st.setString(  2, book.getName());
             st.setString(3, book.getAutor());
-            st.setString(4, user.getName());
+            st.setString(4, user.getUsername());
             st.setString(5, user.getPassword());
 
             st.execute();

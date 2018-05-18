@@ -33,8 +33,8 @@ public class Main extends Application {
         MainController controller = loader.getController();
         controller.setStage(primaryStage);
 
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setTitle("Hello World");
+        //primaryStage.initStyle(StageStyle.DECORATED);
+        primaryStage.setTitle("Library app");
         Scene primaryScene = new Scene(root, 900, 600);
         primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
         primaryStage.setScene(primaryScene);
@@ -52,7 +52,7 @@ public class Main extends Application {
 
         user = userDAO.findUser(username,password);
         if(user!=null)
-            System.out.println("init app with user :"+user.getName());
+            System.out.println("init app with user :"+user.getUsername());
         else
             System.out.println("init app without user");
     }

@@ -17,12 +17,16 @@ public class CategoryDAO {
     public Category findCategory(String cve) {
         Category category = null;
         try {
+
             String query = "SELECT * FROM Category where CveCat = '"+cve+"'";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
+
             if(rs.next()){
+
                 category=new Category(rs.getString("CveCat"),
                                     rs.getString("DescCat"));
+
             }
             rs.close();
             st.close();

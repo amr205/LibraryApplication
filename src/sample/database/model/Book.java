@@ -3,18 +3,19 @@ package sample.database.model;
 import javafx.scene.image.Image;
 
 public class Book {
-    String name, autor, review, link, category;
+    String name, autor, review, link, category,cover;
     float calif;
 
     Image image;
 
-    public Book(String name, String autor, String review, String link, String category, float calif) {
+    public Book(String name, String autor, String review, String link, String category, float calif, String cover) {
         this.name = name;
         this.autor = autor;
         this.review = review;
         this.link = link;
         this.category = category;
         this.calif = calif;
+        this.cover = cover;
     }
 
     public void setImage(Image image) {
@@ -73,4 +74,11 @@ public class Book {
         this.calif = calif;
     }
 
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 }

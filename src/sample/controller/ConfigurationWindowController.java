@@ -2,8 +2,7 @@ package sample.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -17,10 +16,19 @@ import java.util.prefs.Preferences;
 public class ConfigurationWindowController implements Initializable {
 
     @FXML
-    Button userImage1, userImage2, userImage3, userImage4, userImage5, userImage6, userImage7, userImage8, userImage9, userImage10;
+    ToggleGroup userImg;
+
+    @FXML
+    ToggleButton userImage1, userImage2, userImage3, userImage4, userImage5, userImage6, userImage7, userImage8, userImage9, userImage10;
 
     @FXML
     TextField booksPathTextField;
+
+    @FXML
+    TextField usernameTextField,passwordTextField,emailTextField,fullNameTextField;
+
+    @FXML
+    DatePicker birthDP;
 
     private Preferences appPrefs;
     private DirectoryChooser directoryChooser;
@@ -35,6 +43,17 @@ public class ConfigurationWindowController implements Initializable {
 
 
         booksPathTextField.setText(appPrefs.get("booksPath",System.getProperty("user.home")+"/Books"));
+
+        usernameTextField.setText(Main.user.getUsername());
+        passwordTextField.setText(Main.user.getPassword());
+        emailTextField.setText(Main.user.getEmail());
+        fullNameTextField.setText(Main.user.getFullName());
+
+        birthDP.setValue(Main.user.getBirthDate().toLocalDate());
+
+
+
+
     }
 
     public void logoutUser(MouseEvent mouseEvent) {

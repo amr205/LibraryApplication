@@ -21,6 +21,8 @@ import sample.Main;
 import sample.database.MySQL;
 import sample.database.model.Book;
 import sample.database.model.BookDAO;
+import sample.database.model.Category;
+import sample.database.model.CategoryDAO;
 import sample.utility.DownloadFileFromURL;
 
 import java.io.File;
@@ -74,6 +76,7 @@ public class BookDetailsController implements Initializable {
 
     private boolean isDownloaded, isFavorite, isRated;
     private BookDAO bookDAO;
+    private CategoryDAO categoryDAO;
     private Preferences appPrefs;
     private float calif;
 
@@ -85,6 +88,7 @@ public class BookDetailsController implements Initializable {
         isDownloaded = false;
 
         bookDAO = new BookDAO(MySQL.getConnection());
+        categoryDAO = new CategoryDAO(MySQL.getConnection());
 
 
     }
@@ -116,7 +120,8 @@ public class BookDetailsController implements Initializable {
         imageView.setImage(book.getImage());
 
         //check if book exists
-        File f = new File(appPrefs.get("booksPath",System.getProperty("user.home")+"/Books")+"/"+book.getName()+".pdf");
+        Category category = categoryDAO.findCategory(book.getCategory());
+        File f = new File(appPrefs.get("booksPath",System.getProperty("user.home")+"/Books")+"/"+category.getDescCat()+"/"+book.getName()+".pdf");
         if(f.exists() && !f.isDirectory()) {
             isDownloaded = true;
             visualizeButton.setText("Visualize");
@@ -179,17 +184,20 @@ public class BookDetailsController implements Initializable {
 
 
     public void DownloadAndVisualize(MouseEvent mouseEvent) {
+        Category category = categoryDAO.findCategory(book.getCategory());
         if (!isDownloaded) {
             progressBarHBox.getChildren().add(progressBar);
 
+
+
             DownloadFileFromURL downloadFileFromURL = new DownloadFileFromURL();
             downloadFileFromURL.setBookDetailsController(this);
-            downloadFileFromURL.setData(appPrefs.get("booksPath", System.getProperty("user.home") + "/Books"),book.getName()+".pdf",book.getLink());
+            downloadFileFromURL.setData(appPrefs.get("booksPath", System.getProperty("user.home") + "/Books")+ "/" +category.getDescCat(),book.getName()+".pdf",book.getLink());
             downloadFileFromURL.download();
 
         }
         else {
-            mainController.openBook(appPrefs.get("booksPath", System.getProperty("user.home") + "/Books") + "/" + book.getName() + ".pdf");
+            mainController.openBook(appPrefs.get("booksPath", System.getProperty("user.home") + "/Books") + "/" +category.getDescCat()+"/"+ book.getName() + ".pdf");
         }
 
     }

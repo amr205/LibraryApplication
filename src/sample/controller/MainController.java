@@ -58,7 +58,7 @@ public class MainController implements Initializable{
         initializeMenuDrawer();
         //openBook("/home/alejandro/Documentos/usb/Ecuaciones diferenciales con aplicaciones de modelado - Zill 9ed.pdf");
 
-        initializeWindowMovement();
+        //initializeWindowMovement();
 
         openHome();
 

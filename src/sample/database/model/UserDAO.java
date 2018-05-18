@@ -23,7 +23,10 @@ public class UserDAO {
                 user= new User(rs.getString("UName"),
                         rs.getString("UPassword"),
                         rs.getString("UPicture"),
-                        rs.getString("UType"));
+                        rs.getString("UType"),
+                        rs.getString("UNameCo"),
+                        rs.getString("UEmail"),
+                        rs.getDate("UDate"));
             }
             rs.close();
             st.close();
@@ -56,14 +59,19 @@ public class UserDAO {
         return available;
     }
 
-    public boolean createUser(String username, String password){
+    public boolean createUser(User user){
         //TODO modify create user
-        try {
-            String query = "insert into UserB values (?,?,'U','default')";
-            PreparedStatement st =  conn.prepareStatement(query);
-            st.setString(1, username);
-            st.setString(2, password);
 
+        try {
+            String query = "insert into UserB (UName, UPassword, UType , UPicture, UNameCo, UEmail, UDate) values (?,?,?,?,?,?,?)";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(1, user.getUsername());
+            st.setString(2, user.getPassword());
+            st.setString(3, user.getType());
+            st.setString(4, user.getImage());
+            st.setString(5, user.getFullName());
+            st.setString(6,user.getEmail());
+            st.setDate(7,user.getBirthDate());
             st.execute();
             //data.add(transaction);
             return true;

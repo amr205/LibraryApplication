@@ -70,8 +70,7 @@ public class BookElementController implements Initializable {
         authorLabel.setText(book.getAutor());
 
         //set Image
-        //TODO get real book image
-        Image image = new Image("https://s.pdfdrive.com/assets/thumbs/0a6/0a651ad3962e9c34fef58a56e9001f16.jpg", true);
+        Image image = new Image(book.getCover(), true);
         image.progressProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {

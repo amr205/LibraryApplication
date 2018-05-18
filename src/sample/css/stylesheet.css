@@ -9,6 +9,9 @@
 .noBackground:hover{
     -fx-background-color: #bbbbff ;
 }
+.noBackground:selected {
+    -fx-background-color: #bbbbff;
+}
 
 #topBox{
     -fx-background-color: #9999ff;

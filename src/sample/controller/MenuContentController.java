@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -32,6 +33,7 @@ public class MenuContentController implements Initializable {
 
     @FXML
     JFXButton comicCatButton;
+
 
     MainController mainController;
 
@@ -137,7 +139,7 @@ public class MenuContentController implements Initializable {
             ConfigurationWindowController controller = loader.getController();
 
             stage.setTitle("Profile Settings");
-            Scene primaryScene = new Scene(root, 565, 460);
+            Scene primaryScene = new Scene(root, 565, 720);
             primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
             stage.setScene(primaryScene);
             stage.setResizable(false);
