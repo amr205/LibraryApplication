@@ -32,7 +32,7 @@
             </font>
         </Label>
     </HBox>
-    <GridPane prefHeight="250.0" prefWidth="700.0" vgap="15.0">
+    <GridPane prefHeight="200.0" prefWidth="700.0" vgap="15.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.0" minWidth="10.0" prefWidth="101.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="370.0" />
@@ -46,18 +46,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <VBox.margin>
-            <Insets left="55.0" right="50.0" top="25"/>
+            <Insets left="55.0" right="50.0" top="50"/>
         </VBox.margin>
-        <Label text="Full name:" GridPane.rowIndex="3" />
-        <Label text="Birth date:" GridPane.rowIndex="4" />
-        <Label text="Email:" GridPane.rowIndex="2" />
-        <Label text="Password:" GridPane.rowIndex="1" />
-        <Label text="Username:" />
-        <TextField fx:id="usernameTextField" GridPane.columnIndex="1" />
-        <TextField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <TextField fx:id="fullNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <DatePicker fx:id="birthDP" prefHeight="26.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label text="Full name:" GridPane.rowIndex="1" />
+        <Label text="Birth date:" GridPane.rowIndex="2" />
+        <Label text="Email:" GridPane.rowIndex="0" />
+
+        <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="fullNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <DatePicker fx:id="birthDP" prefHeight="26.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     </GridPane>
 
     <AnchorPane prefHeight="431.0" prefWidth="566.0">
@@ -78,9 +75,10 @@
         <ToggleButton layoutX="55.0" layoutY="133.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                 styleClass="noBackground"    fx:id="userImage1" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" fx:id="image1"
                        >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />
@@ -90,9 +88,10 @@
         <ToggleButton layoutX="150.0" layoutY="133.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                 styleClass="noBackground" fx:id="userImage2" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" fx:id="image2"
                            >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />
@@ -102,9 +101,10 @@
         <ToggleButton layoutX="246.0" layoutY="133.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                 styleClass="noBackground" fx:id="userImage3" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" fx:id="image3"
                             >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />
@@ -114,9 +114,10 @@
         <ToggleButton layoutX="345.0" layoutY="133.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                 styleClass="noBackground" fx:id="userImage4" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" fx:id="image4"
                            >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />
@@ -126,9 +127,10 @@
         <ToggleButton layoutX="443.0" layoutY="133.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                 styleClass="noBackground"  fx:id="userImage5" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"  fx:id="image5"
                           >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />
@@ -138,9 +140,10 @@
         <ToggleButton layoutX="55.0" layoutY="226.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                 styleClass="noBackground" fx:id="userImage6" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" fx:id="image6"
                           >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />
@@ -150,9 +153,10 @@
         <ToggleButton layoutX="150.0" layoutY="226.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                 styleClass="noBackground" fx:id="userImage7" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" fx:id="image7"
                            >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />
@@ -162,9 +166,10 @@
         <ToggleButton layoutX="246.0" layoutY="226.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                 styleClass="noBackground" fx:id="userImage8" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"  fx:id="image8"
                            >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />
@@ -174,9 +179,10 @@
         <ToggleButton layoutX="345.0" layoutY="226.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                 styleClass="noBackground" fx:id="userImage9" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" fx:id="image9"
                            >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />
@@ -186,9 +192,10 @@
         <ToggleButton layoutX="443.0" layoutY="226.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="75.0"
                       styleClass="noBackground" fx:id="userImage10" toggleGroup="$userImg">
             <graphic>
-                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true"
+                <ImageView fitHeight="73.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" fx:id="image10"
                            >
                     <Image
+
                             url="@/login.png"
                             backgroundLoading="true"
                     />

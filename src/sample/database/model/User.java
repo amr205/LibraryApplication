@@ -5,11 +5,12 @@ import java.sql.Date;
 
 public class User {
     //TODO Modify user with new data
-    String username, password, image,type, fullName, email;
+    String username, password,type, fullName, email;
+    int image;
     Date birthDate;
 
 
-    public User(String username, String password, String image, String type, String fullName, String email, Date birthDate) {
+    public User(String username, String password, int image, String type, String fullName, String email, Date birthDate) {
         this.username = username;
         this.password = password;
         this.image = image;
@@ -35,11 +36,11 @@ public class User {
         this.password = password;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

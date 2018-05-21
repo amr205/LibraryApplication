@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -19,6 +20,7 @@ import sample.Main;
 import sample.database.MySQL;
 import sample.database.model.Category;
 import sample.database.model.CategoryDAO;
+import sample.database.model.UserDAO;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -70,6 +72,7 @@ public class MenuContentController implements Initializable {
                 }
             }
         });
+        updateImage();
 
         comicCatButton.setOnMouseClicked(handler);
     }
@@ -123,12 +126,14 @@ public class MenuContentController implements Initializable {
                 @Override
                 public void handle(WindowEvent event) {
                     mainController.reloadUserData();
+                    updateImage();
                 }
             });
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+
 
     private void openProfileConfig() {
         try{
@@ -149,7 +154,7 @@ public class MenuContentController implements Initializable {
                 @Override
                 public void handle(WindowEvent event) {
                     mainController.reloadUserData();
-                    //TODO update image here
+                    updateImage();
                 }
             });
 
@@ -157,4 +162,15 @@ public class MenuContentController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private void updateImage() {
+        if(Main.user==null){
+            userImage.setImage(new Image("/login.png"));
+        }
+        else{
+            UserDAO userDAO = new UserDAO(MySQL.getConnection());
+            userImage.setImage(new Image(userDAO.getImageLink(Main.user),true));
+        }
+    }
+
 }
