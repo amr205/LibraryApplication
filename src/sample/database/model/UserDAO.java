@@ -83,7 +83,7 @@ public class UserDAO {
 
     public boolean createUser(User user){
         try {
-            String query = "insert into UserB (UName, UPassword, UType , UPicture, UNameCo, UEmail, UDate) values (?,?,?,?,?,?,?)";
+            String query = "insert into UserB (UName, UPassword, UType , UPictureID, UNameCo, UEmail, UDate) values (?,?,?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
