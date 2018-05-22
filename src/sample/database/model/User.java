@@ -4,7 +4,6 @@ package sample.database.model;
 import java.sql.Date;
 
 public class User {
-    //TODO Modify user with new data
     String username, password,type, fullName, email;
     int image;
     Date birthDate;

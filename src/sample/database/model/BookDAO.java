@@ -98,6 +98,118 @@ public class BookDAO {
         return books;
     }
 
+    public List<Book> findByCategoryDesc(String cat) {
+        List<Book> books = new ArrayList<Book>();
+        try {
+            String query = "SELECT * FROM Book b inner join Category c on b.Cat = c.CveCat WHERE c.DescCat like '%"+cat+"%' ";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            Book p = null;
+            while(rs.next()) {
+                p = new Book(
+                        rs.getString("Name"),
+                        rs.getString("Autor"),
+                        rs.getString("Review"),
+                        rs.getString("Link"),
+                        rs.getString("Cat"),
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
+                books.add(p);
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return books;
+    }
+
+    public List<Book> findByName(String name) {
+        List<Book> books = new ArrayList<Book>();
+        try {
+            String query = "SELECT * FROM Book WHERE Name like '%"+name+"%' ";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            Book p = null;
+            while(rs.next()) {
+                p = new Book(
+                        rs.getString("Name"),
+                        rs.getString("Autor"),
+                        rs.getString("Review"),
+                        rs.getString("Link"),
+                        rs.getString("Cat"),
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
+                books.add(p);
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return books;
+    }
+
+    public List<Book> findByAutor(String autor) {
+        List<Book> books = new ArrayList<Book>();
+        try {
+            String query = "SELECT * FROM Book WHERE Autor like '%"+autor+"%' ";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            Book p = null;
+            while(rs.next()) {
+                p = new Book(
+                        rs.getString("Name"),
+                        rs.getString("Autor"),
+                        rs.getString("Review"),
+                        rs.getString("Link"),
+                        rs.getString("Cat"),
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
+                books.add(p);
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return books;
+    }
+
+    public List<Book> findByReview(String review) {
+        List<Book> books = new ArrayList<Book>();
+        try {
+            String query = "SELECT * FROM Book WHERE Review like '%"+review+"%' ";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            Book p = null;
+            while(rs.next()) {
+                p = new Book(
+                        rs.getString("Name"),
+                        rs.getString("Autor"),
+                        rs.getString("Review"),
+                        rs.getString("Link"),
+                        rs.getString("Cat"),
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
+                books.add(p);
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return books;
+    }
+
     public List<Book> findFavorites(User user) {
         List<Book> books = new ArrayList<Book>();
         try {
@@ -134,10 +246,11 @@ public class BookDAO {
     public List<Book> findDownloaded(User user) {
         List<Book> books = new ArrayList<Book>();
         try {
-            String query = "select b.* from Consulted c" +
-                    " inner join UserB u on c.CUName = u.UName and c.CUPassword = u.UPassword" +
-                    " inner join Book b on b.Name = c.CName and b.Autor = c.CAutor" +
-                    " where u.UName = '"+user.getUsername()+"' and u.UPassword = '"+user.getPassword()+"'";
+            String query = "select b.* from History c" +
+                    " inner join UserB u on c.HUName = u.UName and c.HUPassword = u.UPassword" +
+                    " inner join Book b on b.Name = c.HName and b.Autor = c.HAutor" +
+                    " where u.UName = '"+user.getUsername()+"' and u.UPassword = '"+user.getPassword()+"'" +
+                    " order by c.HDate limit 15";
             Statement st = conn.createStatement();
 
             ResultSet rs = st.executeQuery(query);
@@ -161,6 +274,81 @@ public class BookDAO {
             System.out.println("Error al recuperar información...");
         }
         return books;
+    }
+    public boolean isBookDownloaded(User user, Book book){
+        boolean downloaded = false;
+        try {
+            String query = "select b.* from History c" +
+                    " inner join UserB u on c.HUName = u.UName and c.HUPassword = u.UPassword" +
+                    " inner join Book b on b.Name = c.HName and b.Autor = c.HAutor" +
+                    " where u.UName = ? and u.UPassword = ? and b.Name = ? and b.Autor = ?";
+            PreparedStatement st = conn.prepareStatement(query);
+
+            st.setString(1, user.getUsername());
+            st.setString(2, user.getPassword());
+            st.setString(  3, book.getName());
+            st.setString(4, book.getAutor());
+
+            ResultSet rs = st.executeQuery();
+
+
+            if(rs.next())
+                downloaded=  true;
+
+
+            rs.close();
+            st.close();
+
+            return downloaded;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return downloaded;
+    }
+
+
+    public boolean addBookToDownloaded(User user, Book book){
+        try {
+            String query = "insert into History "
+                    + " (HUName ,HUPassword ,HName ,HAutor, HDate)"
+                    + "  values (?,?,?,?,NOW())";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(1, user.getUsername());
+            st.setString(2, user.getPassword());
+            st.setString(  3, book.getName());
+            st.setString(4, book.getAutor());
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
+
+    public boolean updateDownloaded(User user, Book book){
+        try {
+            String query = "update History "
+                    + " set HDate = NOW() "
+                    + "  where HUName = ? and HUPassword = ? and HName = ? and HAutor = ? ";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(1, user.getUsername());
+            st.setString(2, user.getPassword());
+            st.setString(  3, book.getName());
+            st.setString(4, book.getAutor());
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return false;
     }
 
     public boolean addBookToFavorite(Book book, User user){

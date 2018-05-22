@@ -197,6 +197,12 @@ public class BookDetailsController implements Initializable {
 
         }
         else {
+            if(Main.user!=null){
+                if(!bookDAO.isBookDownloaded(Main.user,book))
+                    bookDAO.addBookToDownloaded(Main.user, book);
+                else
+                    bookDAO.updateDownloaded(Main.user,book);
+            }
             mainController.openBook(appPrefs.get("booksPath", System.getProperty("user.home") + "/Books") + "/" +category.getDescCat()+"/"+ book.getName() + ".pdf");
         }
 
@@ -207,10 +213,6 @@ public class BookDetailsController implements Initializable {
         isDownloaded = true;
         visualizeButton.setText("Visualize");
 
-        //TODO update consulted table
-        if(Main.user!=null){
-
-        }
     }
 
     public void AddToFavorites(MouseEvent mouseEvent) {

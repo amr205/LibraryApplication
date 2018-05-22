@@ -41,13 +41,6 @@ create table RBook (RName varchar(120) not null,
 					constraint RBookFK1 foreign key (RCat) references Category(CveCat),
 					constraint RBookFK2 foreign key (RUname,RUpassword) references UserB(Uname,Upassword));
 
-create table Consulted(CUName varchar(15) not null,
-                       CUPassword varchar(15) not null,
-					   CName varchar(120) not null,
-                       CAutor varchar(100) not null,
-					   constraint ConsultedPK primary key (CUname,CUpassword,CName,CAutor),
-					   constraint ConsultedFK1 foreign key (CUName,CUPassword) references UserB(UName,UPassword),
-					   constraint ConsultedFK2 foreign key (CName,CAutor) references Book(Name,Autor));
 
 create table Favorites(FUName varchar(15) not null,
                        FUPassword varchar(15) not null,
@@ -75,3 +68,37 @@ create table History(HUName varchar(15) not null,
 					  constraint HistoryPK primary key (HUname,HUpassword,HName,HAutor),
 					  constraint HistoryFK1 foreign key (HUName,HUPassword) references UserB(UName,UPassword),
 					  constraint HistoryFK2 foreign key (HName,HAutor) references Book(Name,Autor));
+                      
+
+insert into UserImage (ImageID, ImageDesc)
+		values (1,'https://image.ibb.co/j8GK6T/avatar10.png');
+        
+insert into UserImage (ImageID, ImageDesc)
+		values (2,'https://image.ibb.co/iT9vfo/avatar9.png');
+        
+insert into UserImage (ImageID, ImageDesc)
+		values (3,'https://image.ibb.co/eLcsRT/avatar8.png');
+        
+insert into UserImage (ImageID, ImageDesc)
+		values (4,'https://image.ibb.co/cV3o0o/avatar7.png');
+        
+insert into UserImage (ImageID, ImageDesc)
+		values (5,'https://image.ibb.co/cMnFfo/avatar6.png');
+        
+insert into UserImage (ImageID, ImageDesc)
+		values (6,'https://image.ibb.co/cw6mmT/avatar5.png');
+        
+insert into UserImage (ImageID, ImageDesc)
+		values (7,'https://image.ibb.co/cZuHt8/avatar4.png');
+        
+insert into UserImage (ImageID, ImageDesc)
+		values (8,'https://image.ibb.co/hYHFfo/avatar3.png');
+        
+insert into UserImage (ImageID, ImageDesc)
+		values (9,'https://image.ibb.co/hkNFfo/avatar1.png');
+        
+insert into UserImage (ImageID, ImageDesc)
+		values (10,'https://image.ibb.co/cMUvfo/avatar2.png');
+
+insert into UserB (UName, UPassword, UNameCo, UEmail, UDate, UType, UPictureID) 
+		values ('admin','Cookies','Administrador Universal','alejandromedinamx@gmail.com','1998-02-05','A',1);

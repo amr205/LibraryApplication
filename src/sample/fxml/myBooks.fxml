@@ -25,6 +25,7 @@
         <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" prefHeight="300">
                 <FlowPane  fx:id="downloadedPane"/>
         </ScrollPane>
+
         <HBox spacing="15" alignment="CENTER_LEFT">
             <FontAwesomeIconView glyphName="HEART" fill="#ff9683" glyphSize="32"/>
             <Label text="Favorites" textFill="dimgrey">

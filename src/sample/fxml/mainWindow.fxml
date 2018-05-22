@@ -49,6 +49,7 @@
                           promptText="Search for wonderful books" unFocusColor="#c9c0c0"
                           style="-fx-prompt-text-fill: WHITE;
                                  -fx-text-fill: WHITE"
+                          fx:id="searchTextField"
                            onAction="#searchBook">
                <font>
                   <Font size="14.0"/>

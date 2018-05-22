@@ -1,6 +1,7 @@
 package sample.controller;
 
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import control.OpenPdfViewer;
 import javafx.animation.KeyFrame;
@@ -42,6 +43,9 @@ public class MainController implements Initializable{
 
     @FXML
     HBox topLHbox, topRHbox;
+
+    @FXML
+    JFXTextField searchTextField;
 
     private StackPane menuContent;
     private boolean isContentShow;
@@ -306,11 +310,26 @@ public class MainController implements Initializable{
 
     public void reloadUserData() {
         openHome();
-        //TODO update image in MenuContent
     }
 
     public void searchBook(ActionEvent actionEvent) {
-        System.out.println("search book");
+        try {
+            centerPane.getChildren().clear();
+
+            FXMLLoader loader= new FXMLLoader(Main.class.getResource("fxml/searchBook.fxml"));
+            Parent searchResults = loader.load();
+            SearchBooksController controller = loader.getController();
+
+            controller.setMainController(this);
+            controller.initBooks(searchTextField.getText());
+
+            centerPane.getChildren().add(searchResults);
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
 

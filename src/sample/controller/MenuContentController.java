@@ -42,7 +42,6 @@ public class MenuContentController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO All about book image
 
 
         userButton.setOnMouseEntered(new EventHandler<MouseEvent>() {

@@ -60,7 +60,6 @@ public class LoginWindowController implements Initializable {
 
 
     public void createUser(MouseEvent mouseEvent) {
-        //TODO probably a new pop up window
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/createUser.fxml"));

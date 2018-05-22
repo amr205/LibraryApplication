@@ -46,6 +46,9 @@
     <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home" styleClass="menuButton"  onMouseClicked="#openHome" >
         <graphic><FontAwesomeIconView glyphName="HOME" glyphSize="25" wrappingWidth="50"/></graphic>
     </JFXButton>
+    <VBox fx:id="optional">
+
+    </VBox>
     <Separator/>
     <JFXButton prefHeight="59.0" prefWidth="336.0" text="My books" onMouseClicked="#openMyBooks">
         <graphic><FontAwesomeIconView glyphName="BOOK" glyphSize="25" wrappingWidth="50"/></graphic>

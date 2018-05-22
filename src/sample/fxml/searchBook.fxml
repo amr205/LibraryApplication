@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.controller.SearchBooksController">
+        <ScrollPane AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" fitToWidth="true" >
+            <VBox spacing="15">
+
+                <padding>
+                    <Insets right="15.0" bottom="15" left="25" top="10"/>
+                </padding>
+
+                <HBox spacing="20">
+                    <FontAwesomeIconView glyphName="SEARCH" fill="dimgrey" glyphSize="22"/>
+                    <Label fx:id="titleLabel" text="Results of search: " textFill="dimgrey">
+                        <font>
+                            <Font name="SansSerif Bold" size="22.0" />
+                        </font>
+                    </Label>
+                    <padding>
+                        <Insets bottom="15.0"/>
+                    </padding>
+                </HBox>
+
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <FontAwesomeIconView glyphName="FONT" fill="dimgrey" glyphSize="18"/>
+                    <Label text="By Name" textFill="dimgrey">
+                        <font>
+                            <Font name="SansSerif Bold" size="16.0" />
+                        </font>
+                    </Label>
+                </HBox>
+
+                <FlowPane  fx:id="namePane"/>
+
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <FontAwesomeIconView glyphName="USER" fill="#ff9683" glyphSize="18"/>
+                    <Label text="By Autor" textFill="dimgrey">
+                        <font>
+                            <Font name="SansSerif Bold" size="16.0" />
+                        </font>
+                    </Label>
+                </HBox>
+
+                <FlowPane  AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="25" fx:id="autorPane"/>
+
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <FontAwesomeIconView glyphName="LIST_UL" fill="lightskyblue" glyphSize="18"/>
+                    <Label text="By Category" textFill="dimgrey">
+                        <font>
+                            <Font name="SansSerif Bold" size="16.0" />
+                        </font>
+                    </Label>
+                </HBox>
+
+                <FlowPane  AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="25" fx:id="categoryPane"/>
+
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <FontAwesomeIconView glyphName="PENCIL" fill="yellow" glyphSize="18"/>
+                    <Label text="By Review" textFill="dimgrey">
+                        <font>
+                            <Font name="SansSerif Bold" size="16.0" />
+                        </font>
+                    </Label>
+                </HBox>
+
+                <FlowPane  AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="25" fx:id="reviewPane"/>
+
+            </VBox>
+        </ScrollPane>
+</AnchorPane>
