@@ -11,87 +11,120 @@
 <?import javafx.scene.image.Image?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 <StackPane
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
-        fx:controller="sample.controller.MenuContentController" minWidth="0" maxWidth="0" prefWidth="0" >
-<VBox
-        StackPane.alignment="TOP_RIGHT"
-      prefHeight="692.0" prefWidth="175" fx:id="drawer">
-    <StackPane>
+        fx:controller="sample.controller.MenuContentController" minWidth="0" maxWidth="0" prefWidth="0"   >
+    <VBox
+            StackPane.alignment="TOP_RIGHT"
+             prefWidth="175"
+            fx:id="drawer">
+        <StackPane>
 
-        <StackPane id="StackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-            </padding>
-            <Button style="-fx-background-color: transparent " fx:id="userButton">
-                <tooltip>
-                    <Tooltip text="Login or Edit profile"/>
-                </tooltip>
-                <graphic>
-                    <ImageView fitHeight="131.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true"
-                               fx:id="userImage">
-                        <Image
-                                url="@/login.png"
-                                backgroundLoading="true"
-                        />
+            <StackPane id="StackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+                <Button style="-fx-background-color: transparent " fx:id="userButton">
+                    <tooltip>
+                        <Tooltip text="Login or Edit profile"/>
+                    </tooltip>
+                    <graphic>
+                        <ImageView fitHeight="131.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true"
+                                   fx:id="userImage">
+                            <Image
+                                    url="@/login.png"
+                                    backgroundLoading="true"
+                            />
 
-                    </ImageView>
-                </graphic>
+                        </ImageView>
+                    </graphic>
 
-            </Button>
+                </Button>
 
+            </StackPane>
         </StackPane>
-    </StackPane>
-    <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home" styleClass="menuButton"  onMouseClicked="#openHome" >
-        <graphic><FontAwesomeIconView glyphName="HOME" glyphSize="25" wrappingWidth="50"/></graphic>
-    </JFXButton>
-    <VBox fx:id="optional">
+        <Separator/>
+        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home" styleClass="menuButton"  onMouseClicked="#openHome" >
+            <graphic><FontAwesomeIconView glyphName="HOME" glyphSize="25" wrappingWidth="35"/></graphic>
+        </JFXButton>
+        <Separator/>
+        <JFXButton prefHeight="59.0" prefWidth="336.0" text="My books" onMouseClicked="#openMyBooks">
+            <graphic><FontAwesomeIconView glyphName="BOOK" glyphSize="25" wrappingWidth="35"/></graphic>
+        </JFXButton>
+        <Separator/>
+        <Accordion>
+            <panes>
+                <TitledPane animated="false" text="untitled 1">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0"
+                                prefWidth="336.0">
+                        <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Comics" fx:id="comicCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home2"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home3"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home4"/>
+                        </VBox>
+                    </AnchorPane>
+                </TitledPane>
+                <TitledPane animated="false" text="untitled 2">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0"
+                                prefWidth="336.0">
+                        <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home2"/>
+                        </VBox>
+                    </AnchorPane>
+                </TitledPane>
+                <TitledPane animated="false" text="untitled 3">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                prefWidth="336.0">
+                        <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home2"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home3"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home4"/>
+                        </VBox>
+                    </AnchorPane>
+
+                </TitledPane>
+            </panes>
+        </Accordion>
+
+
+        <VBox fx:id="optionsVBox">
+            <VBox fx:id="adminOptionsVBox" alignment="CENTER">
+
+                   <Label text="Admin Options" alignment="CENTER" prefHeight="60">
+                       <font>
+                           <Font name="SansSerif Bold" size="12.0"/>
+                       </font>
+                   </Label>
+
+                <Separator/>
+                <JFXButton prefHeight="59.0" prefWidth="336.0"  styleClass="menuButton" text="Admin books" onMouseClicked="#modifyBooks">
+                    <graphic><FontAwesomeIconView glyphName="GEARS" glyphSize="20" wrappingWidth="30"/></graphic>
+                </JFXButton>
+                <Separator/>
+                <JFXButton prefHeight="59.0" prefWidth="336.0"  styleClass="menuButton" text="Accept requests" onMouseClicked="#acceptRequest">
+                    <graphic><FontAwesomeIconView glyphName="CHECK_SQUARE_ALT" glyphSize="20" wrappingWidth="30"/></graphic>
+                </JFXButton>
+                <Separator/>
+                <JFXButton prefHeight="59.0" prefWidth="336.0"  styleClass="menuButton" text="Add admin" onMouseClicked="#addAdmin">
+                    <graphic><FontAwesomeIconView glyphName="USER_PLUS" glyphSize="20" wrappingWidth="30"/></graphic>
+                </JFXButton>
+                <Separator/>
+            </VBox>
+            <VBox fx:id="userOptionsVBox">
+                <Separator/>
+                <JFXButton prefHeight="59.0" prefWidth="336.0"  styleClass="menuButton"  text="Request a book" onMouseClicked="#addRBook">
+                    <graphic><FontAwesomeIconView glyphName="PLUS_SQUARE_ALT" glyphSize="20" wrappingWidth="30"/></graphic>
+                </JFXButton>
+                <Separator/>
+            </VBox>
+        </VBox>
+
 
     </VBox>
-    <Separator/>
-    <JFXButton prefHeight="59.0" prefWidth="336.0" text="My books" onMouseClicked="#openMyBooks">
-        <graphic><FontAwesomeIconView glyphName="BOOK" glyphSize="25" wrappingWidth="50"/></graphic>
-    </JFXButton>
-    <Separator/>
-    <Accordion>
-        <panes>
-            <TitledPane animated="false" text="untitled 1">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0"
-                            prefWidth="336.0">
-                    <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Comics" fx:id="comicCatButton"/>
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home2"/>
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home3"/>
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home4"/>
-                    </VBox>
-                </AnchorPane>
-            </TitledPane>
-            <TitledPane animated="false" text="untitled 2">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0"
-                            prefWidth="336.0">
-                    <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home"/>
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home2"/>
-                    </VBox>
-                </AnchorPane>
-            </TitledPane>
-            <TitledPane animated="false" text="untitled 3">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-                            prefWidth="336.0">
-                    <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home"/>
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home2"/>
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home3"/>
-                        <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home4"/>
-                    </VBox>
-                </AnchorPane>
-
-            </TitledPane>
-        </panes>
-    </Accordion>
-</VBox>
-    <Separator StackPane.alignment="CENTER_RIGHT" orientation="VERTICAL">
-
-    </Separator>
+    <Separator StackPane.alignment="CENTER_RIGHT" orientation="VERTICAL"/>
 </StackPane>

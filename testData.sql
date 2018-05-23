@@ -20,4 +20,3 @@ insert into Book values ("fff",
                         "gggg",
                         0,
                         "https://books.google.com.mx/books/content?id=kRuxDAAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72QvwYiv0Zg_J8rizmTMKuXM6PnFvj7agV-4w201MlFESz5hrllkVmLEY1GrBSBfWrieiUi6fsHg-kq3ejh4KMnLgsxLlY3oRUTiInSbSfF-C2ICDngVpXbNCsSguHd37rSCG9v");
-

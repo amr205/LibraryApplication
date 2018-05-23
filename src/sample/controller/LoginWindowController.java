@@ -65,6 +65,7 @@ public class LoginWindowController implements Initializable {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/createUser.fxml"));
             Parent root = loader.load();
             CreateUserController controller = loader.getController();
+            controller.setType("U");
             stage.setTitle("Create user");
             Scene primaryScene = new Scene(root, 530, 345);
             primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());

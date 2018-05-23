@@ -522,4 +522,49 @@ public class BookDAO {
 
         return false;
     }
+
+    public boolean addBook(Book book){
+        try {
+            String query = "insert into Book (Name, Autor, Review, Link, Cat, Calif, Cover) values (?,?,?,?,?,?,?)";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getAutor());
+            st.setString(  3, book.getReview());
+            st.setString(4, book.getLink());
+            st.setString(5,book.getCategory());
+            st.setFloat(6,book.getCalif());
+            st.setString(7,book.getCover());
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
+
+    public boolean addRBook(Book book,User user){
+        try {
+            String query = "insert into RBook (RName, RAutor, RReview, RLink, RCat, RUname, RUpassword Cover) values (?,?,?,?,?,?,?,?)";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getAutor());
+            st.setString(  3, book.getReview());
+            st.setString(4, book.getLink());
+            st.setString(5,book.getCategory());
+            st.setString(6,user.getUsername());
+            st.setString(7,user.getPassword());
+            st.setString(8,book.getCover());
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
 }

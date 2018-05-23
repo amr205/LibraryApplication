@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
@@ -36,6 +37,8 @@ public class MenuContentController implements Initializable {
     @FXML
     JFXButton comicCatButton;
 
+    @FXML
+    VBox optionsVBox, adminOptionsVBox, userOptionsVBox, drawer;
 
     MainController mainController;
 
@@ -71,7 +74,8 @@ public class MenuContentController implements Initializable {
                 }
             }
         });
-        updateImage();
+
+        updateUserInfo();
 
         comicCatButton.setOnMouseClicked(handler);
     }
@@ -125,7 +129,7 @@ public class MenuContentController implements Initializable {
                 @Override
                 public void handle(WindowEvent event) {
                     mainController.reloadUserData();
-                    updateImage();
+                    updateUserInfo();
                 }
             });
         }catch (Exception e){
@@ -153,12 +157,88 @@ public class MenuContentController implements Initializable {
                 @Override
                 public void handle(WindowEvent event) {
                     mainController.reloadUserData();
-                    updateImage();
+                    updateUserInfo();
                 }
             });
 
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void addBook(MouseEvent mouseEvent) {
+        try{
+            Stage stage = new Stage();
+
+            FXMLLoader loader= new FXMLLoader(Main.class.getResource("fxml/AddBook.fxml"));
+            Parent root = loader.load();
+            AddBookController controller = loader.getController();
+
+            stage.setTitle("Add Book");
+            Scene primaryScene = new Scene(root, 450, 500);
+            primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
+            stage.setScene(primaryScene);
+            stage.setResizable(false);
+            stage.show();
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void addRBook(MouseEvent mouseEvent) {
+        try {
+            Stage stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/AddRBook.fxml"));
+            Parent root = loader.load();
+            AddRBookController controller = loader.getController();
+
+            stage.setTitle("Add Requested Book");
+            Scene primaryScene = new Scene(root, 450, 500);
+            primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
+            stage.setScene(primaryScene);
+            stage.setResizable(false);
+            stage.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateUserInfo(){
+        updateImage();
+
+
+
+        if(Main.user==null){
+            drawer.getChildren().remove(optionsVBox);
+        }
+        else {
+
+            if(!drawer.getChildren().contains(optionsVBox))
+                drawer.getChildren().add(optionsVBox);
+
+            if (Main.user.getType().equals("A")) {
+
+                if (!optionsVBox.getChildren().contains(adminOptionsVBox))
+                    optionsVBox.getChildren().add(adminOptionsVBox);
+
+                if(optionsVBox.getChildren().contains(userOptionsVBox))
+                    optionsVBox.getChildren().remove(userOptionsVBox);
+
+            } else {
+                if (!optionsVBox.getChildren().contains(userOptionsVBox))
+                    optionsVBox.getChildren().add(userOptionsVBox);
+
+                if(optionsVBox.getChildren().contains(adminOptionsVBox))
+                    optionsVBox.getChildren().remove(adminOptionsVBox);
+
+            }
         }
     }
 
@@ -172,4 +252,26 @@ public class MenuContentController implements Initializable {
         }
     }
 
+    public void acceptRequest(MouseEvent mouseEvent) {
+    }
+
+    public void addAdmin(MouseEvent mouseEvent) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/createUser.fxml"));
+            Parent root = loader.load();
+            CreateUserController controller = loader.getController();
+            controller.setType("A");
+            stage.setTitle("Create admin");
+            Scene primaryScene = new Scene(root, 530, 345);
+            primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
+            stage.setScene(primaryScene);
+            stage.setResizable(true);
+            stage.show();
+
+        }catch (Exception e){e.printStackTrace();}
+    }
+
+    public void modifyBooks(MouseEvent mouseEvent) {
+    }
 }
