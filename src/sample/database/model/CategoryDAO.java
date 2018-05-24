@@ -37,4 +37,28 @@ public class CategoryDAO {
         }
         return category;
     }
+
+    public Category findCategoryByDesc(String desc) {
+        Category category = null;
+        try {
+
+            String query = "SELECT * FROM Category where DescCat = '"+desc+"'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next()){
+
+                category=new Category(rs.getString("CveCat"),
+                        rs.getString("DescCat"));
+
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return category;
+    }
 }

@@ -8,16 +8,89 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.controller.addRequestedController">
    <children>
-      <TableView layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <TableView fx:id="tvwRBook" layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+
+
+
+
+
+            <TableColumn fx:id="rname" text="Name">
+
+                <cellValueFactory>
+                    <PropertyValueFactory property="RName"/>
+                </cellValueFactory>
+
+            </TableColumn>
+
+            <TableColumn fx:id="rautor" text="Autor">
+
+                <cellValueFactory>
+                    <PropertyValueFactory property="RAutor"/>
+                </cellValueFactory>
+
+            </TableColumn>
+
+            <TableColumn fx:id="rreview" text="Review">
+
+                <cellValueFactory>
+                    <PropertyValueFactory property="RReview"/>
+                </cellValueFactory>
+
+            </TableColumn>
+
+            <TableColumn fx:id="rlink" text="Link">
+
+                <cellValueFactory>
+                    <PropertyValueFactory property="RLink"/>
+                </cellValueFactory>
+
+            </TableColumn>
+
+            <TableColumn fx:id="rcat" text="Category">
+
+                <cellValueFactory>
+                    <PropertyValueFactory property="RCat"/>
+                </cellValueFactory>
+
+            </TableColumn>
+
+            <TableColumn fx:id="runame" text="User Name">
+
+                <cellValueFactory>
+                    <PropertyValueFactory property="RUname"/>
+                </cellValueFactory>
+
+            </TableColumn>
+
+            <TableColumn fx:id="rupassword" text="Password">
+
+                <cellValueFactory>
+                    <PropertyValueFactory property="RUpassword"/>
+                </cellValueFactory>
+
+            </TableColumn>
+
+            <TableColumn fx:id="rcover" text="Cover">
+
+                <cellValueFactory>
+                    <PropertyValueFactory property="RCover"/>
+                </cellValueFactory>
+
+            </TableColumn>
+
+
+
+
+
         </columns>
       </TableView>
-      <Button layoutX="334.0" layoutY="337.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="251.0" text="Add selected book to database" />
-      <TextField layoutX="205.0" layoutY="337.0" prefHeight="26.0" prefWidth="71.0" />
+      <Button layoutX="334.0" layoutY="337.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="251.0" text="Add selected book to database" onMouseClicked="#Aprove"/>
+      <TextField fx:id="calif" layoutX="205.0" layoutY="337.0" prefHeight="26.0" prefWidth="71.0" />
       <Label layoutX="43.0" layoutY="342.0" prefHeight="16.0" prefWidth="162.0" text="Set rating (default is 0)" />
    </children>
 </AnchorPane>

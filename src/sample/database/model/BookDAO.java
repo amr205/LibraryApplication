@@ -1,5 +1,7 @@
 package sample.database.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import sample.Main;
 
 import javax.jws.soap.SOAPBinding;
@@ -12,6 +14,34 @@ public class BookDAO {
     public BookDAO(Connection conn)
     {
         this.conn = conn;
+    }
+
+    public ObservableList<Book> fetchAll() {
+        ObservableList<Book> books = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT * FROM Book";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            Book p = null;
+            while(rs.next()) {
+                p = new Book(
+                        rs.getString("Name"),
+                        rs.getString("Autor"),
+                        rs.getString("Review"),
+                        rs.getString("Link"),
+                        rs.getString("Cat"),
+                        rs.getFloat("Calif"),
+                        rs.getString("Cover"));
+                books.add(p);
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al recuperar información...");
+        }
+        return books;
     }
 
     public List<Book> findAll() {
@@ -240,6 +270,48 @@ public class BookDAO {
             System.out.println("Error al recuperar información...");
         }
         return books;
+    }
+
+    public boolean deleteBook(Book book){
+        try {
+            String query = "delete from Book "
+                    + "where Name = ? and Autor = ? ";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getAutor());
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
+
+    public boolean updateBook(Book book){
+        try {
+            String query = "update Book set Review = ?, Link = ?,Cat = ?, Calif = ?,Cover = ?"
+                    + "where Name = ? and Autor = ? ";
+
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(1,book.getReview());
+            st.setString(2,book.getLink());
+            st.setString(3,book.getCategory());
+            st.setFloat(4,book.getCalif());
+            st.setString(5,book.getCover());
+            st.setString(  6, book.getName());
+            st.setString(7, book.getAutor());
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return false;
     }
 
 

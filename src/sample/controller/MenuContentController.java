@@ -35,7 +35,7 @@ public class MenuContentController implements Initializable {
     Button userButton;
 
     @FXML
-    JFXButton comicCatButton;
+    JFXButton scieCatButton, physCatButton, busiCatButton, econCatButton, histCatButton, philCatButton, humoCatButton, noveCatButton, fictCatButton, adveCatButton, classCatButton, kidsCatButton;
 
     @FXML
     VBox optionsVBox, adminOptionsVBox, userOptionsVBox, drawer;
@@ -77,7 +77,19 @@ public class MenuContentController implements Initializable {
 
         updateUserInfo();
 
-        comicCatButton.setOnMouseClicked(handler);
+        scieCatButton.setOnMouseClicked(handler);
+        physCatButton.setOnMouseClicked(handler);
+        busiCatButton.setOnMouseClicked(handler);
+        econCatButton.setOnMouseClicked(handler);
+        histCatButton.setOnMouseClicked(handler);
+        philCatButton.setOnMouseClicked(handler);
+        humoCatButton.setOnMouseClicked(handler);
+        noveCatButton.setOnMouseClicked(handler);
+        fictCatButton.setOnMouseClicked(handler);
+        adveCatButton.setOnMouseClicked(handler);
+        classCatButton.setOnMouseClicked(handler);
+        kidsCatButton.setOnMouseClicked(handler);
+
     }
 
     EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
@@ -87,9 +99,30 @@ public class MenuContentController implements Initializable {
             String cat="";
             CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
 
-            if(event.getSource()==comicCatButton)
-                cat="comc";
-
+            if(event.getSource()==kidsCatButton)
+                cat="kids";
+            else if(event.getSource()==scieCatButton)
+                cat="scie";
+            else if(event.getSource()==physCatButton)
+                cat="phys";
+            else if(event.getSource()==busiCatButton)
+                cat="busi";
+            else if(event.getSource()==econCatButton)
+                cat="econ";
+            else if(event.getSource()==histCatButton)
+                cat="hist";
+            else if(event.getSource()==philCatButton)
+                cat="phil";
+            else if(event.getSource()==humoCatButton)
+                cat="humo";
+            else if(event.getSource()==noveCatButton)
+                cat="nove";
+            else if(event.getSource()==fictCatButton)
+                cat="fict";
+            else if(event.getSource()==adveCatButton)
+                cat="adve";
+            else if(event.getSource()==classCatButton)
+                cat="class";
 
             category = categoryDAO.findCategory(cat);
 
@@ -101,7 +134,7 @@ public class MenuContentController implements Initializable {
         this.mainController = mainController;
     }
 
-    public void openHome(MouseEvent mouseEvent) {
+    public void openHome() {
         mainController.openHome();
     }
 
@@ -164,29 +197,6 @@ public class MenuContentController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    public void addBook(MouseEvent mouseEvent) {
-        try{
-            Stage stage = new Stage();
-
-            FXMLLoader loader= new FXMLLoader(Main.class.getResource("fxml/AddBook.fxml"));
-            Parent root = loader.load();
-            AddBookController controller = loader.getController();
-
-            stage.setTitle("Add Book");
-            Scene primaryScene = new Scene(root, 450, 500);
-            primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
-            stage.setScene(primaryScene);
-            stage.setResizable(false);
-            stage.show();
-
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
     }
 
     public void addRBook(MouseEvent mouseEvent) {
@@ -253,6 +263,26 @@ public class MenuContentController implements Initializable {
     }
 
     public void acceptRequest(MouseEvent mouseEvent) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/addRequested.fxml"));
+            Parent root = loader.load();
+            addRequestedController controller = loader.getController();
+            stage.setTitle("Accept Requested Books");
+            Scene primaryScene = new Scene(root, 900, 400);
+            primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
+            stage.setScene(primaryScene);
+            stage.setResizable(true);
+            stage.show();
+
+            stage.addEventHandler(WindowEvent.WINDOW_HIDDEN, new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    openHome();
+                }
+            });
+
+        }catch (Exception e){e.printStackTrace();}
     }
 
     public void addAdmin(MouseEvent mouseEvent) {
@@ -266,12 +296,32 @@ public class MenuContentController implements Initializable {
             Scene primaryScene = new Scene(root, 530, 345);
             primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
             stage.setScene(primaryScene);
-            stage.setResizable(true);
+            stage.setResizable(false);
             stage.show();
 
         }catch (Exception e){e.printStackTrace();}
     }
 
     public void modifyBooks(MouseEvent mouseEvent) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/modifyBook.fxml"));
+            Parent root = loader.load();
+            ModifyBookController controller = loader.getController();
+            stage.setTitle("Book administration");
+            Scene primaryScene = new Scene(root, 1200, 800);
+            primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
+            stage.setScene(primaryScene);
+            stage.setResizable(true);
+            stage.show();
+
+            stage.addEventHandler(WindowEvent.WINDOW_HIDDEN, new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    openHome();
+                }
+            });
+
+        }catch (Exception e){e.printStackTrace();}
     }
 }

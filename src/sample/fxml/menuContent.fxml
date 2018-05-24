@@ -56,37 +56,38 @@
         <Separator/>
         <Accordion>
             <panes>
-                <TitledPane animated="false" text="untitled 1">
+                <TitledPane animated="false" text="Exact science">
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0"
                                 prefWidth="336.0">
                         <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Comics" fx:id="comicCatButton"/>
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home2"/>
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home3"/>
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home4"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Science" fx:id="scieCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Physics" fx:id="physCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Business" fx:id="busiCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Economy" fx:id="econCatButton"/>
                         </VBox>
                     </AnchorPane>
                 </TitledPane>
-                <TitledPane animated="false" text="untitled 2">
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0"
+                <TitledPane animated="false" text="Social science">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0"
                                 prefWidth="336.0">
                         <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home"/>
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home2"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="History" fx:id="histCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Philosophy" fx:id="philCatButton"/>
                         </VBox>
                     </AnchorPane>
                 </TitledPane>
-                <TitledPane animated="false" text="untitled 3">
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                <TitledPane animated="false" text="Literature">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0"
                                 prefWidth="336.0">
                         <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home"/>
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home2"/>
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home3"/>
-                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Home4"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Humor" fx:id="humoCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Novels" fx:id="noveCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Fiction" fx:id="fictCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Adventures" fx:id="adveCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Classics" fx:id="classCatButton"/>
+                            <JFXButton prefHeight="59.0" prefWidth="336.0" text="Kids" fx:id="kidsCatButton"/>
                         </VBox>
                     </AnchorPane>
-
                 </TitledPane>
             </panes>
         </Accordion>

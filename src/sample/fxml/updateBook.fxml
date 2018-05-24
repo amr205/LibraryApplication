@@ -14,17 +14,17 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="sample.controller.AddBookController">
+      fx:controller="sample.controller.UpdateBookController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: #9999FF;" VBox.vgrow="ALWAYS" />
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0">
          <children>
-            <VBox layoutX="164.0" layoutY="47.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="306.0" prefWidth="273.0" spacing="10.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="47.0">
+            <VBox  nodeOrientation="LEFT_TO_RIGHT" prefHeight="306.0" prefWidth="273.0" spacing="10.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="47.0">
                <children>
                   <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="22.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label text="Name" />
-                        <TextField fx:id="txtName"  HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="txtName"  HBox.hgrow="ALWAYS" disable="true"/>
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -33,10 +33,10 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                      <children>
                         <Label text="Autor" />
-                        <TextField fx:id="txtAutor"  HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="txtAutor"  HBox.hgrow="ALWAYS" disable="true"/>
                      </children>
                   </HBox>
-                  <HBox  prefWidth="273.0" spacing="20.0">
+                  <HBox spacing="20.0">
                      <children>
                         <Label text="Review" />
                         <TextArea prefHeight="350.0" prefWidth="211.0" fx:id="txaReview"  HBox.hgrow="ALWAYS">
@@ -90,7 +90,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Accept" fx:id="btnAccept" onMouseClicked="#addBook"/>
+                        <Button mnemonicParsing="false" text="Update" fx:id="btnAccept" onMouseClicked="#update"/>
 
                      </children>
                   </HBox>

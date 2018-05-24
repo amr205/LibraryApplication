@@ -58,18 +58,18 @@
                                 <ComboBox prefWidth="200.0" fx:id="cbCategory"  HBox.hgrow="ALWAYS">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="SCIE"/>
-                                            <String fx:value="HUMO"/>
-                                            <String fx:value="NOVE"/>
-                                            <String fx:value="MUSI"/>
-                                            <String fx:value="BUSI"/>
-                                            <String fx:value="MATH"/>
-                                            <String fx:value="ELEC"/>
-                                            <String fx:value="COMP"/>
-                                            <String fx:value="ADMI"/>
-                                            <String fx:value="FILO"/>
-                                            <String fx:value="CLAS"/>
-                                            <String fx:value="KIDS"/>
+                                            <String fx:value="Science"/>
+                                            <String fx:value="Physics"/>
+                                            <String fx:value="Business"/>
+                                            <String fx:value="Economy"/>
+                                            <String fx:value="History"/>
+                                            <String fx:value="Philosophy"/>
+                                            <String fx:value="Humor"/>
+                                            <String fx:value="Novels"/>
+                                            <String fx:value="Fiction"/>
+                                            <String fx:value="Adventures"/>
+                                            <String fx:value="Classics"/>
+                                            <String fx:value="Kids"/>
                                         </FXCollections>
                                     </items>
 

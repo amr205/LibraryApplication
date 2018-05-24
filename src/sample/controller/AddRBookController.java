@@ -10,6 +10,8 @@ import sample.Main;
 import sample.database.MySQL;
 import sample.database.model.Book;
 import sample.database.model.BookDAO;
+import sample.database.model.Category;
+import sample.database.model.CategoryDAO;
 
 public class AddRBookController {
     @FXML
@@ -23,8 +25,11 @@ public class AddRBookController {
 
 
     public void addBook(MouseEvent mouseEvent) {
-        String Cate = cbCategory.getSelectionModel().getSelectedItem().toString();
-        Book book=new Book(txtName.getText(),txtAutor.getText(),txaReview.getText(),txtLink.getText(),Cate,0,txtCover.getText());
+        String DescCate = cbCategory.getSelectionModel().getSelectedItem().toString();
+        CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
+        Category category = categoryDAO.findCategoryByDesc(DescCate);
+
+        Book book=new Book(txtName.getText(),txtAutor.getText(),txaReview.getText(),txtLink.getText(),category.getCveCat(),0,txtCover.getText());
 
         BookDAO bookDao=new BookDAO(MySQL.getConnection());
         bookDao.addRBook(book, Main.user);

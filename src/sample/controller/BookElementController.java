@@ -70,22 +70,28 @@ public class BookElementController implements Initializable {
         authorLabel.setText(book.getAutor());
 
         //set Image
-        Image image = new Image(book.getCover(), true);
-        image.progressProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                if(newValue.floatValue()>.99) {
-                    imageStackPane.getChildren().remove(progressIndicator);
+        try {
+            Image image = new Image(book.getCover(), true);
+            image.progressProperty().addListener(new ChangeListener<Number>() {
+                @Override
+                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                    if (newValue.floatValue() > .99) {
+                        imageStackPane.getChildren().remove(progressIndicator);
+                    }
+                    if (image.isError()) {
+                        book.setImage(new Image("/coverImage.jpg", true));
+                        imageView.setImage(new Image("/coverImage.jpg", true));
+                    }
                 }
-                if(image.isError()){
-                    book.setImage(new Image("/coverImage.jpg",true));
-                    imageView.setImage(new Image("/coverImage.jpg",true));
-                }
+            });
+            if (!image.isError()) {
+                book.setImage(image);
+                imageView.setImage(book.getImage());
             }
-        });
-        if(!image.isError()) {
-            book.setImage(image);
-            imageView.setImage(book.getImage());
+        }catch (Exception e){
+            imageStackPane.getChildren().remove(progressIndicator);
+            book.setImage(new Image("/coverImage.jpg", true));
+            imageView.setImage(new Image("/coverImage.jpg", true));
         }
 
 

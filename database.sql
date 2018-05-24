@@ -102,3 +102,27 @@ insert into UserImage (ImageID, ImageDesc)
 
 insert into UserB (UName, UPassword, UNameCo, UEmail, UDate, UType, UPictureID) 
 		values ('admin','Cookies','Administrador Universal','alejandromedinamx@gmail.com','1998-02-05','A',1);
+        
+insert into Category values ("scie","Science");
+
+insert into Category values ("phys","Physics");
+
+insert into Category values ("busi","Business");
+
+insert into Category values ("econ","Economy");
+
+insert into Category values ("hist","History");
+
+insert into Category values ("phil","Philosophy");
+
+insert into Category values ("humo","Humor");
+
+insert into Category values ("nove","Novels");
+
+insert into Category values ("fict","Fiction");
+
+insert into Category values ("adve","Adventures");
+
+insert into Category values ("class","Classics");
+
+insert into Category values ("kids","Kids");
