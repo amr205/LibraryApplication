@@ -8,6 +8,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sample.controller.HomeController"
@@ -22,10 +23,12 @@
             </Label>
         </HBox>
 
-        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
-            <AnchorPane>
-                <FlowPane  AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="25" fx:id="booksPane"/>
-            </AnchorPane>
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" fitToHeight="true">
+            <padding>
+                <Insets topRightBottomLeft="25"></Insets>
+            </padding>
+                <FlowPane fx:id="booksPane"/>
+
         </ScrollPane>
 
     </VBox>

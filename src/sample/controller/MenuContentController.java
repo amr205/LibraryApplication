@@ -122,7 +122,7 @@ public class MenuContentController implements Initializable {
             else if(event.getSource()==adveCatButton)
                 cat="adve";
             else if(event.getSource()==classCatButton)
-                cat="class";
+                cat="clas";
 
             category = categoryDAO.findCategory(cat);
 

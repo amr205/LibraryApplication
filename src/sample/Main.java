@@ -35,7 +35,7 @@ public class Main extends Application {
 
         //primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("Library app");
-        Scene primaryScene = new Scene(root, 900, 600);
+        Scene primaryScene = new Scene(root, 1400, 900);
         primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
         primaryStage.setScene(primaryScene);
         primaryStage.setMaximized(true);

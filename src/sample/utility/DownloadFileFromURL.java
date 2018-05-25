@@ -7,6 +7,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
@@ -30,7 +31,9 @@ public class DownloadFileFromURL{
 
                     new File(filePath).mkdirs();
                     URL website = new URL(url);
-                    ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+                    HttpURLConnection httpURLConnection = (HttpURLConnection)website.openConnection();
+                    httpURLConnection.addRequestProperty("User-Agent", "Mozilla / 5.0 (Windows NT 6.1; WOW64) AppleWebKit / 537.36 (KHTML, like Gecko) Chrome / 40.0.2214.91 Safari / 537.36");
+                    ReadableByteChannel rbc = Channels.newChannel(httpURLConnection.getInputStream());
                     FileOutputStream fos = new FileOutputStream(filePath + "/" + fileName);
                     fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 

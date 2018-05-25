@@ -123,6 +123,6 @@ insert into Category values ("fict","Fiction");
 
 insert into Category values ("adve","Adventures");
 
-insert into Category values ("class","Classics");
+insert into Category values ("clas","Classics");
 
 insert into Category values ("kids","Kids");

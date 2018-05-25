@@ -74,7 +74,7 @@ public class BookDetailsController implements Initializable {
 
     private Book book;
 
-    private boolean isDownloaded, isFavorite, isRated;
+    private boolean isDownloaded, isFavorite, isRated, downloading;
     private BookDAO bookDAO;
     private CategoryDAO categoryDAO;
     private Preferences appPrefs;
@@ -83,6 +83,7 @@ public class BookDetailsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        downloading=false;
         appPrefs = Preferences.userNodeForPackage(Main.class);
         progressBarHBox.getChildren().remove(progressBar);
         isDownloaded = false;
@@ -185,7 +186,8 @@ public class BookDetailsController implements Initializable {
 
     public void DownloadAndVisualize(MouseEvent mouseEvent) {
         Category category = categoryDAO.findCategory(book.getCategory());
-        if (!isDownloaded) {
+        if (!isDownloaded&&!downloading) {
+            downloading=true;
             progressBarHBox.getChildren().add(progressBar);
 
 

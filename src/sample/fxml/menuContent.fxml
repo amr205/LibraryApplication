@@ -68,7 +68,7 @@
                     </AnchorPane>
                 </TitledPane>
                 <TitledPane animated="false" text="Social science">
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0"
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0"
                                 prefWidth="336.0">
                         <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
                             <JFXButton prefHeight="59.0" prefWidth="336.0" text="History" fx:id="histCatButton"/>
@@ -77,7 +77,7 @@
                     </AnchorPane>
                 </TitledPane>
                 <TitledPane animated="false" text="Literature">
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0"
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0"
                                 prefWidth="336.0">
                         <VBox styleClass="menuSubBox" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
                             <JFXButton prefHeight="59.0" prefWidth="336.0" text="Humor" fx:id="humoCatButton"/>
