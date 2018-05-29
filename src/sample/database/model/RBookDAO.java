@@ -3,10 +3,7 @@ package sample.database.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +41,24 @@ public class RBookDAO {
             System.out.println("Error al recuperar información...");
         }
         return rbooks;
+    }
+
+    public boolean delete(Book book){
+        try {
+            String query = "delete from RBook "
+                    + "where RName = ? and RAutor = ? ";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getAutor());
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return false;
     }
 
 }

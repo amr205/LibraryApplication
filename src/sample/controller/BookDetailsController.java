@@ -231,6 +231,10 @@ public class BookDetailsController implements Initializable {
             fontAwesomeFavIcon.setGlyphName("HEART_ALT");
         }
     }
+
+    public void WebVisualize(MouseEvent mouseEvent) {
+        mainController.showWebBook(book);
+    }
 }
 
 

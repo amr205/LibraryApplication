@@ -6,6 +6,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import sample.Main;
 import sample.database.MySQL;
 import sample.database.model.Book;
 import sample.database.model.BookDAO;
@@ -38,7 +39,7 @@ public class addRequestedController implements Initializable {
     public void Aprove(MouseEvent mouseEvent) {
         RBook rbook=tvwRBook.getSelectionModel().getSelectedItem();
         Float score;
-        if(calif.getText()=="")
+        if(calif.getText().isEmpty())
             score=(float)0;
         else
             score=Float.parseFloat(calif.getText());
@@ -46,7 +47,10 @@ public class addRequestedController implements Initializable {
         Book book =new Book (rbook.getName(),rbook.getAutor(),rbook.getReview(),rbook.getLink(),rbook.getCategory(),score,rbook.getCover());
         BookDAO bookDao=new BookDAO(MySQL.getConnection());
         bookDao.addBook(book);
+        RBookDAO rBookDAO = new RBookDAO(MySQL.getConnection());
+        rBookDAO.delete(book);
 
+        initTableR();
 
     }
 }

@@ -619,7 +619,7 @@ public class BookDAO {
 
     public boolean addRBook(Book book,User user){
         try {
-            String query = "insert into RBook (RName, RAutor, RReview, RLink, RCat, RUname, RUpassword Cover) values (?,?,?,?,?,?,?,?)";
+            String query = "insert into RBook (RName, RAutor, RReview, RLink, RCat, RUname, RUpassword ,RCover) values (?,?,?,?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(2, book.getAutor());

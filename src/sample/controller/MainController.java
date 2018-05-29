@@ -3,6 +3,8 @@ package sample.controller;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
+import com.sun.javafx.application.HostServicesDelegate;
 import control.OpenPdfViewer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -20,6 +22,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.Main;
@@ -52,6 +56,8 @@ public class MainController implements Initializable{
     private Stage stage;
 
     private int sideMenuWidth = 190;
+
+    private  Main application;
 
     Preferences appPrefs;
 
@@ -331,6 +337,16 @@ public class MainController implements Initializable{
             e.printStackTrace();
         }
     }
+
+    public void setApplication(Main application) {
+        this.application = application;
+    }
+
+    public void showWebBook(Book book){
+        application.getHostServices().showDocument(book.getLink());
+    }
+
+
 }
 
 // records relative x and y co-ordinates.

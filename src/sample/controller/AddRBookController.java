@@ -6,6 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import sample.Main;
 import sample.database.MySQL;
 import sample.database.model.Book;
@@ -34,7 +35,8 @@ public class AddRBookController {
         BookDAO bookDao=new BookDAO(MySQL.getConnection());
         bookDao.addRBook(book, Main.user);
 
-
+        Stage stage = (Stage)btnAccept.getScene().getWindow();
+        stage.close();
 
     }
 }

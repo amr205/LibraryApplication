@@ -1,6 +1,9 @@
 package sample;
 
+import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
+import com.sun.javafx.application.HostServicesDelegate;
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,6 +35,7 @@ public class Main extends Application {
         Parent root = loader.load();
         MainController controller = loader.getController();
         controller.setStage(primaryStage);
+        controller.setApplication(this);
 
         //primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("Library app");
@@ -61,4 +65,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

@@ -65,7 +65,16 @@
                                 <JFXProgressBar prefWidth="500" fx:id="progressBar"/>
                             </HBox>
                             <HBox spacing="20">
-                                <JFXButton prefHeight="32" text="Download and Visualize" styleClass="jfxColorBtn" fx:id="visualizeButton" onMouseClicked="#DownloadAndVisualize"> </JFXButton>
+                                <JFXButton prefHeight="32" text="Download and Visualize" styleClass="jfxColorBtn" fx:id="visualizeButton" onMouseClicked="#DownloadAndVisualize">
+                                    <graphic>
+                                        <MaterialDesignIconView wrappingWidth="25" glyphName="EYE" size="20" fill="seagreen" />
+                                    </graphic>
+                                </JFXButton>
+                                <JFXButton prefHeight="32" text="Web Visualize" styleClass="jfxColorBtn" fx:id="webVisualizeButton" onMouseClicked="#WebVisualize">
+                                    <graphic>
+                                        <MaterialDesignIconView wrappingWidth="25" glyphName="WEB" size="20" fill="seagreen" />
+                                    </graphic>
+                                </JFXButton>
                                 <Button text="Add to favorites" styleClass="altBackground" fx:id="favoritesButton"  onMouseClicked="#AddToFavorites">
                                     <graphic>
                                         <FontAwesomeIconView wrappingWidth="25" glyphName="HEART_ALT" size="20" fill="red" fx:id="fontAwesomeFavIcon" />

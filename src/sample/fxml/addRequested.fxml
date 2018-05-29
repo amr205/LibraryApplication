@@ -22,7 +22,7 @@
             <TableColumn fx:id="rname" text="Name">
 
                 <cellValueFactory>
-                    <PropertyValueFactory property="RName"/>
+                    <PropertyValueFactory property="Name"/>
                 </cellValueFactory>
 
             </TableColumn>
@@ -30,7 +30,7 @@
             <TableColumn fx:id="rautor" text="Autor">
 
                 <cellValueFactory>
-                    <PropertyValueFactory property="RAutor"/>
+                    <PropertyValueFactory property="Autor"/>
                 </cellValueFactory>
 
             </TableColumn>
@@ -38,7 +38,7 @@
             <TableColumn fx:id="rreview" text="Review">
 
                 <cellValueFactory>
-                    <PropertyValueFactory property="RReview"/>
+                    <PropertyValueFactory property="Review"/>
                 </cellValueFactory>
 
             </TableColumn>
@@ -46,7 +46,7 @@
             <TableColumn fx:id="rlink" text="Link">
 
                 <cellValueFactory>
-                    <PropertyValueFactory property="RLink"/>
+                    <PropertyValueFactory property="Link"/>
                 </cellValueFactory>
 
             </TableColumn>
@@ -54,7 +54,7 @@
             <TableColumn fx:id="rcat" text="Category">
 
                 <cellValueFactory>
-                    <PropertyValueFactory property="RCat"/>
+                    <PropertyValueFactory property="Category"/>
                 </cellValueFactory>
 
             </TableColumn>
@@ -78,7 +78,7 @@
             <TableColumn fx:id="rcover" text="Cover">
 
                 <cellValueFactory>
-                    <PropertyValueFactory property="RCover"/>
+                    <PropertyValueFactory property="Cover"/>
                 </cellValueFactory>
 
             </TableColumn>
