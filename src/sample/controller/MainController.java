@@ -314,8 +314,7 @@ public class MainController implements Initializable{
         return centerPane;
     }
 
-    public void reloadUserData() {
-        openHome();
+    public void reloadUserData() {openMyBooks();
     }
 
     public void searchBook(ActionEvent actionEvent) {

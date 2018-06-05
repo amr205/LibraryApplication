@@ -211,7 +211,7 @@ public class MenuContentController implements Initializable {
             Scene primaryScene = new Scene(root, 450, 500);
             primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
             stage.setScene(primaryScene);
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.show();
 
 

@@ -59,7 +59,7 @@
         </columns>
     </TableView>
 
-
+    <Button  AnchorPane.rightAnchor="400" AnchorPane.bottomAnchor="30" prefHeight="26.0" prefWidth="114.0" onMouseClicked="#createAutor" text="Create autor"/>
     <Button  AnchorPane.rightAnchor="267" AnchorPane.bottomAnchor="30" prefHeight="26.0" prefWidth="114.0" onMouseClicked="#deleteBook" text="delete"/>
     <Button  AnchorPane.rightAnchor="140" AnchorPane.bottomAnchor="30" prefHeight="26.0" prefWidth="114.0" onMouseClicked="#updateBook" text="update"/>
     <Button AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="30" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" text="add" onMouseClicked="#addBook"/>

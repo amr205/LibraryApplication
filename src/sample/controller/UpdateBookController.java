@@ -15,7 +15,7 @@ import sample.database.model.CategoryDAO;
 
 public class UpdateBookController {
     @FXML
-    TextField txtName,txtAutor,txtLink,txtScore,txtCover;
+    TextField txtName,txtLink,txtScore,txtCover;
     @FXML
     TextArea txaReview;
     @FXML
@@ -34,12 +34,14 @@ public class UpdateBookController {
         Category category = categoryDAO.findCategory(cveCat);
 
         txtName.setText(book.getName());
-        txtAutor.setText(book.getAutor());
         txtLink.setText(book.getLink());
         txtScore.setText(book.getCalif()+"");
         txtCover.setText(book.getCover());
         txaReview.setText(book.getReview());
         cbCategory.getSelectionModel().select(category.getDescCat());
+
+        txtName.setEditable(false);
+        txtLink.setEditable(false);
 
     }
 
@@ -47,7 +49,7 @@ public class UpdateBookController {
         String DescCate = cbCategory.getSelectionModel().getSelectedItem().toString();
         CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
         Category category = categoryDAO.findCategoryByDesc(DescCate);
-        Book book=new Book(txtName.getText(),txtAutor.getText(),txaReview.getText(),txtLink.getText(),category.getCveCat(),Float.parseFloat(txtScore.getText()),txtCover.getText());
+        Book book=new Book(txtName.getText(),txaReview.getText(),txtLink.getText(),category.getCveCat(),Float.parseFloat(txtScore.getText()),txtCover.getText());
         BookDAO bookDao=new BookDAO(MySQL.getConnection());
         bookDao.updateBook(book);
 

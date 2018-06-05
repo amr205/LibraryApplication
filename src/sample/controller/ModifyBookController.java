@@ -47,7 +47,7 @@ public class ModifyBookController implements Initializable {
             Scene primaryScene = new Scene(root, 450, 500);
             primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
             stage.setScene(primaryScene);
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.show();
 
             stage.addEventHandler(WindowEvent.WINDOW_HIDDEN, new EventHandler<WindowEvent>() {
@@ -110,6 +110,24 @@ public class ModifyBookController implements Initializable {
             alert.setHeaderText("Cannot update book");
             alert.setContentText("Please select an item first");
             alert.show();
+        }
+    }
+
+    public void createAutor(MouseEvent mouseEvent) {
+        try {
+            Stage stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/CreateAutor.fxml"));
+            Parent root = loader.load();
+            CreateAutorController controller = loader.getController();
+            stage.setTitle("Create autor");
+            Scene primaryScene = new Scene(root, 450, 280);
+            primaryScene.getStylesheets().add(Main.class.getResource("css/stylesheet.css").toString());
+            stage.setScene(primaryScene);
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

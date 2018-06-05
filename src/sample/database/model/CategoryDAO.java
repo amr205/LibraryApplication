@@ -1,5 +1,6 @@
 package sample.database.model;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +34,7 @@ public class CategoryDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return category;
     }
@@ -57,7 +58,7 @@ public class CategoryDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return category;
     }

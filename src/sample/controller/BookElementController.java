@@ -2,6 +2,7 @@ package sample.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import sample.database.MySQL;
+import sample.database.model.Autor;
+import sample.database.model.AutorDAO;
 import sample.database.model.Book;
 
 import java.net.URL;
@@ -67,7 +71,12 @@ public class BookElementController implements Initializable {
     public void setBook(Book book) {
         this.book = book;
         titleLabel.setText(book.getName());
-        authorLabel.setText(book.getAutor());
+        AutorDAO autorDAO = new AutorDAO(MySQL.getConnection());
+        ObservableList<Autor> autors = autorDAO.fetchAllByBook(book);
+        if(autors.size()>0)
+            authorLabel.setText(autors.get(0).getName()+"...");
+        else
+            authorLabel.setText("Anonimo");
 
         //set Image
         try {

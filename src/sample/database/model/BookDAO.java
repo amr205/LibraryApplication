@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import sample.Main;
 
 import javax.jws.soap.SOAPBinding;
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,6 @@ public class BookDAO {
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -39,7 +39,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
@@ -54,7 +54,6 @@ public class BookDAO {
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -67,7 +66,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
@@ -82,7 +81,6 @@ public class BookDAO {
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -95,7 +93,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
@@ -110,7 +108,6 @@ public class BookDAO {
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -123,7 +120,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
@@ -138,7 +135,6 @@ public class BookDAO {
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -151,7 +147,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
@@ -166,7 +162,6 @@ public class BookDAO {
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -179,7 +174,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
@@ -187,14 +182,13 @@ public class BookDAO {
     public List<Book> findByAutor(String autor) {
         List<Book> books = new ArrayList<Book>();
         try {
-            String query = "SELECT * FROM Book WHERE Autor like '%"+autor+"%' ";
+            String query = "SELECT * FROM Book b inner join Owners o  on  b.Name = o.OName and b.Link = o.OLink WHERE o.OAName like '%"+autor+"%' ";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -207,7 +201,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
@@ -222,7 +216,6 @@ public class BookDAO {
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -235,7 +228,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
@@ -245,7 +238,7 @@ public class BookDAO {
         try {
             String query = "select b.* from Favorites f" +
                     " inner join UserB u on f.FUName = u.UName and f.FUPassword = u.UPassword" +
-                    " inner join Book b on b.Name = f.FName and b.Autor = f.FAutor" +
+                    " inner join Book b on b.Name = f.FName and b.Link = f.FLink" +
                     " where u.UName = '"+user.getUsername()+"' and u.UPassword = '"+user.getPassword()+"'";
             Statement st = conn.createStatement();
 
@@ -254,7 +247,7 @@ public class BookDAO {
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
+                        
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -267,48 +260,109 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
 
     public boolean deleteBook(Book book){
         try {
-            String query = "delete from Book "
-                    + "where Name = ? and Autor = ? ";
+            String query = "delete from Comments "
+                    + "where CName = ? and CLink = ? ";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getAutor());
+            st.setString(2, book.getLink());
 
             st.execute();
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        try {
+            String query = "delete from Owners "
+                    + "where OName = ? and OLink = ? ";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getLink());
+
+            st.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        try {
+            String query = "delete from Favorites "
+                    + "where FName = ? and FLink = ? ";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getLink());
+
+            st.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        try {
+            String query = "delete from History "
+                    + "where HName = ? and HLink = ? ";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getLink());
+
+            st.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
-        return false;
+        try {
+            String query = "delete from Ranking "
+                    + "where GName = ? and GLink = ? ";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getLink());
+
+            st.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+
+
+        try {
+            String query = "delete from Book "
+                    + "where Name = ? and Link = ? ";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getLink());
+
+            st.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+
+        return true;
     }
 
     public boolean updateBook(Book book){
         try {
-            String query = "update Book set Review = ?, Link = ?,Cat = ?, Calif = ?,Cover = ?"
-                    + "where Name = ? and Autor = ? ";
+            String query = "update Book set Review = ?,Cat = ?, Calif = ?,Cover = ?"
+                    + "where Name = ? and Link = ? ";
 
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1,book.getReview());
-            st.setString(2,book.getLink());
-            st.setString(3,book.getCategory());
-            st.setFloat(4,book.getCalif());
-            st.setString(5,book.getCover());
-            st.setString(  6, book.getName());
-            st.setString(7, book.getAutor());
+            st.setString(2,book.getCategory());
+            st.setFloat(3,book.getCalif());
+            st.setString(4,book.getCover());
+            st.setString(  5, book.getName());
+            st.setString(6, book.getLink());
 
             st.execute();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -320,7 +374,7 @@ public class BookDAO {
         try {
             String query = "select b.* from History c" +
                     " inner join UserB u on c.HUName = u.UName and c.HUPassword = u.UPassword" +
-                    " inner join Book b on b.Name = c.HName and b.Autor = c.HAutor" +
+                    " inner join Book b on b.Name = c.HName and b.Link = c.HLink" +
                     " where u.UName = '"+user.getUsername()+"' and u.UPassword = '"+user.getPassword()+"'" +
                     " order by c.HDate limit 15";
             Statement st = conn.createStatement();
@@ -330,7 +384,7 @@ public class BookDAO {
             while(rs.next()) {
                 p = new Book(
                         rs.getString("Name"),
-                        rs.getString("Autor"),
+                        
                         rs.getString("Review"),
                         rs.getString("Link"),
                         rs.getString("Cat"),
@@ -343,7 +397,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return books;
     }
@@ -352,14 +406,14 @@ public class BookDAO {
         try {
             String query = "select b.* from History c" +
                     " inner join UserB u on c.HUName = u.UName and c.HUPassword = u.UPassword" +
-                    " inner join Book b on b.Name = c.HName and b.Autor = c.HAutor" +
-                    " where u.UName = ? and u.UPassword = ? and b.Name = ? and b.Autor = ?";
+                    " inner join Book b on b.Name = c.HName and b.Link = c.HLink" +
+                    " where u.UName = ? and u.UPassword = ? and b.Name = ? and b.Link = ?";
             PreparedStatement st = conn.prepareStatement(query);
 
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
             st.setString(  3, book.getName());
-            st.setString(4, book.getAutor());
+            st.setString(4, book.getLink());
 
             ResultSet rs = st.executeQuery();
 
@@ -375,7 +429,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return downloaded;
     }
@@ -384,19 +438,19 @@ public class BookDAO {
     public boolean addBookToDownloaded(User user, Book book){
         try {
             String query = "insert into History "
-                    + " (HUName ,HUPassword ,HName ,HAutor, HDate)"
+                    + " (HUName ,HUPassword ,HName ,HLink, HDate)"
                     + "  values (?,?,?,?,NOW())";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
             st.setString(  3, book.getName());
-            st.setString(4, book.getAutor());
+            st.setString(4, book.getLink());
 
             st.execute();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -406,18 +460,18 @@ public class BookDAO {
         try {
             String query = "update History "
                     + " set HDate = NOW() "
-                    + "  where HUName = ? and HUPassword = ? and HName = ? and HAutor = ? ";
+                    + "  where HUName = ? and HUPassword = ? and HName = ? and HLink = ? ";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
             st.setString(  3, book.getName());
-            st.setString(4, book.getAutor());
+            st.setString(4, book.getLink());
 
             st.execute();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -426,19 +480,19 @@ public class BookDAO {
     public boolean addBookToFavorite(Book book, User user){
         try {
             String query = "insert into Favorites "
-                    + " (FUName ,FUPassword ,FName ,FAutor)"
+                    + " (FUName ,FUPassword ,FName ,FLink)"
                     + "  values (?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
             st.setString(  3, book.getName());
-            st.setString(4, book.getAutor());
+            st.setString(4, book.getLink());
 
             st.execute();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -447,10 +501,10 @@ public class BookDAO {
     public boolean deleteFromFavorite(Book book, User user){
         try {
             String query = "delete from Favorites "
-                    + "where FName = ? and FAutor = ? and FUName = ? and FUPassword = ?";
+                    + "where FName = ? and FLink = ? and FUName = ? and FUPassword = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getAutor());
+            st.setString(2, book.getLink());
             st.setString(  3, user.getUsername());
             st.setString(4, user.getPassword());
 
@@ -458,7 +512,7 @@ public class BookDAO {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -467,10 +521,10 @@ public class BookDAO {
     public boolean isFavorite(Book book, User user){
         boolean favorite = false;
         try {
-            String query = "SELECT * FROM Favorites where  FName = ? and FAutor = ? and FUName = ? and FUPassword = ?";
+            String query = "SELECT * FROM Favorites where  FName = ? and FLink = ? and FUName = ? and FUPassword = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getAutor());
+            st.setString(2, book.getLink());
             st.setString(  3, user.getUsername());
             st.setString(4, user.getPassword());
             ResultSet rs = st.executeQuery();
@@ -482,7 +536,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return favorite;
     }
@@ -490,10 +544,10 @@ public class BookDAO {
     public boolean isRated(Book book, User user){
         boolean rated = false;
         try {
-            String query = "SELECT * FROM Ranking where  GName = ? and GAutor = ? and GUName = ? and GUPassword = ?";
+            String query = "SELECT * FROM Ranking where  GName = ? and GLink = ? and GUName = ? and GUPassword = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getAutor());
+            st.setString(2, book.getLink());
             st.setString(  3, user.getUsername());
             st.setString(4, user.getPassword());
             ResultSet rs = st.executeQuery();
@@ -505,7 +559,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return rated;
     }
@@ -513,10 +567,10 @@ public class BookDAO {
     public float getUserRate(Book book, User user){
         float rate = 0.0f;
         try {
-            String query = "SELECT * FROM Ranking where  GName = ? and GAutor = ? and GUName = ? and GUPassword = ?";
+            String query = "SELECT * FROM Ranking where  GName = ? and GLink = ? and GUName = ? and GUPassword = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getAutor());
+            st.setString(2, book.getLink());
             st.setString(  3, user.getUsername());
             st.setString(4, user.getPassword());
             ResultSet rs = st.executeQuery();
@@ -528,7 +582,7 @@ public class BookDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return rate;
     }
@@ -536,20 +590,20 @@ public class BookDAO {
     public boolean addUserRating(Book book, User user, int calif) {
         try {
             String query = "insert into Ranking "
-                    + " (GUName ,GUPassword ,GName ,GAutor, GCalif)"
+                    + " (GUName ,GUPassword ,GName ,GLink, GCalif)"
                     + "  values (?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
             st.setString(  3, book.getName());
-            st.setString(4, book.getAutor());
+            st.setString(4, book.getLink());
             st.setInt(5, calif);
 
             st.execute();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -557,12 +611,12 @@ public class BookDAO {
 
     public boolean updateUserRating(Book book, User user, int calif) {
         try {
-            String query = "update Ranking set GCalif = ? where GName = ? and GAutor = ? and GUName = ? and GUPassword = ? ";
+            String query = "update Ranking set GCalif = ? where GName = ? and GLink = ? and GUName = ? and GUPassword = ? ";
             PreparedStatement st =  conn.prepareStatement(query);
 
             st.setInt(1, calif);
             st.setString(  2, book.getName());
-            st.setString(3, book.getAutor());
+            st.setString(3, book.getLink());
             st.setString(4, user.getUsername());
             st.setString(5, user.getPassword());
 
@@ -570,7 +624,7 @@ public class BookDAO {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -578,18 +632,18 @@ public class BookDAO {
 
     public boolean updateRating(Book book){
         try {
-            String query = "update Book set Calif = (select avg(GCalif) from Ranking where GName = ? and GAutor = ?) where Name = ? and Autor = ?";
+            String query = "update Book set Calif = (select avg(GCalif) from Ranking where GName = ? and GLink = ?) where Name = ? and Link = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getAutor());
+            st.setString(2, book.getLink());
             st.setString(  3, book.getName());
-            st.setString(4, book.getAutor());
+            st.setString(4, book.getLink());
 
             st.execute();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -597,21 +651,20 @@ public class BookDAO {
 
     public boolean addBook(Book book){
         try {
-            String query = "insert into Book (Name, Autor, Review, Link, Cat, Calif, Cover) values (?,?,?,?,?,?,?)";
+            String query = "insert into Book (Name, Review, Link, Cat, Calif, Cover) values (?,?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getAutor());
-            st.setString(  3, book.getReview());
-            st.setString(4, book.getLink());
-            st.setString(5,book.getCategory());
-            st.setFloat(6,book.getCalif());
-            st.setString(7,book.getCover());
+            st.setString(  2, book.getReview());
+            st.setString(3, book.getLink());
+            st.setString(4,book.getCategory());
+            st.setFloat(5,book.getCalif());
+            st.setString(6,book.getCover());
 
             st.execute();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -619,24 +672,76 @@ public class BookDAO {
 
     public boolean addRBook(Book book,User user){
         try {
-            String query = "insert into RBook (RName, RAutor, RReview, RLink, RCat, RUname, RUpassword ,RCover) values (?,?,?,?,?,?,?,?)";
+            String query = "insert into RBook (RName, RLink, RReview, RCat, RUname, RUpassword ,RCover, RCalif) values (?,?,?,?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getAutor());
             st.setString(  3, book.getReview());
-            st.setString(4, book.getLink());
-            st.setString(5,book.getCategory());
-            st.setString(6,user.getUsername());
-            st.setString(7,user.getPassword());
-            st.setString(8,book.getCover());
+            st.setString(2, book.getLink());
+            st.setString(4,book.getCategory());
+            st.setString(5,user.getUsername());
+            st.setString(6,user.getPassword());
+            st.setString(7,book.getCover());
+            st.setFloat(8,book.getCalif());
+
 
             st.execute();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
+    }
+
+    public boolean addComment(User user, Book book, String opinion){
+        try {
+            String query = "insert into Comments (CUName, CUPassword, CName, CLink, COpinion) values (?,?,?,?,?)";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, user.getUsername());
+            st.setString(  2, user.getPassword());
+            st.setString(3, book.getName());
+            st.setString(4,book.getLink());
+            st.setString(5,opinion);
+
+
+
+            st.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+
+        return false;
+    }
+
+    public ArrayList<Comment> getComments(Book book) {
+        ArrayList<Comment> comments = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM Comments  where CName = ? and CLink = ? ";
+            PreparedStatement st =  conn.prepareStatement(query);
+            st.setString(  1, book.getName());
+            st.setString(2, book.getLink());
+
+            ResultSet rs = st.executeQuery();
+            Comment temp = null;
+            while(rs.next()) {
+                temp= new Comment(rs.getString("CUName"),
+                        rs.getString("CUPassword"),
+                        rs.getString("CName"),
+                        rs.getString("CLink"),
+                        rs.getString("COpinion"));
+                comments.add(temp);
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
+            return comments;
+        }
+        return comments;
     }
 }

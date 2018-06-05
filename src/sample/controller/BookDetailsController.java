@@ -5,24 +5,25 @@ import com.jfoenix.controls.JFXProgressBar;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import org.controlsfx.control.Rating;
 import sample.Main;
 import sample.database.MySQL;
-import sample.database.model.Book;
-import sample.database.model.BookDAO;
-import sample.database.model.Category;
-import sample.database.model.CategoryDAO;
+import sample.database.model.*;
 import sample.utility.DownloadFileFromURL;
 
 import java.io.File;
@@ -31,7 +32,9 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
@@ -41,13 +44,13 @@ public class BookDetailsController implements Initializable {
     AnchorPane bookDetailPane;
 
     @FXML
-    Label titleLabel, autorLabel, descriptionLabel, ratingLabel;
+    Label titleLabel, descriptionLabel, ratingLabel;
 
     @FXML
     Rating rating;
 
     @FXML
-    Button favoritesButton;
+    Button favoritesButton, opinionButton;
 
     @FXML
     JFXButton visualizeButton;
@@ -70,13 +73,21 @@ public class BookDetailsController implements Initializable {
     @FXML
     HBox progressBarHBox;
 
+    @FXML
+    VBox autorBox, commentsBox;
+    
+    @FXML
+    TextArea commentArea;
+
     private MainController mainController;
 
     private Book book;
 
     private boolean isDownloaded, isFavorite, isRated, downloading;
     private BookDAO bookDAO;
+    private AutorDAO autorDAO;
     private CategoryDAO categoryDAO;
+    private CountryDAO countryDAO;
     private Preferences appPrefs;
     private float calif;
 
@@ -89,8 +100,9 @@ public class BookDetailsController implements Initializable {
         isDownloaded = false;
 
         bookDAO = new BookDAO(MySQL.getConnection());
+        autorDAO = new AutorDAO(MySQL.getConnection());
         categoryDAO = new CategoryDAO(MySQL.getConnection());
-
+        countryDAO = new CountryDAO(MySQL.getConnection());
 
     }
 
@@ -102,7 +114,21 @@ public class BookDetailsController implements Initializable {
 
         this.book = _book;
         titleLabel.setText(book.getName());
-        autorLabel.setText(book.getAutor());
+
+        showOpinions();
+
+        //put author info
+        ObservableList<Autor> autors = autorDAO.fetchAllByBook(book);
+        for (int i = 0; i < autors.size(); i++) {
+            HBox hBox = new HBox(0);
+            Label nombre = new Label("Autor: "+autors.get(i).getName());
+            Label countryLabel = new Label("            Nacido en "+countryDAO.getCountryByCVE(autors.get(i).getCveCountry()).getDescCountry());
+            Label birthLabel = new Label(" el dia "+ autors.get(i).getBirthDate().toLocalDate().toString());
+            hBox.getChildren().addAll(nombre,countryLabel,birthLabel);
+            autorBox.getChildren().add(hBox);
+
+        }
+
         descriptionLabel.setText(book.getReview());
 
 
@@ -153,13 +179,14 @@ public class BookDetailsController implements Initializable {
             });
         }
         else{
+            //user not logged
             favoritesButton.setDisable(true);
             calif=book.getCalif();
             rating.setRating(calif);
             ratingLabel.setText(String.format("%.2f", calif));
             rating.setDisable(true);
-
-            progressBarHBox.getChildren().add(new Label("To rate a book or add to favorites please login"));
+            opinionButton.setDisable(true);
+            progressBarHBox.getChildren().add(new Label("To rate a book, comment or add to favorites please login"));
         }
     }
 
@@ -234,6 +261,24 @@ public class BookDetailsController implements Initializable {
 
     public void WebVisualize(MouseEvent mouseEvent) {
         mainController.showWebBook(book);
+    }
+
+    public void addOpinion(ActionEvent actionEvent) {
+        if (Main.user!=null&&!commentArea.getText().isEmpty())
+            bookDAO.addComment(Main.user,book,commentArea.getText());
+
+        showOpinions();
+    }
+    
+    private void showOpinions(){
+        commentsBox.getChildren().clear();
+
+        ArrayList<Comment> opinions = bookDAO.getComments(book);
+        for (int i = 0; i < opinions.size(); i++) {
+            Label label = new Label(opinions.get(i).getUName()+" said: "+opinions.get(i).getOpinion());
+            label.setWrapText(true);
+            commentsBox.getChildren().add(label);
+        }
     }
 }
 

@@ -3,14 +3,13 @@ package sample.database.model;
 import javafx.scene.image.Image;
 
 public class Book {
-    String name, autor, review, link, category,cover;
+    String name, review, link, category,cover;
     float calif;
 
     Image image;
 
-    public Book(String name, String autor, String review, String link, String category, float calif, String cover) {
+    public Book(String name, String review, String link, String category, float calif, String cover) {
         this.name = name;
-        this.autor = autor;
         this.review = review;
         this.link = link;
         this.category = category;
@@ -32,14 +31,6 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
     }
 
     public String getReview() {

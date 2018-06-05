@@ -1,26 +1,25 @@
 package sample.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sample.database.MySQL;
-import sample.database.model.Book;
-import sample.database.model.BookDAO;
-import sample.database.model.Category;
-import sample.database.model.CategoryDAO;
+import sample.database.model.*;
 
+import javax.swing.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AddBookController {
+public class AddBookController implements Initializable{
 
     @FXML
-    TextField txtName,txtAutor,txtLink,txtScore,txtCover;
+    TextField txtName,txtLink,txtScore,txtCover;
     @FXML
     TextArea txaReview;
     @FXML
@@ -28,17 +27,69 @@ public class AddBookController {
     @FXML
     Button btnAccept;
 
+    @FXML
+    VBox autorBox;
+
+
+    ArrayList<ComboBox<Autor>> autorList = new ArrayList<>();
+    OwnerDAO ownerDAO;
+    AutorDAO autorDAO;
 
     public void addBook(MouseEvent mouseEvent) {
+        if( cbCategory.getSelectionModel().getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null, "select a category");
+            return;
+        }
         String DescCate = cbCategory.getSelectionModel().getSelectedItem().toString();
         CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
         Category category = categoryDAO.findCategoryByDesc(DescCate);
 
-        Book book=new Book(txtName.getText(),txtAutor.getText(),txaReview.getText(),txtLink.getText(),category.getCveCat(),Float.parseFloat(txtScore.getText()),txtCover.getText());
+        Book book=new Book(txtName.getText(),txaReview.getText(),txtLink.getText(),category.getCveCat(),Float.parseFloat(txtScore.getText()),txtCover.getText());
         BookDAO bookDao=new BookDAO(MySQL.getConnection());
         bookDao.addBook(book);
 
+        for (int i = 0; i < autorList.size(); i++) {
+            Autor tempAutor = autorList.get(i).getSelectionModel().getSelectedItem();
+            Owner temp = new Owner(book.getName(),book.getLink(),tempAutor.getName());
+            ownerDAO.addAutorToBook(temp);
+
+        }
+
         Stage stage = (Stage)btnAccept.getScene().getWindow();
         stage.close();
+    }
+
+
+    public void addRow() {
+        HBox box = new HBox(15);
+        Label label = new Label("Name");
+        ComboBox<Autor> autorComboBox = new ComboBox<>();
+        autorComboBox.setItems(autorDAO.fetchAll());
+        autorBox.getChildren().add(box);
+        try{
+            autorComboBox.getSelectionModel().selectFirst();
+        }catch (Exception e){
+
+        }
+
+        box.getChildren().addAll(label,autorComboBox);
+        box.prefWidth(250);
+
+        autorList.add(autorComboBox);
+    }
+
+    public void removeRow(ActionEvent actionEvent) {
+        if(autorList.size()>1){
+            autorList.remove(autorList.size()-1);
+            autorBox.getChildren().remove(autorBox.getChildren().size()-1);
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ownerDAO = new OwnerDAO(MySQL.getConnection());
+        autorDAO = new AutorDAO(MySQL.getConnection());
+
+        addRow();
     }
 }

@@ -13,6 +13,7 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.scene.control.Separator?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="sample.controller.AddRBookController">
     <children>
@@ -30,10 +31,10 @@
                                 <Insets />
                             </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0">
                             <children>
-                                <Label text="Autor" />
-                                <TextField fx:id="txtAutor" HBox.hgrow="ALWAYS"/>
+                                <Label text="Link" />
+                                <TextField fx:id="txtLink"  HBox.hgrow="ALWAYS"/>
                             </children>
                         </HBox>
                         <HBox prefHeight="77.0" prefWidth="273.0" spacing="20.0">
@@ -46,12 +47,7 @@
                                 </TextArea>
                             </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0">
-                            <children>
-                                <Label text="Link" />
-                                <TextField fx:id="txtLink"  HBox.hgrow="ALWAYS"/>
-                            </children>
-                        </HBox>
+
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="13.0">
                             <children>
                                 <Label text="Category" />
@@ -83,6 +79,15 @@
                                 <TextField fx:id="txtCover"  HBox.hgrow="ALWAYS"/>
                             </children>
                         </HBox>
+                        <Separator/>
+                        <HBox spacing="15">
+                            <Button fx:id="addAutorBtn" text="Add autor" onAction="#addRow"/>
+                            <Button fx:id="removeAutorBtn" text="Remove autor" onAction="#removeRow"/>
+                        </HBox>
+                        <VBox fx:id="autorBox" spacing="15">
+
+                        </VBox>
+                        <Separator/>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                             <children>
                                 <Button mnemonicParsing="false" text="Accept" fx:id="btnAccept" onMouseClicked="#addBook"/>

@@ -21,6 +21,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.BookDetailsController" fx:id="bookDetailPane">
       <StackPane  AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <BorderPane>
@@ -45,11 +46,9 @@
                                 <Font size="32.0" />
                             </font>
                         </Label>
-                        <Label text="Autor Name" textFill="#686868" fx:id="autorLabel">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
+                        <VBox spacing="10" fx:id="autorBox">
+
+                        </VBox>
                         <HBox spacing="10" alignment="BOTTOM_LEFT">
                             <Rating fx:id="rating" />
                             <Label fx:id="ratingLabel" alignment="BASELINE_LEFT" textFill="#686868"/>
@@ -92,6 +91,24 @@
                     </graphic>
                 </JFXButton>
             </top>
+             <bottom>
+                 <VBox spacing="15">
+                 <Label text="Comments">
+                     <font>
+                         <Font size="20.0" />
+                     </font>
+                 </Label>
+
+                     <VBox fx:id="commentsBox" spacing="15">
+
+                     </VBox>
+                     <Separator/>
+                     <TextArea prefHeight="100" fx:id="commentArea">
+
+                     </TextArea>
+                     <Button text="submit opinion" onAction="#addOpinion" fx:id="opinionButton"/>
+                 </VBox>
+             </bottom>
          </BorderPane>
       </StackPane>
 </AnchorPane>

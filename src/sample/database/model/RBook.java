@@ -1,17 +1,18 @@
 package sample.database.model;
 
 public class RBook {
-    String name, autor, review, link, category, RUname, RUpassword, cover;
+    String name, review, link, category, RUname, RUpassword, cover;
+    float calif;
 
-    public RBook(String name, String autor, String review, String link, String category, String RUname, String RUpassword, String cover) {
+    public RBook(String name, String review, String link, String category, String RUname, String RUpassword, String cover, float calif) {
         this.name = name;
-        this.autor = autor;
         this.review = review;
         this.link = link;
         this.category = category;
         this.RUname = RUname;
         this.RUpassword = RUpassword;
         this.cover = cover;
+        this.calif = calif;
     }
 
     public String getName() {
@@ -20,14 +21,6 @@ public class RBook {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
     }
 
     public String getReview() {
@@ -77,5 +70,12 @@ public class RBook {
     public void setCover(String cover) {
         this.cover = cover;
     }
-}
 
+    public float getCalif() {
+        return calif;
+    }
+
+    public void setCalif(float calif) {
+        this.calif = calif;
+    }
+}

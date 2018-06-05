@@ -1,5 +1,6 @@
 package sample.database.model;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class UserDAO {
         } catch (SQLException ex) {
             ex.printStackTrace();
             user = null;
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return user;
     }
@@ -54,7 +55,7 @@ public class UserDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error al recuperar información...");
+            JOptionPane.showMessageDialog(null,"Error al recuperar información...");
         }
         return available;
     }
@@ -75,7 +76,7 @@ public class UserDAO {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -97,7 +98,7 @@ public class UserDAO {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return false;
@@ -117,7 +118,7 @@ public class UserDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100";
@@ -137,7 +138,7 @@ public class UserDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
         return "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100";

@@ -30,10 +30,10 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0">
                      <children>
-                        <Label text="Autor" />
-                        <TextField fx:id="txtAutor"  HBox.hgrow="ALWAYS" disable="true"/>
+                        <Label text="Link" />
+                        <TextField fx:id="txtLink"  HBox.hgrow="ALWAYS"/>
                      </children>
                   </HBox>
                   <HBox spacing="20.0">
@@ -46,12 +46,7 @@
                         </TextArea>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0">
-                     <children>
-                        <Label text="Link" />
-                        <TextField fx:id="txtLink"  HBox.hgrow="ALWAYS"/>
-                     </children>
-                  </HBox>
+
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="13.0">
                      <children>
                         <Label text="Category" />
