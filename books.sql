@@ -76,6 +76,8 @@ insert into Country values ('pru','Prusia');
 insert into Country values ('rom','Roma');
 insert into Country values ('gre','Grecia');
 insert into Country values ('ita','Italia');
+insert into Country values ('mex','Mexico');
+insert into Country values ('arg','Argentina');
 
 INSERT INTO Autor										
 	VALUES(	"Daniel Defoe"			,'1660-10-10'		,"rgb"	),			
