@@ -76,6 +76,8 @@ insert into Country values ('pru','Prusia');
 insert into Country values ('rom','Roma');
 insert into Country values ('gre','Grecia');
 insert into Country values ('ita','Italia');
+insert into Country values ('mex','Mexico');
+insert into Country values ('arg','Argentina');
 
 INSERT INTO Autor										
 	VALUES(	"Daniel Defoe"			,'1660-10-10'		,"rgb"	),			
@@ -678,13 +680,12 @@ insert into Book values ("El grillo del hogar",
                         0,
                         "https://image.ibb.co/iSQKAo/clas4.png");
 
-----fallo insert into Owners values ("Observe a su perro(gato)","Desmond Morris");
 insert into Owners values ("La práctica de la inteligencia emocional","Daniel Goleman");
 insert into Owners values ("El hombre que confundió a su mujer con un sombrero","Oliver Sacks");
 insert into Owners values ("Nuestra especie","Marvin Harris");
 insert into Owners values ("El heptameron","Margarita de Valois");
-insert into Owners values ("Cosas que le pasan a una madre sin superpoderes","Ana Ribera García Rubio ");
-insert into Owners values ("Apocalipsis para principiantes","http://www.siruela.com/archivos/fragmentos/Apocalipsis_para_principiantes.pdf","Nicolas Dickner");
+insert into Owners values ("Cosas que le pasan a una madre sin superpoderes""Ana Ribera García Rubio ");
+insert into Owners values ("Apocalipsis para principiantes","Nicolas Dickner");
 insert into Owners values ("Un yanqui en la corte del rey arturo","Mark Twain");
 insert into Owners values ("La importancia de llamarse Ernesto","Oscar Wilde");
 insert into Owners values ("Casi me olvido de ti","Terry McMillan");
@@ -715,26 +716,25 @@ insert into Owners values ("La clave secreta del universo","Stephen Hawking");
 insert into Owners values ("Desayuno con partículas","Sonia Fernández Vidal");
 insert into Owners values ("Patente de corso","Arturo Pérez Reverte");
 insert into Owners values ("Con ánimo de ofender","Arturo Pérez Reverte");
-insert into Owners values ("Cuando éramos honrados mercenarios","http://www.perezreverte.com/upload/ficheros/libros/201001/cuando_ramos_honrados_mercenarios.pdf","Arturo Pérez Reverte");
-insert into Owners values ("Lecciones de liderazgo","https://tlridnewscchoriente.files.wordpress.com/2016/01/steve-jobs-lecciones-de-liderazgo.pdf","Walter Isaacson");
-----fallo insert into Owners values ("Fundamentos de economia","http://ru.iiec.unam.mx/2462/1/FundamentosDeEconomiaSecuenciaCorrecta.pdf","Federico Paniagua");
-insert into Owners values ("El precio de la desigualdad","http://depa.fquim.unam.mx/amyd/archivero/EPreciodelaDesigualdad_27245.pdf","Joseph E. Stiglitz");
-insert into Owners values ("Porque fracasan los países","https://federalismoygobernabilidad.files.wordpress.com/2015/11/acemoglu.pdf","Daron Acemoglu");
-insert into Owners values ("La riqueza de las naciones","http://ceiphistorica.com/wp-content/uploads/2016/04/Smith-Adam-La-Riqueza-de-las-Naciones.pdf","Adam Smith");
-insert into Owners values ("Economía Rosquilla","https://www.primercapitulo.com/pdf/2018/3688-economia-rosquilla.pdf","Kate Raworth");
-insert into Owners values ("Metafisica","http://cmap.upb.edu.co/rid=1GM19TDTV-2QXBB0-V3Y/Aristoteles%20-%20Metafisica.pdf","Aristoteles");
-insert into Owners values ("Meditaciones","http://www.nueva-acropolis.com/filiales/libros/Marco_Aurelio-Meditaciones.pdf","Marco Aurelio");
-insert into Owners values ("Crítica de la razón pura","http://www.biblioteca.org.ar/libros/89799.pdf","Immanuel Kant");
-insert into Owners values ("El mundo como voluntad y representación","http://juango.es/files/Arthur-Schopenhauer---El-mundo-como-voluntad-y-representacion.pdf","Arthur Schopenhauer");
-insert into Owners values ("Suma Teológica","https://www.dominicos.org/media/uploads/recursos/libros/suma/1.pdf","Santo Tomas de Aquino");
-insert into Owners values ("La pimpinela escarlata","http://10millibrosparadescargar.com/bibliotecavirtual/libros/LETRA%20O/Orczy,%20Baronesa%20de%20-%20La%20pimpinela%20escarlata.pdf","Baroness Emmuska Orczy");
-insert into Owners values ("El castillo de Otranto","https://www.biblioteca.org.ar/libros/154027.pdf","Horace Walpole");
-insert into Owners values ("La isla del tesoro","https://www.getafe.es/wp-content/uploads/Stevenson-Robert-Louis-La-Isla-Del-Tesoro.pdf","Robert L. Stevenson");
-insert into Owners values ("Aventuras de Robinson Crusoe","http://www.biblioteca.org.ar/libros/133467.pdf","Daniel Defoe");
-insert into Owners values ("De la Tierra a la Luna","http://www.biblioteca.org.ar/libros/656256.pdf","Julio Verne");
-insert into Owners values ("Hamlet","http://aix1.uottawa.ca/~jmruano/hamlet.ruano.trad.pdf","William Shakespeare");
-insert into Owners values ("Otelo","http://www.biblioteca.org.ar/libros/88741.pdf","William Shakespeare");
+insert into Owners values ("Cuando éramos honrados mercenarios","Arturo Pérez Reverte");
+insert into Owners values ("Lecciones de liderazgo","Walter Isaacson");
+insert into Owners values ("El precio de la desigualdad","Joseph E. Stiglitz");
+insert into Owners values ("Porque fracasan los países","Daron Acemoglu");
+insert into Owners values ("La riqueza de las naciones","Adam Smith");
+insert into Owners values ("Economía Rosquilla","Kate Raworth");
+insert into Owners values ("Metafisica","Aristoteles");
+insert into Owners values ("Meditaciones","Marco Aurelio");
+insert into Owners values ("Crítica de la razón pura","Immanuel Kant");
+insert into Owners values ("El mundo como voluntad y representación","Arthur Schopenhauer");
+insert into Owners values ("Suma Teológica","Santo Tomas de Aquino");
+insert into Owners values ("La pimpinela escarlata","Baroness Emmuska Orczy");
+insert into Owners values ("El castillo de Otranto","Horace Walpole");
+insert into Owners values ("La isla del tesoro","Robert L. Stevenson");
+insert into Owners values ("Aventuras de Robinson Crusoe","Daniel Defoe");
+insert into Owners values ("De la Tierra a la Luna","Julio Verne");
+insert into Owners values ("Hamlet","William Shakespeare");
+insert into Owners values ("Otelo","William Shakespeare");
 
-insert into Owners values ("Macbeth","http://www.biblioteca.org.ar/libros/133661.pdf","William Shakespeare");
-insert into Owners values ("Middlemarch","http://www.biblioteca.org.ar/libros/131374.pdf","George Eliot");
-insert into Owners values ("El grillo del hogar","http://www.biblioteca.org.ar/libros/89405.pdf","Charles Dickens");
+insert into Owners values ("Macbeth","William Shakespeare");
+insert into Owners values ("Middlemarch","George Eliot");
+insert into Owners values ("El grillo del hogar","Charles Dickens");
