@@ -17,10 +17,9 @@ public class AutorDAO {
     public ObservableList<Autor> fetchAllByBook(Book book) {
         ObservableList<Autor> autors = FXCollections.observableArrayList();
         try {
-            String query = "SELECT * FROM Owners o inner join Autor a on o.OAName = a.AName where o.OName = ? and o.OLink = ? ";
+            String query = "SELECT * FROM Owners o inner join Autor a on o.OAName = a.AName where o.OName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             ResultSet rs = st.executeQuery();
             Autor p = null;

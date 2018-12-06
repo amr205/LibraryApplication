@@ -50,7 +50,7 @@ public class AddBookController implements Initializable{
 
         for (int i = 0; i < autorList.size(); i++) {
             Autor tempAutor = autorList.get(i).getSelectionModel().getSelectedItem();
-            Owner temp = new Owner(book.getName(),book.getLink(),tempAutor.getName());
+            Owner temp = new Owner(book.getName(),tempAutor.getName());
             ownerDAO.addAutorToBook(temp);
 
         }

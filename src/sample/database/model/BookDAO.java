@@ -590,13 +590,11 @@ public class BookDAO {
     public boolean addUserRating(Book book, User user, int calif) {
         try {
             String query = "insert into Ranking "
-                    + " (GUName ,GUPassword ,GName ,GLink, GCalif)"
+                    + " (GUName ,GName , GCalif)"
                     + "  values (?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1, user.getUsername());
-            st.setString(2, user.getPassword());
             st.setString(  3, book.getName());
-            st.setString(4, book.getLink());
             st.setInt(5, calif);
 
             st.execute();
@@ -611,14 +609,12 @@ public class BookDAO {
 
     public boolean updateUserRating(Book book, User user, int calif) {
         try {
-            String query = "update Ranking set GCalif = ? where GName = ? and GLink = ? and GUName = ? and GUPassword = ? ";
+            String query = "update Ranking set GCalif = ? where GName = ? and GUName = ? ";
             PreparedStatement st =  conn.prepareStatement(query);
 
             st.setInt(1, calif);
             st.setString(  2, book.getName());
-            st.setString(3, book.getLink());
-            st.setString(4, user.getUsername());
-            st.setString(5, user.getPassword());
+            st.setString(3, user.getUsername());
 
             st.execute();
             return true;
@@ -632,12 +628,10 @@ public class BookDAO {
 
     public boolean updateRating(Book book){
         try {
-            String query = "update Book set Calif = (select avg(GCalif) from Ranking where GName = ? and GLink = ?) where Name = ? and Link = ?";
+            String query = "update Book set Calif = (select avg(GCalif) from Ranking where GName = ?) where Name = ? ";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
-            st.setString(  3, book.getName());
-            st.setString(4, book.getLink());
+            st.setString(  2, book.getName());
 
             st.execute();
             return true;
@@ -696,13 +690,11 @@ public class BookDAO {
 
     public boolean addComment(User user, Book book, String opinion){
         try {
-            String query = "insert into Comments (CUName, CUPassword, CName, CLink, COpinion) values (?,?,?,?,?)";
+            String query = "insert into Comments (CUName, CName, COpinion) values (?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, user.getUsername());
-            st.setString(  2, user.getPassword());
-            st.setString(3, book.getName());
-            st.setString(4,book.getLink());
-            st.setString(5,opinion);
+            st.setString(2, book.getName());
+            st.setString(3,opinion);
 
 
 
@@ -719,18 +711,15 @@ public class BookDAO {
     public ArrayList<Comment> getComments(Book book) {
         ArrayList<Comment> comments = new ArrayList<>();
         try {
-            String query = "SELECT * FROM Comments  where CName = ? and CLink = ? ";
+            String query = "SELECT * FROM Comments  where CName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             ResultSet rs = st.executeQuery();
             Comment temp = null;
             while(rs.next()) {
                 temp= new Comment(rs.getString("CUName"),
-                        rs.getString("CUPassword"),
                         rs.getString("CName"),
-                        rs.getString("CLink"),
                         rs.getString("COpinion"));
                 comments.add(temp);
             }

@@ -3,9 +3,8 @@ package sample.database.model;
 public class Owner {
     String OName, OLink, OAName;
 
-    public Owner(String OName, String OLink, String OAName) {
+    public Owner(String OName, String OAName) {
         this.OName = OName;
-        this.OLink = OLink;
         this.OAName = OAName;
     }
 
@@ -15,14 +14,6 @@ public class Owner {
 
     public void setOName(String OName) {
         this.OName = OName;
-    }
-
-    public String getOLink() {
-        return OLink;
-    }
-
-    public void setOLink(String OLink) {
-        this.OLink = OLink;
     }
 
     public String getOAName() {

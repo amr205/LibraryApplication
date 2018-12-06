@@ -59,7 +59,7 @@ public class AddRBookController implements Initializable {
 
 
         for (int i = 0; i < autorList.size(); i++) {
-            Owner temp = new Owner(book.getName(),book.getLink(),autorList.get(i).getText());
+            Owner temp = new Owner(book.getName(),autorList.get(i).getText());
             ownerDAO.addRAutorToBook(temp);
 
         }

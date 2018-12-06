@@ -25,16 +25,14 @@ public class OwnerDAO {
     public List<Owner> findROwnersByBook(Book book){
         ObservableList<Owner> owners = FXCollections.observableArrayList();
         try {
-            String query = "SELECT * FROM ROwners where ROName = ? and ROLink = ? ";
+            String query = "SELECT * FROM ROwners where ROName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             ResultSet rs = st.executeQuery();
             Owner p = null;
             while(rs.next()) {
                 p = new Owner(rs.getString("ROName"),
-                        rs.getString("ROLink"),
                         rs.getString("ROAName"));
                 owners.add(p);
             }
@@ -72,11 +70,10 @@ public class OwnerDAO {
 
     public  boolean addRAutorToBook(Owner owner){
         try {
-            String query = "insert into ROwners (ROName, ROLink, ROAName) values (?,?,?)";
+            String query = "insert into ROwners (ROName, ROAName) values (?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, owner.getOName());
-            st.setString(2, owner.getOLink());
-            st.setString(  3, owner.getOAName());
+            st.setString(  2, owner.getOAName());
 
             st.execute();
             return true;
@@ -107,11 +104,10 @@ public class OwnerDAO {
 
     public boolean addAutorToBook(Owner owner){
         try {
-            String query = "insert into Owners (OName, OLink, OAName) values (?,?,?)";
+            String query = "insert into Owners (OName, OAName) values (?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, owner.getOName());
-            st.setString(2, owner.getOLink());
-            st.setString(  3, owner.getOAName());
+            st.setString(  2, owner.getOAName());
 
             st.execute();
             return true;
