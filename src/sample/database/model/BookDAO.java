@@ -182,7 +182,7 @@ public class BookDAO {
     public List<Book> findByAutor(String autor) {
         List<Book> books = new ArrayList<Book>();
         try {
-            String query = "SELECT * FROM Book b inner join Owners o  on  b.Name = o.OName and b.Link = o.OLink WHERE o.OAName like '%"+autor+"%' ";
+            String query = "SELECT * FROM Book b inner join Owners o  on  b.Name = o.OName WHERE o.OAName like '%"+autor+"%' ";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
@@ -237,9 +237,9 @@ public class BookDAO {
         List<Book> books = new ArrayList<Book>();
         try {
             String query = "select b.* from Favorites f" +
-                    " inner join UserB u on f.FUName = u.UName and f.FUPassword = u.UPassword" +
-                    " inner join Book b on b.Name = f.FName and b.Link = f.FLink" +
-                    " where u.UName = '"+user.getUsername()+"' and u.UPassword = '"+user.getPassword()+"'";
+                    " inner join UserB u on f.FUName = u.UName"+
+                    " inner join Book b on b.Name = f.FName" +
+                    " where u.UName = '"+user.getUsername()+"'";
             Statement st = conn.createStatement();
 
             ResultSet rs = st.executeQuery(query);
@@ -480,13 +480,11 @@ public class BookDAO {
     public boolean addBookToFavorite(Book book, User user){
         try {
             String query = "insert into Favorites "
-                    + " (FUName ,FUPassword ,FName ,FLink)"
-                    + "  values (?,?,?,?)";
+                    + " (FUName  ,FName )"
+                    + "  values (?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1, user.getUsername());
-            st.setString(2, user.getPassword());
-            st.setString(  3, book.getName());
-            st.setString(4, book.getLink());
+            st.setString(  2, book.getName());
 
             st.execute();
             return true;
@@ -501,12 +499,10 @@ public class BookDAO {
     public boolean deleteFromFavorite(Book book, User user){
         try {
             String query = "delete from Favorites "
-                    + "where FName = ? and FLink = ? and FUName = ? and FUPassword = ?";
+                    + "where FName = ? and FUName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
-            st.setString(  3, user.getUsername());
-            st.setString(4, user.getPassword());
+            st.setString(  2, user.getUsername());
 
             st.execute();
             return true;
@@ -521,12 +517,10 @@ public class BookDAO {
     public boolean isFavorite(Book book, User user){
         boolean favorite = false;
         try {
-            String query = "SELECT * FROM Favorites where  FName = ? and FLink = ? and FUName = ? and FUPassword = ?";
+            String query = "SELECT * FROM Favorites where  FName = ?  and FUName = ? ";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
-            st.setString(  3, user.getUsername());
-            st.setString(4, user.getPassword());
+            st.setString(  2, user.getUsername());
             ResultSet rs = st.executeQuery();
             if(rs.next()){
                 favorite=true;
@@ -544,12 +538,10 @@ public class BookDAO {
     public boolean isRated(Book book, User user){
         boolean rated = false;
         try {
-            String query = "SELECT * FROM Ranking where  GName = ? and GLink = ? and GUName = ? and GUPassword = ?";
+            String query = "SELECT * FROM Ranking where  GName = ?  and GUName = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
-            st.setString(  3, user.getUsername());
-            st.setString(4, user.getPassword());
+            st.setString(  2, user.getUsername());
             ResultSet rs = st.executeQuery();
             if(rs.next()){
                 rated=true;
@@ -591,11 +583,11 @@ public class BookDAO {
         try {
             String query = "insert into Ranking "
                     + " (GUName ,GName , GCalif)"
-                    + "  values (?,?,?,?,?)";
+                    + "  values (?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1, user.getUsername());
-            st.setString(  3, book.getName());
-            st.setInt(5, calif);
+            st.setString(  2, book.getName());
+            st.setInt(3, calif);
 
             st.execute();
             return true;
