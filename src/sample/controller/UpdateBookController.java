@@ -41,19 +41,23 @@ public class UpdateBookController {
         cbCategory.getSelectionModel().select(category.getDescCat());
 
         txtName.setEditable(false);
-        txtLink.setEditable(false);
 
     }
 
     public void update(MouseEvent mouseEvent) {
-        String DescCate = cbCategory.getSelectionModel().getSelectedItem().toString();
-        CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
-        Category category = categoryDAO.findCategoryByDesc(DescCate);
-        Book book=new Book(txtName.getText(),txaReview.getText(),txtLink.getText(),category.getCveCat(),Float.parseFloat(txtScore.getText()),txtCover.getText());
-        BookDAO bookDao=new BookDAO(MySQL.getConnection());
-        bookDao.updateBook(book);
+        try {
+            String DescCate = cbCategory.getSelectionModel().getSelectedItem().toString();
+            CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
+            Category category = categoryDAO.findCategoryByDesc(DescCate);
+            Book book = new Book(txtName.getText(), txaReview.getText(), txtLink.getText(), category.getCveCat(), Float.parseFloat(txtScore.getText()), txtCover.getText());
+            BookDAO bookDao = new BookDAO(MySQL.getConnection());
+            bookDao.updateBook(book);
 
-        Stage stage = (Stage)btnAccept.getScene().getWindow();
-        stage.close();
+            Stage stage = (Stage) btnAccept.getScene().getWindow();
+            stage.close();
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
     }
 }

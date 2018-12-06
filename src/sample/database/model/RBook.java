@@ -4,13 +4,12 @@ public class RBook {
     String name, review, link, category, RUname, RUpassword, cover;
     float calif;
 
-    public RBook(String name, String review, String link, String category, String RUname, String RUpassword, String cover, float calif) {
+    public RBook(String name, String review, String link, String category, String RUname, String cover, float calif) {
         this.name = name;
         this.review = review;
         this.link = link;
         this.category = category;
         this.RUname = RUname;
-        this.RUpassword = RUpassword;
         this.cover = cover;
         this.calif = calif;
     }
@@ -53,14 +52,6 @@ public class RBook {
 
     public void setRUname(String RUname) {
         this.RUname = RUname;
-    }
-
-    public String getRUpassword() {
-        return RUpassword;
-    }
-
-    public void setRUpassword(String RUpassword) {
-        this.RUpassword = RUpassword;
     }
 
     public String getCover() {

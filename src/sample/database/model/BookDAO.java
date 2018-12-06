@@ -268,10 +268,9 @@ public class BookDAO {
     public boolean deleteBook(Book book){
         try {
             String query = "delete from Comments "
-                    + "where CName = ? and CLink = ? ";
+                    + "where CName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             st.execute();
         } catch (Exception e) {
@@ -280,10 +279,9 @@ public class BookDAO {
         }
         try {
             String query = "delete from Owners "
-                    + "where OName = ? and OLink = ? ";
+                    + "where OName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             st.execute();
         } catch (Exception e) {
@@ -292,10 +290,9 @@ public class BookDAO {
         }
         try {
             String query = "delete from Favorites "
-                    + "where FName = ? and FLink = ? ";
+                    + "where FName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             st.execute();
         } catch (Exception e) {
@@ -304,10 +301,9 @@ public class BookDAO {
         }
         try {
             String query = "delete from History "
-                    + "where HName = ? and HLink = ? ";
+                    + "where HName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             st.execute();
         } catch (Exception e) {
@@ -317,10 +313,9 @@ public class BookDAO {
 
         try {
             String query = "delete from Ranking "
-                    + "where GName = ? and GLink = ? ";
+                    + "where GName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             st.execute();
         } catch (Exception e) {
@@ -331,10 +326,9 @@ public class BookDAO {
 
         try {
             String query = "delete from Book "
-                    + "where Name = ? and Link = ? ";
+                    + "where Name = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             st.execute();
         } catch (Exception e) {
@@ -347,16 +341,16 @@ public class BookDAO {
 
     public boolean updateBook(Book book){
         try {
-            String query = "update Book set Review = ?,Cat = ?, Calif = ?,Cover = ?"
-                    + "where Name = ? and Link = ? ";
+            String query = "update Book set Review = ?,Cat = ?, Calif = ?,Cover = ?, Link = ?"
+                    + "where Name = ?";
 
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1,book.getReview());
             st.setString(2,book.getCategory());
             st.setFloat(3,book.getCalif());
             st.setString(4,book.getCover());
-            st.setString(  5, book.getName());
-            st.setString(6, book.getLink());
+            st.setString(5, book.getLink());
+            st.setString(  6, book.getName());
 
             st.execute();
             return true;
@@ -373,9 +367,9 @@ public class BookDAO {
         List<Book> books = new ArrayList<Book>();
         try {
             String query = "select b.* from History c" +
-                    " inner join UserB u on c.HUName = u.UName and c.HUPassword = u.UPassword" +
-                    " inner join Book b on b.Name = c.HName and b.Link = c.HLink" +
-                    " where u.UName = '"+user.getUsername()+"' and u.UPassword = '"+user.getPassword()+"'" +
+                    " inner join UserB u on c.HUName = u.UName" +
+                    " inner join Book b on b.Name = c.HName" +
+                    " where u.UName = '"+user.getUsername()+"'" +
                     " order by c.HDate limit 15";
             Statement st = conn.createStatement();
 
@@ -405,15 +399,13 @@ public class BookDAO {
         boolean downloaded = false;
         try {
             String query = "select b.* from History c" +
-                    " inner join UserB u on c.HUName = u.UName and c.HUPassword = u.UPassword" +
-                    " inner join Book b on b.Name = c.HName and b.Link = c.HLink" +
-                    " where u.UName = ? and u.UPassword = ? and b.Name = ? and b.Link = ?";
+                    " inner join UserB u on c.HUName = u.UName" +
+                    " inner join Book b on b.Name = c.HName" +
+                    " where u.UName = ?and b.Name = ?";
             PreparedStatement st = conn.prepareStatement(query);
 
             st.setString(1, user.getUsername());
-            st.setString(2, user.getPassword());
-            st.setString(  3, book.getName());
-            st.setString(4, book.getLink());
+            st.setString(  2, book.getName());
 
             ResultSet rs = st.executeQuery();
 
@@ -438,13 +430,11 @@ public class BookDAO {
     public boolean addBookToDownloaded(User user, Book book){
         try {
             String query = "insert into History "
-                    + " (HUName ,HUPassword ,HName ,HLink, HDate)"
-                    + "  values (?,?,?,?,NOW())";
+                    + " (HUName ,HName , HDate)"
+                    + "  values (?,?,NOW())";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(1, user.getUsername());
-            st.setString(2, user.getPassword());
-            st.setString(  3, book.getName());
-            st.setString(4, book.getLink());
+            st.setString(  2, book.getName());
 
             st.execute();
             return true;
@@ -559,12 +549,10 @@ public class BookDAO {
     public float getUserRate(Book book, User user){
         float rate = 0.0f;
         try {
-            String query = "SELECT * FROM Ranking where  GName = ? and GLink = ? and GUName = ? and GUPassword = ?";
+            String query = "SELECT * FROM Ranking where  GName = ? and GUName = ?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
-            st.setString(  3, user.getUsername());
-            st.setString(4, user.getPassword());
+            st.setString(  2, user.getUsername());
             ResultSet rs = st.executeQuery();
             if(rs.next()){
                 rate=rs.getFloat("GCalif");
@@ -658,16 +646,15 @@ public class BookDAO {
 
     public boolean addRBook(Book book,User user){
         try {
-            String query = "insert into RBook (RName, RLink, RReview, RCat, RUname, RUpassword ,RCover, RCalif) values (?,?,?,?,?,?,?,?)";
+            String query = "insert into RBook (RName, RLink, RReview, RCat, RUname ,RCover, RCalif) values (?,?,?,?,?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(  3, book.getReview());
             st.setString(2, book.getLink());
             st.setString(4,book.getCategory());
             st.setString(5,user.getUsername());
-            st.setString(6,user.getPassword());
-            st.setString(7,book.getCover());
-            st.setFloat(8,book.getCalif());
+            st.setString(6,book.getCover());
+            st.setFloat(7,book.getCalif());
 
 
             st.execute();
@@ -682,7 +669,7 @@ public class BookDAO {
 
     public boolean addComment(User user, Book book, String opinion){
         try {
-            String query = "insert into Comments (CUName, CName, COpinion) values (?,?,?,?,?)";
+            String query = "insert into Comments (CUName, CName, COpinion) values (?,?,?)";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, user.getUsername());
             st.setString(2, book.getName());

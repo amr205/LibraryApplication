@@ -87,10 +87,9 @@ public class OwnerDAO {
 
     public  boolean removeRAutorFromBook(Book book){
         try {
-            String query = "delete from ROwners where ROName = ? and ROLink = ? ";
+            String query = "delete from ROwners where ROName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             st.execute();
             return true;

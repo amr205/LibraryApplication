@@ -29,7 +29,6 @@ public class RBookDAO {
                         rs.getString("RLink"),
                         rs.getString("RCat"),
                         rs.getString("RUname"),
-                        rs.getString("RUpassword"),
                         rs.getString("RCover"),
                         rs.getFloat("RCalif"));
                 rbooks.add(p);
@@ -47,10 +46,9 @@ public class RBookDAO {
     public boolean delete(Book book){
         try {
             String query = "delete from RBook "
-                    + "where RName = ? and RLink = ? ";
+                    + "where RName = ?";
             PreparedStatement st =  conn.prepareStatement(query);
             st.setString(  1, book.getName());
-            st.setString(2, book.getLink());
 
             st.execute();
             return true;

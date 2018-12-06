@@ -140,22 +140,36 @@ begin
 end
 //
 
+
 ****HASTA AQUI SI FUNCIONA*** 
 
-DELIMITER //
-CREATE TRIGGER create_user AFTER INSERT ON UserB
-FOR EACH ROW
-BEGIN
-	CREATE USER NEW.UName'@localhost' IDENTIFIED BY NEW.UPassword;
-	GRANT 'usuarios' TO NEW.UName@'localhost';
-END
-//
+call create_user('juan 2','1293');
 
 DELIMITER //
 CREATE TRIGGER update_user_password AFTER UPDATE ON user_v
 FOR EACH ROW
 BEGIN
-	SET PASSWORD = NEW.UPassword;
+	declare temp varchar(15);
+	set temp =  new.UPassword;
+	ALTER USER current_user identified by CAST(temp as char);
+END//
+
+
+drop procedure create_user;
+DELIMITER //
+create procedure create_user(in p_name varchar(15), in p_Passw varchar(15))
+BEGIN
+	DECLARE _HOST CHAR(14) DEFAULT '@\'localhost\'';
+    SET p_Name := CONCAT('\'', REPLACE(TRIM(`p_Name`), CHAR(39), CONCAT(CHAR(92), CHAR(39))), '\''),
+    p_Passw := CONCAT('\'', REPLACE(p_Passw, CHAR(39), CONCAT(CHAR(92), CHAR(39))), '\'');
+    SET @sql := CONCAT('CREATE USER ', p_Name, _HOST, ' IDENTIFIED BY ', p_Passw);
+    PREPARE stmt FROM @sql;
+    EXECUTE stmt;
+    SET @sql := CONCAT('GRANT usuarios ON *.* TO ', p_Name, _HOST);
+    PREPARE stmt FROM @sql;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+    FLUSH PRIVILEGES;
 END//
 
 

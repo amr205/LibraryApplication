@@ -15,15 +15,9 @@
                AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
         <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
         <columns>
-            <TableColumn  text="Title" prefWidth="100" maxWidth="500" minWidth="50">
+            <TableColumn  text="Title">
                 <cellValueFactory>
                     <PropertyValueFactory property="name" />
-                </cellValueFactory>
-            </TableColumn>
-
-            <TableColumn text="Autor">
-                <cellValueFactory>
-                    <PropertyValueFactory property="autor" />
                 </cellValueFactory>
             </TableColumn>
 

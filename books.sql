@@ -127,6 +127,8 @@ insert into Autor values ('Daniel Goleman','1946-03-07','esu');
 insert into Autor values ('Marvin Harris','1927-08-18','esu');
 insert into Autor values ('Desmons Morris','1928-01-24','esu');
 
+
+insert into UserB values ('juan','123','jp','jp','1953-10-22','U',1);
 /*1*/
 insert into Book values ("Observe a su perro(gato)",
 						
@@ -676,43 +678,43 @@ insert into Book values ("El grillo del hogar",
                         0,
                         "https://image.ibb.co/iSQKAo/clas4.png");
 
-----fallo insert into Owners values ("Observe a su perro(gato)","http://www.librosmaravillosos.com/observeasugato/pdf/Observe%20a%20su%20gato%20-%20Desmond%20Morris.pdf","Desmond Morris");
-insert into Owners values ("La práctica de la inteligencia emocional","https://training.crecimiento.ws/wp-content/uploads/2017/09/EBOOK_Daniel_Goleman_-_La_Practica_De_La_Inteligencia_Emocional.pdf","Daniel Goleman");
-insert into Owners values ("El hombre que confundió a su mujer con un sombrero","http://mimosa.pntic.mec.es/~sferna18/EJERCICIOS/2013-14/Sacks_Oliver-El_Hombre_Que_Confundio_a_Su_Mujer_Con_Un_Sombrero.pdf","Oliver Sacks");
-insert into Owners values ("Nuestra especie","http://www.proarhep.com.ar/wp-content/uploads/Harris_Marvin-Nuestra_especie.pdf","Marvin Harris");
-insert into Owners values ("El heptameron","https://dialnet.unirioja.es/descarga/articulo/1150769.pdf","Margarita de Valois");
-insert into Owners values ("Cosas que le pasan a una madre sin superpoderes","http://www.esferalibros.com/uploads/ficheros/libros/primeras-paginas/201304/primeras-paginas-paginas-del-libro_7-es.pdf","Ana Ribera García Rubio ");
+----fallo insert into Owners values ("Observe a su perro(gato)","Desmond Morris");
+insert into Owners values ("La práctica de la inteligencia emocional","Daniel Goleman");
+insert into Owners values ("El hombre que confundió a su mujer con un sombrero","Oliver Sacks");
+insert into Owners values ("Nuestra especie","Marvin Harris");
+insert into Owners values ("El heptameron","Margarita de Valois");
+insert into Owners values ("Cosas que le pasan a una madre sin superpoderes","Ana Ribera García Rubio ");
 insert into Owners values ("Apocalipsis para principiantes","http://www.siruela.com/archivos/fragmentos/Apocalipsis_para_principiantes.pdf","Nicolas Dickner");
-insert into Owners values ("Un yanqui en la corte del rey arturo","http://www.librosmaravillosos.com/unyankienlacortedelreyarturo/pdf/Un%20yanqui%20en%20la%20corte%20del%20Rey%20Arturo%20-%20Mark%20Twain.pdf","Mark Twain");
-insert into Owners values ("La importancia de llamarse Ernesto","http://bibliotecadigital.tamaulipas.gob.mx/archivos/descargas/31000001002.PDF","Oscar Wilde");
-insert into Owners values ("Casi me olvido de ti","https://www.adnovelas.com/catalogos/capitulos_promocion/LN00002701_9999971721.pdf","Terry McMillan");
-insert into Owners values ("La rebelión de los ángeles","http://bibliotecadigital.tamaulipas.gob.mx/archivos/descargas/31000000459.PDF","Anatole France");
-insert into Owners values ("Mi dulce locura","http://librosonlineparaleer.com/wp-content/uploads/2017/02/Mi-Dulce-Locura-Serie-Mi-Locura-1-R.-Cherry.pdf","R Cherry");
-insert into Owners values ("El psicoanalista","http://fundaciondhyana.weebly.com/uploads/3/0/0/8/30085277/el_psicoanalista.pdf","John Katzenbach");
-insert into Owners values ("EL guardian entre el centeno","http://www.formarse.com.ar/libros/Libros-recomendados-pdf/El%20guardi%C3%A1n%20entre%20el%20centeno%20de%20J.%20D.%20Salinger%20-.pdf","J. D. Salinger");
-insert into Owners values ("La bella y la bestia","http://cie.chron.com/pdfs/clubchron/Beauty_and_the_Beast_Spanish.pdf","Jeanne Marie");
-insert into Owners values ("Ricitos de oro","https://www.pictocuentos.com/descargas/pdf-ricitos/pictocuentos-ricitos-de-oro.pdf","Pictocuentos");
-insert into Owners values ("La fuerza de la gacela","https://pazuela.files.wordpress.com/2014/07/10-la-fuerza-de-la-gacela-texto.pdf","Panzuela");
-insert into Owners values ("Quiero ser famosa","https://recursosparaelprofesor.files.wordpress.com/2018/04/quiero-ser-famosa-paloma-bordons.pdf","Paloma Bordons");
-insert into Owners values ("Caperucita roja","https://www.pictocuentos.com/descargas/pdf-caperucita/pictocuentos-caperucita.pdf","Pictocuentos");
-insert into Owners values ("Animales fantasticos y donde encontrarlos","http://salamandra.info/sites/default/files/books/previews/animales_fantasticos_y_donde_encontrarlos-1os_capitulos.pdf","J. K. Rowling");
-insert into Owners values ("Harry Poter y la piedra filosofal","http://laprensadelazonaoeste.com/LIBROS/Letra.R/R/Rowling,%20J.K%20-%2001%20-%20Harry%20Potter%20y%20la%20Piedra%20Filos.pdf","J. K. Rowling");
-insert into Owners values ("Harry Potter y la cámara secreta","http://www.alconet.com.ar/varios/libros/e-book_h/Harry_Potter_y_La_Camara_Secreta_02.pdf","J. K. Rowling");
-insert into Owners values ("Harry Potter y el prisionero de Azkabán","http://www.alconet.com.ar/varios/libros/e-book_h/Harry_Potter_y_El_Prisionero_de_Azkaban_03.pdf","J. K. Rowling");
-insert into Owners values ("Quidditch a través de los tiempos","http://www.nparangaricutiro.gob.mx/Libros/09.-%20Quidditch%20A%20Traves%20De%20Los%20Tiempos.pdf","J. K. Rowling");
-insert into Owners values ("Los cuentos de Beedle el Bardo","http://salamandra.info/sites/default/files/books/previews/cuentos_beedle_el_bardo-1os_capitulos.pdf","J. K. Rowling");
-insert into Owners values ("Lenin y el totalitarismo","https://bibliotecademauriciorojas.files.wordpress.com/2012/03/m-rojas-articulo-marx-lenin-y-el-totalitarismo-3-copia.pdf","Mauricio Rojas");
-insert into Owners values ("Los mitos de la Guerra Civil","http://www.fundacionfaes.org/file_upload/publication/pdf/201304231418151934-comienza-la-guerra-civil-en-torno-al-libro-de-pio-moa.pdf","Pío Moa");
-insert into Owners values ("Guerra Civil española","http://www.redalyc.org/pdf/3241/324127626006.pdf","Stanley G.Payne");
-insert into Owners values ("La rebelión de las masas","http://juango.es/files/La-rebelion-de-las-masas.pdf","José Ortega y Gasset");
-insert into Owners values ("El hundimiento del Castillo Olite","http://www.armada.mde.es/archivo/mardigitalrevistas/rhn/2009/2009106.pdf","Luis Miguel Pérez Adán");
-insert into Owners values ("El prisma y el péndulo","https://www.primercapitulo.com/pdf/2016/1362-el-prisma-y-el-pendulo.pdf","Robert P. Crease");
-insert into Owners values ("El origen del universo","http://www.universohawking.com/docs/El-gran-diseno-opusculo.pdf","Stephen Hawking");
-insert into Owners values ("El tesoro cósmico","https://educalibre.info/wp-content/uploads/2018/03/El-tesoro-cosmico-Lucy-y-Stephen-Hawking.pdf","Stephen Hawking");
-insert into Owners values ("La clave secreta del universo","https://educalibre.info/wp-content/uploads/2018/03/La-clave-secreta-del-universo-Lucy-y-Stephen-Hawking.pdf","Stephen Hawking");
-insert into Owners values ("Desayuno con partículas","http://fernandez-vidal.com/inc/downloads/desayuno_con_particulas_cap1_es.pdf","Sonia Fernández Vidal");
-insert into Owners values ("Patente de corso","https://archivos.juridicas.unam.mx/www/bjv/libros/1/154/7.pdf","Arturo Pérez Reverte");
-insert into Owners values ("Con ánimo de ofender","http://www.perezreverte.com/upload/ficheros/libros/201304/con_animo_de_ofender.pdf","Arturo Pérez Reverte");
+insert into Owners values ("Un yanqui en la corte del rey arturo","Mark Twain");
+insert into Owners values ("La importancia de llamarse Ernesto","Oscar Wilde");
+insert into Owners values ("Casi me olvido de ti","Terry McMillan");
+insert into Owners values ("La rebelión de los ángeles","Anatole France");
+insert into Owners values ("Mi dulce locura","R Cherry");
+insert into Owners values ("El psicoanalista","John Katzenbach");
+insert into Owners values ("EL guardian entre el centeno","J. D. Salinger");
+insert into Owners values ("La bella y la bestia","Jeanne Marie");
+insert into Owners values ("Ricitos de oro","Pictocuentos");
+insert into Owners values ("La fuerza de la gacela","Panzuela");
+insert into Owners values ("Quiero ser famosa","Paloma Bordons");
+insert into Owners values ("Caperucita roja","Pictocuentos");
+insert into Owners values ("Animales fantasticos y donde encontrarlos","J. K. Rowling");
+insert into Owners values ("Harry Poter y la piedra filosofal","J. K. Rowling");
+insert into Owners values ("Harry Potter y la cámara secreta","J. K. Rowling");
+insert into Owners values ("Harry Potter y el prisionero de Azkabán","J. K. Rowling");
+insert into Owners values ("Quidditch a través de los tiempos","J. K. Rowling");
+insert into Owners values ("Los cuentos de Beedle el Bardo","J. K. Rowling");
+insert into Owners values ("Lenin y el totalitarismo","Mauricio Rojas");
+insert into Owners values ("Los mitos de la Guerra Civil","Pío Moa");
+insert into Owners values ("Guerra Civil española","Stanley G.Payne");
+insert into Owners values ("La rebelión de las masas","José Ortega y Gasset");
+insert into Owners values ("El hundimiento del Castillo Olite","Luis Miguel Pérez Adán");
+insert into Owners values ("El prisma y el péndulo","Robert P. Crease");
+insert into Owners values ("El origen del universo","Stephen Hawking");
+insert into Owners values ("El tesoro cósmico","Stephen Hawking");
+insert into Owners values ("La clave secreta del universo","Stephen Hawking");
+insert into Owners values ("Desayuno con partículas","Sonia Fernández Vidal");
+insert into Owners values ("Patente de corso","Arturo Pérez Reverte");
+insert into Owners values ("Con ánimo de ofender","Arturo Pérez Reverte");
 insert into Owners values ("Cuando éramos honrados mercenarios","http://www.perezreverte.com/upload/ficheros/libros/201001/cuando_ramos_honrados_mercenarios.pdf","Arturo Pérez Reverte");
 insert into Owners values ("Lecciones de liderazgo","https://tlridnewscchoriente.files.wordpress.com/2016/01/steve-jobs-lecciones-de-liderazgo.pdf","Walter Isaacson");
 ----fallo insert into Owners values ("Fundamentos de economia","http://ru.iiec.unam.mx/2462/1/FundamentosDeEconomiaSecuenciaCorrecta.pdf","Federico Paniagua");
