@@ -92,11 +92,15 @@ create table ROwners(ROName varchar (120) not null,
 
 CREATE VIEW user_v AS SELECT * FROM UserB where UName = USER();
 
+select version();
+
+create role 'usuarios', 'administradores';
+
 CREATE USER 'guest@localhost' IDENTIFIED BY '123';
 GRANT SELECT ON Bookstore.* TO 'guest@localhost';
 GRANT INSERT, SELECT ON Bookstore.UserB TO 'guest@localhost';
 
-CREATE ROLE 'usuarios', 'administradores';
+
 GRANT ALL ON Bookstore.* TO 'administradores';
 GRANT SELECT ON Bookstore.* TO 'usuarios';
 GRANT INSERT ON Bookstore.RBook TO 'usuarios';
@@ -106,34 +110,53 @@ GRANT INSERT, DELETE ON Bookstore.Favorites TO 'usuarios';
 GRANT INSERT, UPDATE ON Bookstore.Ranking TO 'usuarios';
 GRANT UPDATE ON Bookstore.user_v TO 'usuarios';
 
-CREATE TRIGGER create_user AFTER INSERT ON UserB
-FOR EACH ROW
-BEGIN
-	CREATE USER NEW.UName@'localhost' IDENTIFIED BY NEW.UPassword;
-	GRANT 'usuarios' TO NEW.UName@'localhost';
-END;//
-
-
-CREATE TRIGGER update_user_password AFTER UPDATE ON user_v
-FOR EACH ROW
-BEGIN
-	SET PASSWORD = NEW.UPassword;
-END;//
-
-
+DELIMITER //
 CREATE TRIGGER update_ranking AFTER INSERT ON Ranking
 FOR EACH ROW
 BEGIN
 	UPDATE Book
 		SET Calif = (SELECT AVG(GCalif) FROM Ranking WHERE GName = NEW.GName)
 		WHERE Name = NEW.GName;
-END;//
+END
+//
 
+DELIMITER //
+Create procedure AproveBook(BookName varchar(120))
+begin
+	declare NewBook varchar(120);
+	declare NewReview varchar(1000);
+	declare Link varchar(500);
+	declare Cat varchar(4);
+	declare calif float;
+	declare Cover varchar(500);
 
-CREATE TRIGGER update_ranking AFTER UPDATE ON Ranking
+	select NewBook=RName,NewReview=RReview,Link=RLink,
+			Cat=RCat,Calif=RCalif,Cover=RCover from
+			RBook where RName=BookName;
+	
+	delete from RBook where RName=BookName;
+
+	insert into Book values (NewBook,NewReview,Link,Cat,Calif,Cover);
+end
+//
+
+****HASTA AQUI SI FUNCIONA*** 
+
+DELIMITER //
+CREATE TRIGGER create_user AFTER INSERT ON UserB
 FOR EACH ROW
 BEGIN
-	UPDATE Book
-		SET Calif = (SELECT AVG(GCalif) FROM Ranking WHERE GName = NEW.GName)
-		WHERE Name = NEW.GName;
-END;//
+	CREATE USER NEW.UName'@localhost' IDENTIFIED BY NEW.UPassword;
+	GRANT 'usuarios' TO NEW.UName@'localhost';
+END
+//
+
+DELIMITER //
+CREATE TRIGGER update_user_password AFTER UPDATE ON user_v
+FOR EACH ROW
+BEGIN
+	SET PASSWORD = NEW.UPassword;
+END//
+
+
+
