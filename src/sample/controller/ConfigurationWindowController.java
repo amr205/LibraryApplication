@@ -76,8 +76,8 @@ public class ConfigurationWindowController implements Initializable {
 
         //System.out.println("log out user");
         MySQL.Disconnect();
-        MySQL.dbuser="root";
-        MySQL.dbpass="c7d7f11f9e";
+        MySQL.dbuser="guest";
+        MySQL.dbpass="123";
         MySQL.Connect();
 
         Stage stage = (Stage)userImage1.getScene().getWindow();
@@ -86,11 +86,16 @@ public class ConfigurationWindowController implements Initializable {
 
     public void closeConfigWindow() {
         LocalDate localDate = birthDP.getValue();
+        String tmp_u = MySQL.dbuser;
+        String tmp_p = MySQL.dbpass;
 
-
+        MySQL.Disconnect();
+        MySQL.dbuser = "root";
+        MySQL.dbpass="123";
+        MySQL.Connect();
         if(txtchangep.isVisible() )
        {   //Cambia la contraseña del usuario en la tabla de la BDD
-           String updateUser = "update UserB set  UNameCo = ?, UEmail = ?, UDate = ?, UType = ?, UPictureID = ?,UPassword= ? where UName = ? and UPassword = ?";
+           String updateUser = "update UserB set  UNameCo = ?, UEmail = ?, UDate = ?, UType = ?, UPictureID = ?, UPassword= ? where UName = ?";
            try {
                PreparedStatement st =  MySQL.getConnection().prepareStatement(updateUser);
                st.setString(1,fullNameTextField.getText());
@@ -100,8 +105,11 @@ public class ConfigurationWindowController implements Initializable {
                st.setInt(5, getImageID());
                st.setString(6,txtchangep.getText());
                st.setString(7,Main.user.getUsername());
-               st.setString(8,Main.user.getPassword());
                st.execute();
+
+               Main.user.setPassword(txtchangep.getText());
+               tmp_p = txtchangep.getText();
+               
            } catch (SQLException e) {
                e.printStackTrace();
            }
@@ -122,7 +130,14 @@ public class ConfigurationWindowController implements Initializable {
             userDAO.updateUser(newUser);
 
         }
+
+
         Main.user = userDAO.findUser(Main.user.getUsername(), Main.user.getPassword());
+
+        MySQL.Disconnect();
+        MySQL.dbuser = tmp_u;
+        MySQL.dbpass=tmp_p;
+        MySQL.Connect();
 
         Stage stage = (Stage)userImage1.getScene().getWindow();
         stage.close();

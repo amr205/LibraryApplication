@@ -201,7 +201,7 @@ public class BookDetailsController implements Initializable {
         ratingLabel.setText(String.format("%.2f", calif));
         isRated=true;
         //update rating in book with the average
-        bookDAO.updateRating(book);
+        //bookDAO.updateRating(book);
     }
 
     @FXML

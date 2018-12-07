@@ -64,7 +64,7 @@ public class UserDAO {
 
     public boolean updateUser(User user){
         try {
-            String query = "update UserB set  UNameCo = ?, UEmail = ?, UDate = ?, UType = ?, UPictureID = ? where UName = ? and UPassword = ?";
+            String query = "update UserB set  UNameCo = ?, UEmail = ?, UDate = ?, UType = ?, UPictureID = ? where UName = ?";
             PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1, user.getFullName());
             st.setString(2, user.getEmail());
@@ -72,7 +72,6 @@ public class UserDAO {
             st.setString(4, user.getType());
             st.setInt(5, user.getImage());
             st.setString(6,user.getUsername());
-            st.setString(7,user.getPassword());
             st.execute();
             //data.add(transaction);
             return true;
