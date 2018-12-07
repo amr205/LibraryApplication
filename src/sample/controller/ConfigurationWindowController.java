@@ -109,7 +109,7 @@ public class ConfigurationWindowController implements Initializable {
 
                Main.user.setPassword(txtchangep.getText());
                tmp_p = txtchangep.getText();
-               
+
            } catch (SQLException e) {
                e.printStackTrace();
            }

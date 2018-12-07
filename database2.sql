@@ -102,6 +102,7 @@ GRANT INSERT, SELECT ON Bookstore.UserB TO guest@localhost;
 
 CREATE ROLE 'usuarios', 'administradores';
 
+select * from UserB;
 
 flush privileges;
 
@@ -114,5 +115,7 @@ GRANT SELECT,INSERT ON Bookstore.History TO 'usuarios';
 GRANT SELECT, INSERT, DELETE ON Bookstore.Favorites TO 'usuarios';
 GRANT SELECT,INSERT, UPDATE ON Bookstore.Ranking TO 'usuarios';
 GRANT SELECT,UPDATE ON Bookstore.user_v TO 'usuarios';
+GRANT SELECT, INSERT ON Bookstore.ROwners TO 'usuarios';
+GRANT EXECUTE ON PROCEDURE Bookstore.AproveBook TO 'usuarios';
 
 flush privileges;
