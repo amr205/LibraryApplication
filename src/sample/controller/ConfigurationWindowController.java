@@ -16,6 +16,8 @@ import sample.database.model.UserDAO;
 import java.io.File;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
@@ -32,7 +34,7 @@ public class ConfigurationWindowController implements Initializable {
     ImageView image1, image2, image3, image4, image5, image6, image7, image8, image9, image10;
 
     @FXML
-    TextField booksPathTextField;
+    TextField booksPathTextField,txtchangep;
 
     @FXML
     TextField emailTextField,fullNameTextField;
@@ -43,7 +45,7 @@ public class ConfigurationWindowController implements Initializable {
     private Preferences appPrefs;
     private DirectoryChooser directoryChooser;
     private UserDAO userDAO;
-
+    private User user;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,8 +76,8 @@ public class ConfigurationWindowController implements Initializable {
 
         //System.out.println("log out user");
         MySQL.Disconnect();
-        MySQL.dbuser="guest";
-        MySQL.dbpass="123";
+        MySQL.dbuser="root";
+        MySQL.dbpass="c7d7f11f9e";
         MySQL.Connect();
 
         Stage stage = (Stage)userImage1.getScene().getWindow();
@@ -85,10 +87,41 @@ public class ConfigurationWindowController implements Initializable {
     public void closeConfigWindow() {
         LocalDate localDate = birthDP.getValue();
 
-        User newUser = new User(Main.user.getUsername(), Main.user.getPassword(),getImageID(),Main.user.getType(),fullNameTextField.getText(),emailTextField.getText(),Date.valueOf(localDate));
 
-        userDAO.updateUser(newUser);
+        if(txtchangep.isVisible() )
+       {   //Cambia la contraseña del usuario en la tabla de la BDD
+           String updateUser = "update UserB set  UNameCo = ?, UEmail = ?, UDate = ?, UType = ?, UPictureID = ?,UPassword= ? where UName = ? and UPassword = ?";
+           try {
+               PreparedStatement st =  MySQL.getConnection().prepareStatement(updateUser);
+               st.setString(1,fullNameTextField.getText());
+               st.setString(2,emailTextField.getText());
+               st.setDate(3, Date.valueOf(localDate));
+               st.setString(4,Main.user.getType());
+               st.setInt(5, getImageID());
+               st.setString(6,txtchangep.getText());
+               st.setString(7,Main.user.getUsername());
+               st.setString(8,Main.user.getPassword());
+               st.execute();
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
 
+           //Cambia la contraseña del usuario en el manejador
+           String query = "ALTER USER " + Main.user.getUsername() + "@localhost" + " IDENTIFIED BY " + "'" + txtchangep.getText() + "'";
+           try {
+               PreparedStatement st = MySQL.getConnection().prepareStatement(query);
+               st.execute();
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
+        }
+        else{
+            //Actualiza sin contraseña
+             User newUser = new User(Main.user.getUsername(), Main.user.getPassword(),getImageID(),Main.user.getType(),fullNameTextField.getText(),emailTextField.getText(),Date.valueOf(localDate));
+
+            userDAO.updateUser(newUser);
+
+        }
         Main.user = userDAO.findUser(Main.user.getUsername(), Main.user.getPassword());
 
         Stage stage = (Stage)userImage1.getScene().getWindow();
@@ -155,5 +188,10 @@ public class ConfigurationWindowController implements Initializable {
                 return 10;
             else return 1;
         }
+    }
+
+    public  void changePassword(MouseEvent mouseEvent){
+        txtchangep.setVisible(true);
+
     }
 }
