@@ -20,26 +20,26 @@ public class MySQL {
     private static String dbname = "Bookstore";
     public static String dbuser = "guest";
     public static String dbpass = "123";
-    
+
 
     public static void Connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-                conn = DriverManager.getConnection("jdbc:mysql://"+ hostname +":3306/" + dbname, dbuser, dbpass);
-                System.out.println("Se ha iniciado la conexión con el servidor de forma exitosa");
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
-            }        
+            conn = DriverManager.getConnection("jdbc:mysql://"+ hostname +":3306/" + dbname, dbuser, dbpass);
+            System.out.println("Se ha iniciado la conexión con el servidor de forma exitosa");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
     public static Connection getConnection()
     {
         if(conn == null) Connect();
         return conn;
     }
-    
+
     public static void Disconnect() {
         try {
             conn.close();
@@ -49,5 +49,5 @@ public class MySQL {
         }
     }
 
-    
+
 }
