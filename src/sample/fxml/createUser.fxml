@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="531.0" spacing="25.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.CreateUserController">
    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="600.0" spacing="15.0" style="-fx-background-color: #9999ff;">
       <padding>
@@ -42,11 +43,11 @@
         <Label text="Full name:" GridPane.rowIndex="3" />
         <Label text="Birth date:" GridPane.rowIndex="4" />
         <Label text="Email:" GridPane.rowIndex="2" />
-        <Label text="Password:" GridPane.rowIndex="1" />
+        <Label text="Password:" GridPane.rowIndex="1"  />
         <Label text="Username:" />
         <Button defaultButton="true" mnemonicParsing="false" onMouseClicked="#createUser" prefHeight="26.0" prefWidth="123.0" styleClass="altBackground" text="Create User" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
         <TextField fx:id="usernameTextField" GridPane.columnIndex="1" />
-        <TextField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <PasswordField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <TextField fx:id="fullNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         <DatePicker fx:id="birthDP" prefHeight="26.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
