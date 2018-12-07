@@ -27,7 +27,7 @@ public class MyBooksController extends ShowBooks implements Initializable {
     }
 
     private void initDownloadedBooks() {
-        BookDAO bookDAO = new BookDAO(MySQL.getConnection());
+        BookDAO bookDAO = new BookDAO();
         List<Book> bookList = bookDAO.findDownloaded(Main.user);
 
         try {
@@ -45,7 +45,7 @@ public class MyBooksController extends ShowBooks implements Initializable {
     }
 
     private void initFavoriteBooks() {
-        BookDAO bookDAO = new BookDAO(MySQL.getConnection());
+        BookDAO bookDAO = new BookDAO();
         List<Book> bookList = bookDAO.findFavorites(Main.user);
 
         try {

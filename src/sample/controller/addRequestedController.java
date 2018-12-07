@@ -23,8 +23,8 @@ import java.util.ResourceBundle;
 
 public class addRequestedController implements Initializable {
 
-    RBookDAO rBookDAO=new RBookDAO(MySQL.getConnection());
-    OwnerDAO ownerDAO = new OwnerDAO(MySQL.getConnection());
+    RBookDAO rBookDAO=new RBookDAO();
+    OwnerDAO ownerDAO = new OwnerDAO();
 
 
     @FXML
@@ -59,7 +59,7 @@ public class addRequestedController implements Initializable {
                 }
             }
 
-            BookDAO bookDao = new BookDAO(MySQL.getConnection());
+            BookDAO bookDao = new BookDAO();
             bookDao.addBook(book);
 
             for (int i = 0; i < possibles.size(); i++) {
@@ -68,7 +68,7 @@ public class addRequestedController implements Initializable {
             ownerDAO.removeRAutorFromBook(book);
 
 
-            RBookDAO rBookDAO = new RBookDAO(MySQL.getConnection());
+            RBookDAO rBookDAO = new RBookDAO();
             rBookDAO.delete(book);
 
             initTableR();
@@ -108,7 +108,7 @@ public class addRequestedController implements Initializable {
 
             ownerDAO.removeRAutorFromBook(book);
 
-            RBookDAO rBookDAO = new RBookDAO(MySQL.getConnection());
+            RBookDAO rBookDAO = new RBookDAO();
             rBookDAO.delete(book);
 
             initTableR();

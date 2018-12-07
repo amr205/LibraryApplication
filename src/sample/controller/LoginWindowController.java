@@ -35,7 +35,7 @@ public class LoginWindowController implements Initializable {
     }
 
     public void loginUser(MouseEvent mouseEvent) {
-        UserDAO userDAO = new UserDAO(MySQL.getConnection());
+        UserDAO userDAO = new UserDAO();
         String username, password;
         username = usernameTextField.getText();
         password = passwordField.getText();
@@ -43,9 +43,14 @@ public class LoginWindowController implements Initializable {
         Main.user = userDAO.findUser(username,password);
 
         if(Main.user!=null){
-            System.out.println("login user: "+Main.user.getUsername());
+            //System.out.println("login user: "+Main.user.getUsername());
             appPrefs.put("username",username);
             appPrefs.put("password",password);
+            MySQL.Disconnect();
+            MySQL.dbuser=Main.user.getUsername();
+            MySQL.dbpass=Main.user.getPassword();
+            MySQL.Connect();
+
 
             Stage stage = (Stage) usernameTextField.getScene().getWindow();
             stage.close();

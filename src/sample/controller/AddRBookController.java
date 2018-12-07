@@ -35,12 +35,12 @@ public class AddRBookController implements Initializable {
 
 
     public void addBook(MouseEvent mouseEvent) {
-        OwnerDAO ownerDAO = new OwnerDAO(MySQL.getConnection());
+        OwnerDAO ownerDAO = new OwnerDAO();
 
 
 
         String DescCate = cbCategory.getSelectionModel().getSelectedItem().toString();
-        CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
+        CategoryDAO categoryDAO = new CategoryDAO();
         Category category = categoryDAO.findCategoryByDesc(DescCate);
 
         Book book=new Book(txtName.getText(),txaReview.getText(),txtLink.getText(),category.getCveCat(),0,txtCover.getText());
@@ -54,7 +54,7 @@ public class AddRBookController implements Initializable {
 
         }
 
-        BookDAO bookDao=new BookDAO(MySQL.getConnection());
+        BookDAO bookDao=new BookDAO();
         bookDao.addRBook(book, Main.user);
 
 

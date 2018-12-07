@@ -27,7 +27,7 @@ public class HomeController extends ShowBooks implements Initializable {
     }
 
     private void initBooks(){
-        BookDAO bookDAO = new BookDAO(MySQL.getConnection());
+        BookDAO bookDAO = new BookDAO();
         List<Book> bookList = bookDAO.findByRating(25);
         try {
             for (int i = 0; i < bookList.size(); i++) {

@@ -48,7 +48,7 @@ public class CategoryBooksController  extends ShowBooks implements Initializable
 
     public void initBooks(Category category){
         categoryNameLabel.setText(category.getDescCat());
-        BookDAO bookDAO = new BookDAO(MySQL.getConnection());
+        BookDAO bookDAO = new BookDAO();
         List<Book> bookList = bookDAO.findByCategory(category.getCveCat());
 
         try {

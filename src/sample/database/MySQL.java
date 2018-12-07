@@ -18,8 +18,8 @@ public class MySQL {
     private static Connection conn = null;
     private static String hostname   = "localhost";
     private static String dbname = "Bookstore";
-    private static String dbuser = "root";
-    private static String dbpass = "123";
+    public static String dbuser = "guest";
+    public static String dbpass = "123";
     
 
     public static void Connect() {

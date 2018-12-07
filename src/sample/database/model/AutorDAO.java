@@ -2,23 +2,20 @@ package sample.database.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sample.database.MySQL;
 
 import javax.swing.*;
 import java.sql.*;
 
 public class AutorDAO {
 
-    private Connection conn;
-    public AutorDAO(Connection conn)
-    {
-        this.conn = conn;
-    }
+
 
     public ObservableList<Autor> fetchAllByBook(Book book) {
         ObservableList<Autor> autors = FXCollections.observableArrayList();
         try {
             String query = "SELECT * FROM Owners o inner join Autor a on o.OAName = a.AName where o.OName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             ResultSet rs = st.executeQuery();
@@ -44,7 +41,7 @@ public class AutorDAO {
         ObservableList<Autor> autors = FXCollections.observableArrayList();
         try {
             String query = "SELECT * FROM Autor";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
 
             Autor p = null;
@@ -68,7 +65,7 @@ public class AutorDAO {
     public boolean addAutor(Autor autor){
         try {
             String query = "insert into Autor (AName, ABirthDate, ACveCountry) values (?,?,?)";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, autor.getName());
             st.setDate(  2, autor.getBirthDate());
             st.setString(3, autor.getCveCountry());

@@ -1,5 +1,7 @@
 package sample.database.model;
 
+import sample.database.MySQL;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,18 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryDAO {
-    private Connection conn;
-    public CategoryDAO(Connection conn)
-    {
-        this.conn = conn;
-    }
+
 
     public Category findCategory(String cve) {
         Category category = null;
         try {
 
             String query = "SELECT * FROM Category where CveCat = '"+cve+"'";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
 
             if(rs.next()){
@@ -44,7 +42,7 @@ public class CategoryDAO {
         try {
 
             String query = "SELECT * FROM Category where DescCat = '"+desc+"'";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
 
             if(rs.next()){

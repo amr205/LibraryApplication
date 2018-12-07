@@ -3,6 +3,7 @@ package sample.database.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sample.Main;
+import sample.database.MySQL;
 
 import javax.jws.soap.SOAPBinding;
 import javax.swing.*;
@@ -11,17 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookDAO {
-    private Connection conn;
-    public BookDAO(Connection conn)
-    {
-        this.conn = conn;
-    }
+
 
     public ObservableList<Book> fetchAll() {
         ObservableList<Book> books = FXCollections.observableArrayList();
         try {
             String query = "SELECT * FROM Book";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
             while(rs.next()) {
@@ -48,7 +45,7 @@ public class BookDAO {
         List<Book> books = new ArrayList<Book>();
         try {
             String query = "SELECT * FROM Book";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
             while(rs.next()) {
@@ -75,7 +72,7 @@ public class BookDAO {
         List<Book> books = new ArrayList<Book>();
         try {
             String query = "SELECT * FROM Book order by Calif desc limit "+limit;
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
             while(rs.next()) {
@@ -102,7 +99,7 @@ public class BookDAO {
         List<Book> books = new ArrayList<Book>();
         try {
             String query = "SELECT * FROM Book WHERE Cat = '"+cat+"' ";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
             while(rs.next()) {
@@ -129,7 +126,7 @@ public class BookDAO {
         List<Book> books = new ArrayList<Book>();
         try {
             String query = "SELECT * FROM Book b inner join Category c on b.Cat = c.CveCat WHERE c.DescCat like '%"+cat+"%' ";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
             while(rs.next()) {
@@ -156,7 +153,7 @@ public class BookDAO {
         List<Book> books = new ArrayList<Book>();
         try {
             String query = "SELECT * FROM Book WHERE Name like '%"+name+"%' ";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
             while(rs.next()) {
@@ -183,7 +180,7 @@ public class BookDAO {
         List<Book> books = new ArrayList<Book>();
         try {
             String query = "SELECT * FROM Book b inner join Owners o  on  b.Name = o.OName WHERE o.OAName like '%"+autor+"%' ";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
             while(rs.next()) {
@@ -210,7 +207,7 @@ public class BookDAO {
         List<Book> books = new ArrayList<Book>();
         try {
             String query = "SELECT * FROM Book WHERE Review like '%"+review+"%' ";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
             Book p = null;
             while(rs.next()) {
@@ -240,7 +237,7 @@ public class BookDAO {
                     " inner join UserB u on f.FUName = u.UName"+
                     " inner join Book b on b.Name = f.FName" +
                     " where u.UName = '"+user.getUsername()+"'";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
 
             ResultSet rs = st.executeQuery(query);
             Book p = null;
@@ -269,7 +266,7 @@ public class BookDAO {
         try {
             String query = "delete from Comments "
                     + "where CName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             st.execute();
@@ -280,7 +277,7 @@ public class BookDAO {
         try {
             String query = "delete from Owners "
                     + "where OName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             st.execute();
@@ -291,7 +288,7 @@ public class BookDAO {
         try {
             String query = "delete from Favorites "
                     + "where FName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             st.execute();
@@ -302,7 +299,7 @@ public class BookDAO {
         try {
             String query = "delete from History "
                     + "where HName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             st.execute();
@@ -314,7 +311,7 @@ public class BookDAO {
         try {
             String query = "delete from Ranking "
                     + "where GName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             st.execute();
@@ -327,7 +324,7 @@ public class BookDAO {
         try {
             String query = "delete from Book "
                     + "where Name = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             st.execute();
@@ -344,7 +341,7 @@ public class BookDAO {
             String query = "update Book set Review = ?,Cat = ?, Calif = ?,Cover = ?, Link = ?"
                     + "where Name = ?";
 
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1,book.getReview());
             st.setString(2,book.getCategory());
             st.setFloat(3,book.getCalif());
@@ -371,7 +368,7 @@ public class BookDAO {
                     " inner join Book b on b.Name = c.HName" +
                     " where u.UName = '"+user.getUsername()+"'" +
                     " order by c.HDate limit 15";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
 
             ResultSet rs = st.executeQuery(query);
             Book p = null;
@@ -402,7 +399,7 @@ public class BookDAO {
                     " inner join UserB u on c.HUName = u.UName" +
                     " inner join Book b on b.Name = c.HName" +
                     " where u.UName = ?and b.Name = ?";
-            PreparedStatement st = conn.prepareStatement(query);
+            PreparedStatement st = MySQL.getConnection().prepareStatement(query);
 
             st.setString(1, user.getUsername());
             st.setString(  2, book.getName());
@@ -432,7 +429,7 @@ public class BookDAO {
             String query = "insert into History "
                     + " (HUName ,HName , HDate)"
                     + "  values (?,?,NOW())";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(  2, book.getName());
 
@@ -451,7 +448,7 @@ public class BookDAO {
             String query = "update History "
                     + " set HDate = NOW() "
                     + "  where HUName = ? and HUPassword = ? and HName = ? and HLink = ? ";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
             st.setString(  3, book.getName());
@@ -472,7 +469,7 @@ public class BookDAO {
             String query = "insert into Favorites "
                     + " (FUName  ,FName )"
                     + "  values (?,?)";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(  2, book.getName());
 
@@ -490,7 +487,7 @@ public class BookDAO {
         try {
             String query = "delete from Favorites "
                     + "where FName = ? and FUName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(  2, user.getUsername());
 
@@ -508,7 +505,7 @@ public class BookDAO {
         boolean favorite = false;
         try {
             String query = "SELECT * FROM Favorites where  FName = ?  and FUName = ? ";
-            PreparedStatement st = conn.prepareStatement(query);
+            PreparedStatement st = MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(  2, user.getUsername());
             ResultSet rs = st.executeQuery();
@@ -529,7 +526,7 @@ public class BookDAO {
         boolean rated = false;
         try {
             String query = "SELECT * FROM Ranking where  GName = ?  and GUName = ?";
-            PreparedStatement st = conn.prepareStatement(query);
+            PreparedStatement st = MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(  2, user.getUsername());
             ResultSet rs = st.executeQuery();
@@ -550,7 +547,7 @@ public class BookDAO {
         float rate = 0.0f;
         try {
             String query = "SELECT * FROM Ranking where  GName = ? and GUName = ?";
-            PreparedStatement st = conn.prepareStatement(query);
+            PreparedStatement st = MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(  2, user.getUsername());
             ResultSet rs = st.executeQuery();
@@ -572,7 +569,7 @@ public class BookDAO {
             String query = "insert into Ranking "
                     + " (GUName ,GName , GCalif)"
                     + "  values (?,?,?)";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(  2, book.getName());
             st.setInt(3, calif);
@@ -590,7 +587,7 @@ public class BookDAO {
     public boolean updateUserRating(Book book, User user, int calif) {
         try {
             String query = "update Ranking set GCalif = ? where GName = ? and GUName = ? ";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
 
             st.setInt(1, calif);
             st.setString(  2, book.getName());
@@ -609,7 +606,7 @@ public class BookDAO {
     public boolean updateRating(Book book){
         try {
             String query = "update Book set Calif = (select avg(GCalif) from Ranking where GName = ?) where Name = ? ";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(  2, book.getName());
 
@@ -626,7 +623,7 @@ public class BookDAO {
     public boolean addBook(Book book){
         try {
             String query = "insert into Book (Name, Review, Link, Cat, Calif, Cover) values (?,?,?,?,?,?)";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(  2, book.getReview());
             st.setString(3, book.getLink());
@@ -647,7 +644,7 @@ public class BookDAO {
     public boolean addRBook(Book book,User user){
         try {
             String query = "insert into RBook (RName, RLink, RReview, RCat, RUname ,RCover, RCalif) values (?,?,?,?,?,?,?)";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
             st.setString(  3, book.getReview());
             st.setString(2, book.getLink());
@@ -670,7 +667,7 @@ public class BookDAO {
     public boolean addComment(User user, Book book, String opinion){
         try {
             String query = "insert into Comments (CUName, CName, COpinion) values (?,?,?)";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, user.getUsername());
             st.setString(2, book.getName());
             st.setString(3,opinion);
@@ -691,7 +688,7 @@ public class BookDAO {
         ArrayList<Comment> comments = new ArrayList<>();
         try {
             String query = "SELECT * FROM Comments  where CName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             ResultSet rs = st.executeQuery();

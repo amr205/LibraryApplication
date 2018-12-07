@@ -99,10 +99,10 @@ public class BookDetailsController implements Initializable {
         progressBarHBox.getChildren().remove(progressBar);
         isDownloaded = false;
 
-        bookDAO = new BookDAO(MySQL.getConnection());
-        autorDAO = new AutorDAO(MySQL.getConnection());
-        categoryDAO = new CategoryDAO(MySQL.getConnection());
-        countryDAO = new CountryDAO(MySQL.getConnection());
+        bookDAO = new BookDAO();
+        autorDAO = new AutorDAO();
+        categoryDAO = new CategoryDAO();
+        countryDAO = new CountryDAO();
 
     }
 

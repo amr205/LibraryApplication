@@ -71,7 +71,7 @@ public class BookElementController implements Initializable {
     public void setBook(Book book) {
         this.book = book;
         titleLabel.setText(book.getName());
-        AutorDAO autorDAO = new AutorDAO(MySQL.getConnection());
+        AutorDAO autorDAO = new AutorDAO();
         ObservableList<Autor> autors = autorDAO.fetchAllByBook(book);
         if(autors.size()>0)
             authorLabel.setText(autors.get(0).getName()+"...");

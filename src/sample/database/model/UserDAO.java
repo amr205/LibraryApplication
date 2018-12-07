@@ -1,5 +1,7 @@
 package sample.database.model;
 
+import sample.database.MySQL;
+
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -7,17 +9,17 @@ import java.util.List;
 
 public class UserDAO {
 
-    private Connection conn;
-    public UserDAO(Connection conn)
+
+    public UserDAO()
     {
-        this.conn = conn;
+
     }
 
     public User findUser(String username, String passwor) {
         User user = null;
         try {
             String query = "SELECT * FROM UserB WHERE UName = '"+username+"'  AND UPassword = '"+passwor+"'";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
 
             if(rs.next()){
@@ -44,7 +46,7 @@ public class UserDAO {
         boolean available = true;
         try {
             String query = "SELECT UName FROM UserB WHERE UName = '"+username+"'";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
 
             if(rs.next())
@@ -63,7 +65,7 @@ public class UserDAO {
     public boolean updateUser(User user){
         try {
             String query = "update UserB set  UNameCo = ?, UEmail = ?, UDate = ?, UType = ?, UPictureID = ? where UName = ? and UPassword = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1, user.getFullName());
             st.setString(2, user.getEmail());
             st.setDate(3, user.getBirthDate());
@@ -84,8 +86,17 @@ public class UserDAO {
 
     public boolean createUser(User user){
         try {
+            String tmp_u = MySQL.dbuser;
+            String tmp_p = MySQL.dbpass;
+
+            MySQL.Disconnect();
+            MySQL.dbuser = "root";
+            MySQL.dbpass="123";
+            MySQL.Connect();
+
+
             String query = "insert into UserB (UName, UPassword, UType , UPictureID, UNameCo, UEmail, UDate) values (?,?,?,?,?,?,?)";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
             st.setString(3, user.getType());
@@ -94,6 +105,27 @@ public class UserDAO {
             st.setString(6,user.getEmail());
             st.setDate(7,user.getBirthDate());
             st.execute();
+
+            query = "create user "+user.getUsername()+"@localhost identified by '"+user.getPassword()+"'";
+            st = MySQL.getConnection().prepareStatement(query);
+            st.execute();
+
+            if(user.getType().equals("U")) {
+                query = "GRANT 'usuarios' TO "+user.getUsername()+"@'localhost'";
+                st = MySQL.getConnection().prepareStatement(query);
+                st.execute();
+            }
+            else {
+                query = "GRANT 'administradores' TO "+user.getUsername()+"@'localhost'";
+                st = MySQL.getConnection().prepareStatement(query);
+                st.execute();
+            }
+
+            MySQL.Disconnect();
+            MySQL.dbuser = tmp_u;
+            MySQL.dbpass=tmp_p;
+            MySQL.Connect();
+
             //data.add(transaction);
             return true;
         } catch (Exception e) {
@@ -107,7 +139,7 @@ public class UserDAO {
     public String getImageLink(User user){
         try {
             String query = "select * from UserB u inner join UserImage i on u.UPictureID = i.ImageID where UName = ? and UPassword = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
 
@@ -127,7 +159,7 @@ public class UserDAO {
     public String getImageLinkByID(int id){
         try {
             String query = "select * from UserImage   where ImageID = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setInt(1, id);
 
 

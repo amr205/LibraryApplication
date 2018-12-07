@@ -47,7 +47,7 @@ public class ConfigurationWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userDAO  = new UserDAO(MySQL.getConnection());
+        userDAO  = new UserDAO();
 
         appPrefs = Preferences.userNodeForPackage(Main.class);
 
@@ -72,7 +72,11 @@ public class ConfigurationWindowController implements Initializable {
         appPrefs.put("username","none");
         appPrefs.put("password","none");
 
-        System.out.println("log out user");
+        //System.out.println("log out user");
+        MySQL.Disconnect();
+        MySQL.dbuser="guest";
+        MySQL.dbpass="123";
+        MySQL.Connect();
 
         Stage stage = (Stage)userImage1.getScene().getWindow();
         stage.close();
@@ -110,7 +114,7 @@ public class ConfigurationWindowController implements Initializable {
     }
 
     private void setImages(){
-        userDAO = new UserDAO(MySQL.getConnection());
+        userDAO = new UserDAO();
         image1.setImage(new Image(userDAO.getImageLinkByID(1),true));
         image2.setImage(new Image(userDAO.getImageLinkByID(2),true));
         image3.setImage(new Image(userDAO.getImageLinkByID(3),true));

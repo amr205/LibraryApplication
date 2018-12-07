@@ -30,7 +30,7 @@ public class UpdateBookController {
         this.book = book;
 
         String cveCat = book.getCategory();
-        CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
+        CategoryDAO categoryDAO = new CategoryDAO();
         Category category = categoryDAO.findCategory(cveCat);
 
         txtName.setText(book.getName());
@@ -47,10 +47,10 @@ public class UpdateBookController {
     public void update(MouseEvent mouseEvent) {
         try {
             String DescCate = cbCategory.getSelectionModel().getSelectedItem().toString();
-            CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
+            CategoryDAO categoryDAO = new CategoryDAO();
             Category category = categoryDAO.findCategoryByDesc(DescCate);
             Book book = new Book(txtName.getText(), txaReview.getText(), txtLink.getText(), category.getCveCat(), Float.parseFloat(txtScore.getText()), txtCover.getText());
-            BookDAO bookDao = new BookDAO(MySQL.getConnection());
+            BookDAO bookDao = new BookDAO();
             bookDao.updateBook(book);
 
             Stage stage = (Stage) btnAccept.getScene().getWindow();

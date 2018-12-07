@@ -31,6 +31,9 @@ insert into UserImage (ImageID, ImageDesc)
 		values (10,'https://image.ibb.co/cMUvfo/avatar2.png');
 
 insert into UserB (UName, UPassword, UNameCo, UEmail, UDate, UType, UPictureID) 
+		values ('juan','123','Juan pi','juanpi@gmail.com','1998-12-08','U',1);
+
+insert into UserB (UName, UPassword, UNameCo, UEmail, UDate, UType, UPictureID) 
 		values ('admin','Cookies','Administrador Universal','alejandromedinamx@gmail.com','1998-02-05','A',1);
         
 insert into Category values ("scie","Science");

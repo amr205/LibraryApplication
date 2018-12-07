@@ -27,8 +27,8 @@ public class Main extends Application {
         MySQL.Connect();
 
         //auto login
-        appPrefs  = Preferences.userNodeForPackage(Main.class);
-        logUser();
+        //appPrefs  = Preferences.userNodeForPackage(Main.class);
+        //logUser();
 
         //init aplication
         FXMLLoader loader= new FXMLLoader(Main.class.getResource("fxml/mainWindow.fxml"));
@@ -49,7 +49,7 @@ public class Main extends Application {
     }
 
     private void logUser() {
-        UserDAO userDAO = new UserDAO(MySQL.getConnection());
+        UserDAO userDAO = new UserDAO();
         String username, password;
         username=appPrefs.get("username","none");
         password=appPrefs.get("password","none");

@@ -94,12 +94,15 @@ CREATE VIEW user_v AS SELECT * FROM UserB where UName = USER();
 
 select version();
 
+select user,host from mysql.user
+
 create role 'usuarios', 'administradores';
 
-CREATE USER 'guest@localhost' IDENTIFIED BY '123';
-GRANT SELECT ON Bookstore.* TO 'guest@localhost';
-GRANT INSERT, SELECT ON Bookstore.UserB TO 'guest@localhost';
+CREATE USER guest@localhost IDENTIFIED BY '123';
+GRANT SELECT ON Bookstore.* TO guest@localhost;
+GRANT INSERT, SELECT ON Bookstore.UserB TO guest@localhost;
 
+FLUSH privileges;
 
 GRANT ALL ON Bookstore.* TO 'administradores';
 GRANT SELECT ON Bookstore.* TO 'usuarios';

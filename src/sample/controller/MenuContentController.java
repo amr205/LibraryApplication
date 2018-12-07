@@ -97,7 +97,7 @@ public class MenuContentController implements Initializable {
         public void handle(MouseEvent event) {
             Category category = null;
             String cat="";
-            CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
+            CategoryDAO categoryDAO = new CategoryDAO();
 
             if(event.getSource()==kidsCatButton)
                 cat="kids";
@@ -257,7 +257,7 @@ public class MenuContentController implements Initializable {
             userImage.setImage(new Image("/login.png"));
         }
         else{
-            UserDAO userDAO = new UserDAO(MySQL.getConnection());
+            UserDAO userDAO = new UserDAO();
             userImage.setImage(new Image(userDAO.getImageLink(Main.user),true));
         }
     }

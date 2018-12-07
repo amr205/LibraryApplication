@@ -25,7 +25,7 @@ public class CreateUserController {
     public void createUser(MouseEvent mouseEvent) {
         LocalDate localDate = birthDP.getValue();
         User user = new User(usernameTextField.getText(),passwordTextField.getText(),1,type,fullNameTextField.getText(),emailTextField.getText(), Date.valueOf(localDate));
-        UserDAO userDAO = new UserDAO(MySQL.getConnection());
+        UserDAO userDAO = new UserDAO();
         if(userDAO.isUsernameAvailable(user.getUsername())){
             userDAO.createUser(user);
             Stage stage = (Stage)usernameTextField.getScene().getWindow();

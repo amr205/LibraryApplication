@@ -2,6 +2,7 @@ package sample.database.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sample.database.MySQL;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -11,17 +12,13 @@ import java.sql.Statement;
 
 public class CountryDAO {
 
-    private Connection conn;
-    public CountryDAO(Connection conn)
-    {
-        this.conn = conn;
-    }
+
     
     public ObservableList<Country> fetchAll() {
         ObservableList<Country> list = FXCollections.observableArrayList();
         try {
             String query = "SELECT * FROM Country";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
 
             Country p = null;
@@ -46,7 +43,7 @@ public class CountryDAO {
 
         try {
             String query = "SELECT * FROM Country where CveCountry = '"+cve+"' ";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
 
             if(rs.next()) {

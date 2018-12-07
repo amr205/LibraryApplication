@@ -2,6 +2,7 @@ package sample.database.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sample.database.MySQL;
 
 import javax.swing.*;
 import java.sql.*;
@@ -9,17 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RBookDAO {
-    private Connection conn;
-    public RBookDAO(Connection conn)
-    {
-        this.conn = conn;
-    }
+
 
     public ObservableList<RBook> findAll() {
         ObservableList<RBook> rbooks = FXCollections.observableArrayList();
         try {
             String query = "SELECT * FROM RBook";
-            Statement st = conn.createStatement();
+            Statement st = MySQL.getConnection().createStatement();
             ResultSet rs = st.executeQuery(query);
             RBook p = null;
             while(rs.next()) {
@@ -47,7 +44,7 @@ public class RBookDAO {
         try {
             String query = "delete from RBook "
                     + "where RName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             st.execute();

@@ -2,6 +2,7 @@ package sample.database.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sample.database.MySQL;
 
 import javax.swing.*;
 import java.sql.*;
@@ -9,11 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class OwnerDAO {
-    private Connection conn;
-    public OwnerDAO(Connection conn)
-    {
-        this.conn = conn;
-    }
+
 
     public void findAutorsByBook(Book book){
 
@@ -26,7 +23,7 @@ public class OwnerDAO {
         ObservableList<Owner> owners = FXCollections.observableArrayList();
         try {
             String query = "SELECT * FROM ROwners where ROName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             ResultSet rs = st.executeQuery();
@@ -49,7 +46,7 @@ public class OwnerDAO {
     public boolean autorExist(Owner owner){
         try {
             String query = "SELECT * FROM Autor where AName = ? ";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, owner.getOAName());
 
             ResultSet rs = st.executeQuery();
@@ -71,7 +68,7 @@ public class OwnerDAO {
     public  boolean addRAutorToBook(Owner owner){
         try {
             String query = "insert into ROwners (ROName, ROAName) values (?,?)";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, owner.getOName());
             st.setString(  2, owner.getOAName());
 
@@ -88,7 +85,7 @@ public class OwnerDAO {
     public  boolean removeRAutorFromBook(Book book){
         try {
             String query = "delete from ROwners where ROName = ?";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, book.getName());
 
             st.execute();
@@ -104,7 +101,7 @@ public class OwnerDAO {
     public boolean addAutorToBook(Owner owner){
         try {
             String query = "insert into Owners (OName, OAName) values (?,?)";
-            PreparedStatement st =  conn.prepareStatement(query);
+            PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(  1, owner.getOName());
             st.setString(  2, owner.getOAName());
 

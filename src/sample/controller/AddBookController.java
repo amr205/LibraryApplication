@@ -41,11 +41,11 @@ public class AddBookController implements Initializable{
             return;
         }
         String DescCate = cbCategory.getSelectionModel().getSelectedItem().toString();
-        CategoryDAO categoryDAO = new CategoryDAO(MySQL.getConnection());
+        CategoryDAO categoryDAO = new CategoryDAO();
         Category category = categoryDAO.findCategoryByDesc(DescCate);
 
         Book book=new Book(txtName.getText(),txaReview.getText(),txtLink.getText(),category.getCveCat(),Float.parseFloat(txtScore.getText()),txtCover.getText());
-        BookDAO bookDao=new BookDAO(MySQL.getConnection());
+        BookDAO bookDao=new BookDAO();
         bookDao.addBook(book);
 
         for (int i = 0; i < autorList.size(); i++) {
@@ -87,8 +87,8 @@ public class AddBookController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ownerDAO = new OwnerDAO(MySQL.getConnection());
-        autorDAO = new AutorDAO(MySQL.getConnection());
+        ownerDAO = new OwnerDAO();
+        autorDAO = new AutorDAO();
 
         addRow();
     }

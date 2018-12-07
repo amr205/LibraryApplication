@@ -37,7 +37,7 @@ public class SearchBooksController  extends ShowBooks implements Initializable {
 
     public void initBooks(String search){
         titleLabel.setText("Results of search: "+search);
-        BookDAO bookDAO = new BookDAO(MySQL.getConnection());
+        BookDAO bookDAO = new BookDAO();
         List<Book> bookList;
 
        bookList = bookDAO.findByCategoryDesc(search);

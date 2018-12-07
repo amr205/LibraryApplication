@@ -49,8 +49,8 @@ public class CreateAutorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        countryDAO = new CountryDAO(MySQL.getConnection());
-        autorDAO = new AutorDAO(MySQL.getConnection());
+        countryDAO = new CountryDAO();
+        autorDAO = new AutorDAO();
 
         countryBox.setItems(countryDAO.fetchAll());
         try{
