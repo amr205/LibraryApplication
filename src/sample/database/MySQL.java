@@ -19,19 +19,20 @@ public class MySQL {
     private static String hostname   = "localhost";
     private static String dbname = "Bookstore";
     private static String dbuser = "root";
-    private static String dbpass = "123";
+    private static String dbpass = "";
     
 
     public static void Connect() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-                conn = DriverManager.getConnection("jdbc:mysql://"+ hostname +":3306/" + dbname, dbuser, dbpass);
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Bookstore?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","c7d7f11f9e");
+
                 System.out.println("Se ha iniciado la conexión con el servidor de forma exitosa");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(MySQL.class.getName()).log(Level.SEVERE, null, ex);
-            }        
+            }
     }
     
     public static Connection getConnection()
