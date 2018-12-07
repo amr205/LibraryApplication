@@ -1,4 +1,4 @@
-use Bookstore;
+use bookstore;
 
 insert into UserImage (ImageID, ImageDesc)
 		values (1,'https://image.ibb.co/j8GK6T/avatar10.png');
@@ -29,9 +29,6 @@ insert into UserImage (ImageID, ImageDesc)
         
 insert into UserImage (ImageID, ImageDesc)
 		values (10,'https://image.ibb.co/cMUvfo/avatar2.png');
-
-insert into UserB (UName, UPassword, UNameCo, UEmail, UDate, UType, UPictureID) 
-		values ('juan','123','Juan pi','juanpi@gmail.com','1998-12-08','U',1);
 
 insert into UserB (UName, UPassword, UNameCo, UEmail, UDate, UType, UPictureID) 
 		values ('admin','Cookies','Administrador Universal','alejandromedinamx@gmail.com','1998-02-05','A',1);
@@ -687,7 +684,7 @@ insert into Owners values ("La práctica de la inteligencia emocional","Daniel G
 insert into Owners values ("El hombre que confundió a su mujer con un sombrero","Oliver Sacks");
 insert into Owners values ("Nuestra especie","Marvin Harris");
 insert into Owners values ("El heptameron","Margarita de Valois");
-insert into Owners values ("Cosas que le pasan a una madre sin superpoderes""Ana Ribera García Rubio ");
+insert into Owners values ("Cosas que le pasan a una madre sin superpoderes","Ana Ribera García Rubio");
 insert into Owners values ("Apocalipsis para principiantes","Nicolas Dickner");
 insert into Owners values ("Un yanqui en la corte del rey arturo","Mark Twain");
 insert into Owners values ("La importancia de llamarse Ernesto","Oscar Wilde");
@@ -741,3 +738,4 @@ insert into Owners values ("Otelo","William Shakespeare");
 insert into Owners values ("Macbeth","William Shakespeare");
 insert into Owners values ("Middlemarch","George Eliot");
 insert into Owners values ("El grillo del hogar","Charles Dickens");
+
