@@ -41,7 +41,7 @@ public class LoginWindowController implements Initializable {
                 if(event.getCode().equals(KeyCode.ENTER) )
                     loginUser();
 
-               }
+            }
         });
     }
 

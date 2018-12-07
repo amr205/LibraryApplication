@@ -95,7 +95,7 @@ public class UserDAO {
             MySQL.Connect();
 
 
-            String query = "insert into UserB (UName, UPassword, UType , UPictureID, UNameCo, UEmail, UDate) values (?,?,?,?,?,?,?)";
+            String query = "insert into UserB (UName, UPassword, UType , UPictureID, UNameCo, UEmail, UDate, FCounter, DCounter) values (?,?,?,?,?,?,?,0,0)";
             PreparedStatement st =  MySQL.getConnection().prepareStatement(query);
             st.setString(1, user.getUsername());
             st.setString(2, user.getPassword());
@@ -114,9 +114,18 @@ public class UserDAO {
                 query = "GRANT 'usuarios' TO "+user.getUsername()+"@'localhost'";
                 st = MySQL.getConnection().prepareStatement(query);
                 st.execute();
+
+                query = "SET DEFAULT ROLE usuarios TO "+user.getUsername()+"@'localhost'";
+                st = MySQL.getConnection().prepareStatement(query);
+                st.execute();
+
             }
             else {
                 query = "GRANT 'administradores' TO "+user.getUsername()+"@'localhost'";
+                st = MySQL.getConnection().prepareStatement(query);
+                st.execute();
+
+                query = "SET DEFAULT ROLE administradores TO "+user.getUsername()+"@'localhost'";
                 st = MySQL.getConnection().prepareStatement(query);
                 st.execute();
             }
