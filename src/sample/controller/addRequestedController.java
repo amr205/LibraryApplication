@@ -18,6 +18,7 @@ import sample.database.model.*;
 
 import javax.swing.*;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -59,6 +60,7 @@ public class addRequestedController implements Initializable {
                 }
             }
 
+            /*
             BookDAO bookDao = new BookDAO();
             bookDao.addBook(book);
 
@@ -70,6 +72,21 @@ public class addRequestedController implements Initializable {
 
             RBookDAO rBookDAO = new RBookDAO();
             rBookDAO.delete(book);
+            */
+            try {
+                String query = "call AproveBook(?,?,?,?,?,?)";
+                PreparedStatement st = MySQL.getConnection().prepareStatement(query);
+                st.setString(1, book.getName());
+                st.setString(2, book.getReview());
+                st.setString(3,book.getLink());
+                st.setString(4,book.getCategory());
+                st.setFloat(5,book.getCalif());
+                st.setString(6,book.getCover());
+                st.execute();
+
+
+            }catch(Exception e){ }
+
 
             initTableR();
         }else{
@@ -80,6 +97,8 @@ public class addRequestedController implements Initializable {
         }
 
     }
+
+
 
     public void addAutor(ActionEvent actionEvent) {
         try {
